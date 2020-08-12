@@ -1,3 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Sofra</string>
+
+    <!-- Splash button string -->
+    <string name="order_food">Order food</string>
+    <string name="sell_food">Sell food</string>
+
+    <!-- App images description -->
+    <string name="splash_activity_image_top">dish of meat and salad</string>
+    <string name="splash_activity_image_center">sofra app image</string>
+    <string name="splash_activity_image_bottom">chicken dish</string>
 </resources>

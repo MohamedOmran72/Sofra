@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">سفرة</string>
+
+    <!-- Splash button string -->
+    <string name="order_food">طلب طعام</string>
+    <string name="sell_food">بيع طعام</string>
+
+    <!-- App images description -->
+    <string name="splash_activity_image_top">طبق من اللحم و السلطة</string>
+    <string name="splash_activity_image_center">صورة تطبيق سفرة</string>
+    <string name="splash_activity_image_bottom">طبق دجاج</string>
+</resources>
