@@ -10,4 +10,14 @@
     <string name="splash_activity_image_top">طبق من اللحم و السلطة</string>
     <string name="splash_activity_image_center">صورة تطبيق سفرة</string>
     <string name="splash_activity_image_bottom">طبق دجاج</string>
+
+    <!-- Strings related to login -->
+    <string name="forgot_password">هل نسيت كلمة المرور؟</string>
+    <string name="prompt_email">البريد الاليكتروني</string>
+    <string name="prompt_password">كلمة المرور</string>
+    <string name="action_sign_in_short">تسجيل الدخول</string>
+    <string name="login_failed">فشل الدخول</string>
+    <string name="invalid_username">اسم مستخدم غير صحيح</string>
+    <string name="invalid_password">كلمة المرور يجب ان تكون اكبر من 5 حروف</string>
+    <string name="register">ليس لديك حساب؟ انشاء حساب</string>
 </resources>

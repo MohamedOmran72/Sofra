@@ -10,4 +10,14 @@
     <string name="splash_activity_image_top">dish of meat and salad</string>
     <string name="splash_activity_image_center">sofra app image</string>
     <string name="splash_activity_image_bottom">chicken dish</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="register">Don\'t have an account? Register</string>
 </resources>

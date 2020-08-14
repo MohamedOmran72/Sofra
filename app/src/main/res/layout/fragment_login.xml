@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:background="@color/primaryDarkColor"
+    tools:context=".ui.fragment.LoginFragment">
+
+    <TextView
+        android:id="@+id/login_fragment_tv_sign_in"
+        style="@style/AuthBoldText"
+        android:layout_marginTop="@dimen/_60sdp"
+        android:text="@string/action_sign_in_short"
+        android:textSize="@dimen/_24ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/login_fragment_edit_text_username"
+        style="@style/AuthEditText"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:autofillHints="@string/prompt_email"
+        android:drawableStart="@drawable/ic_baseline_email_24"
+        android:hint="@string/prompt_email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_fragment_tv_sign_in" />
+
+    <EditText
+        android:id="@+id/login_fragment_edit_text_password"
+        style="@style/AuthEditText"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:autofillHints="@string/prompt_password"
+        android:hint="@string/prompt_password"
+        android:imeActionLabel="@string/action_sign_in_short"
+        android:imeOptions="actionDone"
+        android:inputType="textPassword"
+        android:selectAllOnFocus="true"
+        app:drawableStartCompat="@drawable/ic_baseline_lock_24"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_fragment_edit_text_username" />
+
+    <TextView
+        style="@style/AuthText"
+        android:text="@string/forgot_password"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintBottom_toTopOf="@+id/login_fragment_linear_sign_in"
+        app:layout_constraintEnd_toEndOf="@+id/login_fragment_edit_text_password"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_fragment_edit_text_password"
+        app:layout_constraintVertical_bias="0.246" />
+
+    <LinearLayout
+        android:id="@+id/login_fragment_linear_sign_in"
+        style="@style/RedRadiusButton"
+        android:layout_width="0dp"
+        android:layout_marginStart="@dimen/_64sdp"
+        android:layout_marginTop="@dimen/_6sdp"
+        android:layout_marginEnd="@dimen/_64sdp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_fragment_edit_text_password"
+        app:layout_constraintVertical_bias="0.2">
+
+        <TextView
+            android:id="@+id/login_fragment_linear_tv_sign_in"
+            style="@style/AuthText"
+            android:gravity="center"
+            android:text="@string/action_sign_in_short"
+            android:textSize="@dimen/_16ssp"
+            app:drawableStartCompat="@drawable/ic_baseline_login_door_24" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/login_fragment_tv_register"
+        style="@style/AuthText"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_24sdp"
+        android:background="@color/secondaryColor"
+        android:gravity="center"
+        android:text="@string/register"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_fragment_linear_sign_in"
+        app:layout_constraintVertical_bias="1.0" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,4 +7,40 @@
         <item name="colorAccent">@color/primaryLightColor</item>
     </style>
 
+    <!-- Change Author text color from black to white   -->
+    <style name="AuthText">
+        <item name="android:textColor">@color/secondaryTextColor</item>
+        <item name="android:fontFamily">@font/google_sans</item>
+        <item name="android:drawablePadding">8dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!-- Author with google_sans_bold font family text -->
+    <style name="AuthBoldText" parent="AuthText">
+        <item name="android:fontFamily">@font/google_sans_bold</item>
+    </style>
+
+    <!-- Author EditText hint, text and underline with white color -->
+    <style name="AuthEditText" parent="AuthText">
+        <item name="android:textColorHint">@color/secondaryTextColor</item>
+        <item name="backgroundTint">@color/primaryColor</item>
+        <item name="android:selectAllOnFocus">true</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:maxHeight">32dp</item>
+    </style>
+
+    <!-- Button style  -->
+    <style name="Button">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxHeight">32dp</item>
+    </style>
+
+    <!-- Red Radius Button style -->
+    <style name="RedRadiusButton" parent="Button">
+        <item name="android:background">@drawable/button_background_red_radius</item>
+    </style>
 </resources>

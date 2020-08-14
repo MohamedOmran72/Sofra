@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/splash_activity_image_center"
         android:layout_centerInParent="true"
-        android:background="@drawable/button_backgrond_red_redius"
+        android:background="@drawable/button_background_red_radius"
         android:text="@string/order_food"
         android:textColor="@color/secondaryTextColor" />
 
@@ -41,7 +41,7 @@
         android:layout_below="@+id/splash_activity_button_order_food"
         android:layout_centerInParent="true"
         android:layout_marginTop="@dimen/_20sdp"
-        android:background="@drawable/button_backgrond_red_redius"
+        android:background="@drawable/button_background_red_radius"
         android:text="@string/sell_food"
         android:textColor="@color/secondaryTextColor" />
 
