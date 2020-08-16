@@ -36,4 +36,9 @@
     <string name="whats_app_number">رقم الواتس اب</string>
     <string name="restaurant_picture">صورة المتجر</string>
     <string name="action_sign_up">انشيء حساب</string>
+
+    <!-- Strings related to Forgot password -->
+    <string name="please_enter_your_email">من فضلك ادخل بريدك الاليكتروني</string>
+    <string name="send_code">ارسال الرمز</string>
+
 </resources>
