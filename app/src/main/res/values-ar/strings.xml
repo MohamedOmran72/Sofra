@@ -40,5 +40,9 @@
     <!-- Strings related to Forgot password -->
     <string name="please_enter_your_email">من فضلك ادخل بريدك الاليكتروني</string>
     <string name="send_code">ارسال الرمز</string>
+    <string name="please_enter_the_code">من فضلك ادخل الرمز المرسل</string>
+    <string name="the_code">الرمز</string>
+    <string name="please_enter_new_password">من فضلك ادخل كلمة المرور الجديدة</string>
+    <string name="change_password">تغير كلمة المرور</string>
 
 </resources>

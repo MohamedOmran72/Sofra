@@ -40,4 +40,8 @@
     <!-- Strings related to Forgot password -->
     <string name="please_enter_your_email">Please enter your email</string>
     <string name="send_code">Send code</string>
+    <string name="please_enter_the_code">Please enter the code that was sent</string>
+    <string name="the_code">The code</string>
+    <string name="please_enter_new_password">Please enter new password</string>
+    <string name="change_password">Change password</string>
 </resources>
