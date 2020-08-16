@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="@dimen/fragment_vertical_margin"
+    android:paddingEnd="@dimen/fragment_vertical_margin"
+    tools:background="@color/primaryDarkColor"
+    tools:context=".ui.fragment.RegisterRestaurantFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/fragment_register_customer_image_view_add_picture"
+            android:layout_width="@dimen/_48sdp"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@drawable/shape_circle"
+            android:contentDescription="@string/fragment_register_image_view_customer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_add_user_24" />
+
+        <EditText
+            android:id="@+id/fragment_register_edit_text_name"
+            style="@style/AuthEditText"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:autofillHints="@string/name"
+            android:drawableStart="@drawable/ic_baseline_person_24"
+            android:hint="@string/name"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_register_customer_image_view_add_picture" />
+
+        <EditText
+            android:id="@+id/fragment_register_edit_text_email"
+            style="@style/AuthEditText"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:autofillHints="@string/prompt_email"
+            android:drawableStart="@drawable/ic_baseline_email_24"
+            android:hint="@string/prompt_email"
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_register_edit_text_name" />
+
+        <EditText
+            android:id="@+id/fragment_register_customer_edit_text_phone_number"
+            style="@style/AuthEditText"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:autofillHints="@string/phone_number"
+            android:drawableStart="@drawable/ic_baseline_phone_24"
+            android:hint="@string/phone_number"
+            android:inputType="phone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_register_edit_text_email" />
+
+        <LinearLayout
+            android:id="@+id/fragment_register_linear_city_Spinner"
+            style="@style/AuthEditText"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="?editTextBackground"
+            android:backgroundTint="@color/primaryColor"
+            app:backgroundTint="@color/primaryColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_register_customer_edit_text_phone_number">
+
+            <ImageView
+                android:id="@+id/fragment_register_image_city_Spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/fragment_register_restaurant_spinner_drawable"
+                app:srcCompat="@drawable/ic_baseline_house_32" />
+
+            <Spinner
+                android:id="@+id/fragment_register_city_Spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_register_linear_district_Spinner"
+            style="@style/AuthEditText"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="?editTextBackground"
+            android:backgroundTint="@color/primaryColor"
+            app:backgroundTint="@color/primaryColor"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_register_linear_city_Spinner">
+
+            <ImageView
+                android:id="@+id/fragment_register_image_district_Spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/fragment_register_restaurant_spinner_drawable"
+                app:srcCompat="@drawable/ic_baseline_house_32" />
+
+            <Spinner
+                android:id="@+id/fragment_register_district_Spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/fragment_register_edit_text_password"
+            style="@style/AuthEditText"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:autofillHints="@string/prompt_password"
+            android:drawableStart="@drawable/ic_baseline_lock_24"
+            android:hint="@string/prompt_password"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_register_linear_district_Spinner" />
+
+        <EditText
+            android:id="@+id/fragment_register_edit_text_confirm_password"
+            style="@style/AuthEditText"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:autofillHints="@string/confirm_password"
+            android:drawableStart="@drawable/ic_baseline_lock_24"
+            android:hint="@string/confirm_password"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_register_edit_text_password" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fragment_register_restaurant_data_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_register_edit_text_confirm_password"
+            tools:visibility="visible">
+
+            <EditText
+                android:id="@+id/fragment_register_restaurant_edit_text_minimum_charge"
+                style="@style/AuthEditText"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:autofillHints="@string/minimum_charge"
+                android:drawableStart="@drawable/ic_baseline_wallet_24"
+                android:hint="@string/minimum_charge"
+                android:inputType="textPassword"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/fragment_register_restaurant_edit_text_delivery_cost"
+                style="@style/AuthEditText"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:autofillHints="@string/delivery_cost"
+                android:drawableStart="@drawable/ic_baseline_wallet_24"
+                android:hint="@string/delivery_cost"
+                android:inputType="textPassword"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_register_restaurant_edit_text_minimum_charge" />
+
+            <EditText
+                android:id="@+id/fragment_register_restaurant_edit_text_delivery_time"
+                style="@style/AuthEditText"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:autofillHints="@string/restaurant_delivery_time"
+                android:drawableStart="@drawable/ic_baseline_clock_24"
+                android:hint="@string/restaurant_delivery_time"
+                android:inputType="time"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_register_restaurant_edit_text_delivery_cost" />
+
+            <TextView
+                android:id="@+id/fragment_register_restaurant_text_view_contact_data"
+                style="@style/AuthBoldText"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="@string/contact_data"
+                android:textSize="@dimen/_22ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_register_restaurant_edit_text_delivery_time" />
+
+            <EditText
+                android:id="@+id/fragment_register_restaurant_edit_text_phone_number"
+                style="@style/AuthEditText"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:autofillHints="@string/phone_number"
+                android:drawableStart="@drawable/ic_baseline_phone_24"
+                android:hint="@string/phone_number"
+                android:inputType="phone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_register_restaurant_text_view_contact_data" />
+
+            <EditText
+                android:id="@+id/fragment_register_restaurant_edit_text_whatsapp_number"
+                style="@style/AuthEditText"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:autofillHints="@string/whats_app_number"
+                android:drawableStart="@drawable/ic_baseline_whatsapp_24"
+                android:hint="@string/whats_app_number"
+                android:inputType="phone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_register_restaurant_edit_text_phone_number"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <TextView
+                android:id="@+id/fragment_register_restaurant_text_view_restaurant_picture"
+                style="@style/AuthBoldText"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:text="@string/restaurant_picture"
+                android:textSize="@dimen/_22ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_register_restaurant_edit_text_whatsapp_number" />
+
+            <ImageView
+                android:id="@+id/fragment_register_restaurant_image_view_restaurant_picture"
+                android:layout_width="@dimen/_48sdp"
+                android:layout_height="@dimen/_48sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:background="@drawable/shape_rectangle_25"
+                android:contentDescription="@string/fragment_register_restaurant_image_view_restaurant_picture"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_register_restaurant_text_view_restaurant_picture"
+                app:layout_constraintVertical_bias="1.0"
+                app:srcCompat="@drawable/ic_baseline_store_24" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_register_linear_sign_up"
+            style="@style/RedRadiusButton"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/_32sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_32sdp"
+            android:layout_marginBottom="@dimen/_20sdp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_register_restaurant_data_container">
+
+            <TextView
+                android:id="@+id/fragment_register_linear_tv_sign_in"
+                style="@style/AuthText"
+                android:gravity="center"
+                android:text="@string/action_sign_up"
+                android:textSize="@dimen/_16ssp"
+                app:drawableStartCompat="@drawable/ic_baseline_login_door_24" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

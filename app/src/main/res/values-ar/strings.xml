@@ -10,6 +10,9 @@
     <string name="splash_activity_image_top">طبق من اللحم و السلطة</string>
     <string name="splash_activity_image_center">صورة تطبيق سفرة</string>
     <string name="splash_activity_image_bottom">طبق دجاج</string>
+    <string name="fragment_register_restaurant_spinner_drawable">منزل</string>
+    <string name="fragment_register_image_view_customer">اضف صورة</string>
+    <string name="fragment_register_restaurant_image_view_restaurant_picture">اضف صورة المحل</string>
 
     <!-- Strings related to login -->
     <string name="forgot_password">هل نسيت كلمة المرور؟</string>
@@ -20,4 +23,17 @@
     <string name="invalid_username">اسم مستخدم غير صحيح</string>
     <string name="invalid_password">كلمة المرور يجب ان تكون اكبر من 5 حروف</string>
     <string name="register">ليس لديك حساب؟ انشاء حساب</string>
+
+    <!-- Strings related to register  -->
+    <string name="name">الاسم</string>
+    <string name="restaurant_name">اسم المطعم</string>
+    <string name="restaurant_delivery_time">مدة التوصيل</string>
+    <string name="confirm_password">تاكيد كلمة المرور</string>
+    <string name="minimum_charge">الحد الأدني للطلب</string>
+    <string name="delivery_cost">"رسوم التوصيل "</string>
+    <string name="contact_data">بيانات التواصل</string>
+    <string name="phone_number">الجوال</string>
+    <string name="whats_app_number">رقم الواتس اب</string>
+    <string name="restaurant_picture">صورة المتجر</string>
+    <string name="action_sign_up">انشيء حساب</string>
 </resources>
