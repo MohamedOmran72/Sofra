@@ -9,6 +9,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".ui.activity.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.activity.AuthActivity"
             android:screenOrientation="portrait" />
         <activity
