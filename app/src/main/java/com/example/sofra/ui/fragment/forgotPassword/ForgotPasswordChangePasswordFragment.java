@@ -1,4 +1,4 @@
-package com.example.sofra.ui.fragment;
+package com.example.sofra.ui.fragment.forgotPassword;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,13 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.sofra.R;
+import com.example.sofra.ui.fragment.BaseFragment;
 
-public class LoginFragment extends BaseFragment {
+public class ForgotPasswordChangePasswordFragment extends BaseFragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        return inflater.inflate(R.layout.fragment_forgot_password_change_password, container, false);
     }
 }

@@ -7,7 +7,7 @@
     android:paddingStart="@dimen/fragment_vertical_margin"
     android:paddingEnd="@dimen/fragment_vertical_margin"
     tools:background="@color/primaryDarkColor"
-    tools:context=".ui.fragment.RegisterRestaurantFragment">
+    tools:context=".ui.fragment.register.RegisterFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -73,7 +73,8 @@
             app:backgroundTint="@color/primaryColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_register_customer_edit_text_phone_number">
+            app:layout_constraintTop_toBottomOf="@+id/fragment_register_customer_edit_text_phone_number"
+            tools:targetApi="lollipop">
 
             <ImageView
                 android:id="@+id/fragment_register_image_city_Spinner"
@@ -99,7 +100,8 @@
             app:backgroundTint="@color/primaryColor"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_register_linear_city_Spinner">
+            app:layout_constraintTop_toBottomOf="@+id/fragment_register_linear_city_Spinner"
+            tools:targetApi="lollipop">
 
             <ImageView
                 android:id="@+id/fragment_register_image_district_Spinner"

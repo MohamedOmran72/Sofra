@@ -2,11 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
+    android:id="@+id/login_fragment_constraint_layout_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:background="@color/primaryDarkColor"
-    tools:context=".ui.fragment.LoginFragment">
+    tools:context=".ui.fragment.login.LoginFragment">
 
     <TextView
         android:id="@+id/login_fragment_tv_sign_in"
@@ -50,7 +50,10 @@
         app:layout_constraintTop_toBottomOf="@+id/login_fragment_edit_text_username" />
 
     <TextView
+        android:id="@+id/login_fragment_text_view_forgot_password"
         style="@style/AuthText"
+        android:clickable="true"
+        android:focusable="true"
         android:text="@string/forgot_password"
         android:textSize="@dimen/_12ssp"
         app:layout_constraintBottom_toTopOf="@+id/login_fragment_linear_sign_in"
@@ -67,6 +70,8 @@
         android:layout_marginStart="@dimen/_64sdp"
         android:layout_marginTop="@dimen/_6sdp"
         android:layout_marginEnd="@dimen/_64sdp"
+        android:clickable="true"
+        android:focusable="true"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -89,6 +94,8 @@
         android:layout_width="0dp"
         android:layout_height="@dimen/_24sdp"
         android:background="@color/secondaryColor"
+        android:clickable="true"
+        android:focusable="true"
         android:gravity="center"
         android:text="@string/register"
         app:layout_constraintBottom_toBottomOf="parent"

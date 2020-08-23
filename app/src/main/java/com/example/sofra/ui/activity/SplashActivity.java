@@ -17,12 +17,11 @@ public class SplashActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        choseType();
         // inflate Layout with viewBinding
         binding = ActivitySplashBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
-
-        choseType();
     }
 
     /**
@@ -34,6 +33,7 @@ public class SplashActivity extends BaseActivity {
         // else wait user chosen
         if (LoadData(this, "userType") != null) {
             Intent intent = new Intent(this, HomeActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             startActivity(intent);
         } else {
             binding.splashActivityButtonOrderFood.setOnClickListener(new View.OnClickListener() {

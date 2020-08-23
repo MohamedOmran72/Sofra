@@ -5,5 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/login_background"
-    android:foreground="#80C01C4E"
-    tools:context=".ui.activity.AuthActivity" />
+    android:backgroundTint="#80C01C4E"
+    android:backgroundTintMode="src_atop"
+    tools:context=".ui.activity.AuthActivity"
+    tools:targetApi="lollipop" />

@@ -21,8 +21,11 @@
     <string name="action_sign_in_short">تسجيل الدخول</string>
     <string name="login_failed">فشل الدخول</string>
     <string name="invalid_username">اسم مستخدم غير صحيح</string>
+    <string name="invalid_email">بريد اليكتروني غير صحيح</string>
+    <string name="invalid_phone_number">رقم الجوال غير صحيح</string>
     <string name="invalid_password">كلمة المرور يجب ان تكون اكبر من 5 حروف</string>
     <string name="register">ليس لديك حساب؟ انشاء حساب</string>
+    <string name="required_field">هذا الحقل مطلوب</string>
 
     <!-- Strings related to register  -->
     <string name="name">الاسم</string>
