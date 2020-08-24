@@ -15,9 +15,15 @@ public class SplashActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        // if the user login go to Home direct
+        // else wait user chosen
+        if (LoadData(this, "userType") != null) {
+            Intent intent = new Intent(this, HomeActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+        }
 
-        choseType();
+        super.onCreate(savedInstanceState);
         // inflate Layout with viewBinding
         binding = ActivitySplashBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
@@ -25,35 +31,30 @@ public class SplashActivity extends BaseActivity {
     }
 
     /**
-     * This method use to choose customer type {OrderFood, SellFood}.
+     * Dispatch onResume() to fragments.  Note that for better inter-operation
+     * with older versions of the platform, at the point of this call the
+     * fragments attached to the activity are <em>not</em> resumed.
      */
-    private void choseType() {
+    @Override
+    protected void onResume() {
+        super.onResume();
+        binding.splashActivityButtonOrderFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+                intent.putExtra("userType", "client");
+                startActivity(intent);
+            }
+        });
 
-        // if the user login go to Home direct
-        // else wait user chosen
-        if (LoadData(this, "userType") != null) {
-            Intent intent = new Intent(this, HomeActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            startActivity(intent);
-        } else {
-            binding.splashActivityButtonOrderFood.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
-                    intent.putExtra("userType", "client");
-                    startActivity(intent);
-                }
-            });
-
-            binding.splashActivityButtonSellFood.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(SplashActivity.this, AuthActivity.class);
-                    intent.putExtra("userType", "seller");
-                    startActivity(intent);
-                }
-            });
-        }
+        binding.splashActivityButtonSellFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SplashActivity.this, AuthActivity.class);
+                intent.putExtra("userType", "seller");
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
