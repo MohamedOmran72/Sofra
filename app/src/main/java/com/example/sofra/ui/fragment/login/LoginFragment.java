@@ -18,7 +18,7 @@ import com.example.sofra.databinding.FragmentLoginBinding;
 import com.example.sofra.ui.activity.HomeActivity;
 import com.example.sofra.ui.activity.SplashActivity;
 import com.example.sofra.ui.fragment.BaseFragment;
-import com.example.sofra.ui.fragment.forgotPassword.ForgotPasswordEnterEmailFragment;
+import com.example.sofra.ui.fragment.forgotPassword.ResetPasswordFragment;
 import com.example.sofra.ui.fragment.register.RegisterFragment;
 
 import java.util.Objects;
@@ -102,7 +102,7 @@ public class LoginFragment extends BaseFragment {
 
                 replaceFragment(getParentFragmentManager()
                         , Objects.requireNonNull(getActivity()).findViewById(R.id.auth_activity_frame).getId()
-                        , new ForgotPasswordEnterEmailFragment(), TAG, bundle);
+                        , new ResetPasswordFragment(), TAG, bundle);
             }
         });
 
