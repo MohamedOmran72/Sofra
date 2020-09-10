@@ -215,7 +215,7 @@ public class RegisterFragment extends BaseFragment {
         RequestBody regionIds = convertStringToRequestBody(String.valueOf(binding.fragmentRegisterDistrictSpinner.getSelectedItemPosition()));
         RequestBody deliveryCost = convertStringToRequestBody(binding.fragmentRegisterRestaurantEditTextDeliveryCost.getText().toString());
         RequestBody minimumCharger = convertStringToRequestBody(binding.fragmentRegisterRestaurantEditTextMinimumCharge.getText().toString());
-        MultipartBody.Part image = convertFileToMultipart(imageFile, "profile_image");
+        MultipartBody.Part image = convertFileToMultipart(imageFile, "photo");
         RequestBody deliveryTime = convertStringToRequestBody(binding.fragmentRegisterRestaurantEditTextDeliveryTime.getText().toString());
 
         // start call server
@@ -227,14 +227,11 @@ public class RegisterFragment extends BaseFragment {
             @Override
             public void onChanged(Login login) {
                 if (login.getStatus() == 1) {
-                    Toast.makeText(baseActivity, login.getMsg(), Toast.LENGTH_LONG).show();
 
                     // save data to SharedPreferences
                     SaveData(getActivity(), "userType", "seller");
-                    SaveData(getActivity(), "clientId", login.getData().getUser().getId());
                     SaveData(getActivity(), "email", binding.fragmentRegisterEditTextEmail.getText().toString());
                     SaveData(getActivity(), "password", binding.fragmentRegisterEditTextPassword.getText().toString());
-                    SaveData(getActivity(), "apiToken", login.getData().getApiToken());
 
                     Bundle bundle = new Bundle();
                     bundle.putString("userType", "seller");
@@ -242,6 +239,8 @@ public class RegisterFragment extends BaseFragment {
                     replaceFragment(getParentFragmentManager()
                             , Objects.requireNonNull(getActivity()).findViewById(R.id.auth_activity_frame).getId()
                             , new LoginFragment(), null, bundle);
+
+                    Toast.makeText(baseActivity, login.getMsg(), Toast.LENGTH_LONG).show();
 
                 } else {
                     Toast.makeText(baseActivity, login.getMsg(), Toast.LENGTH_SHORT).show();
@@ -270,7 +269,6 @@ public class RegisterFragment extends BaseFragment {
             @Override
             public void onChanged(Login login) {
                 if (login.getStatus() == 1) {
-                    Toast.makeText(baseActivity, login.getMsg(), Toast.LENGTH_LONG).show();
 
                     // save data to SharedPreferences
                     SaveData(getActivity(), "userType", "client");
@@ -285,6 +283,8 @@ public class RegisterFragment extends BaseFragment {
                     replaceFragment(getParentFragmentManager()
                             , Objects.requireNonNull(getActivity()).findViewById(R.id.auth_activity_frame).getId()
                             , new LoginFragment(), null, bundle);
+
+                    Toast.makeText(baseActivity, login.getMsg(), Toast.LENGTH_LONG).show();
 
                 } else {
                     Toast.makeText(baseActivity, login.getMsg(), Toast.LENGTH_SHORT).show();
@@ -369,11 +369,7 @@ public class RegisterFragment extends BaseFragment {
                 }
 
             }
-
-            // use system time as file name
-            String imageFileName = String.valueOf(System.currentTimeMillis());
-            imageFile = new File(imageFileName);
-            imageFile = convertBitmapToFile(Objects.requireNonNull(getContext()), bitmap, imageFileName);
+            imageFile = convertBitmapToFile(Objects.requireNonNull(getContext()), bitmap);
         }
     }
 

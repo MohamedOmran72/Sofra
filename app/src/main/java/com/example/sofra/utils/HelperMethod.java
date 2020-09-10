@@ -70,8 +70,10 @@ public class HelperMethod {
      * @param bitmap  image as bitmap
      * @return converted image file .png
      */
-    public static File convertBitmapToFile(Context context, Bitmap bitmap, String imageFileName) {
+    public static File convertBitmapToFile(Context context, Bitmap bitmap) {
 
+        // use system time as file name
+        String imageFileName = String.valueOf(System.currentTimeMillis());
         // path to the directory on the filesystem where files created
         File filesDir = context.getFilesDir();
         File imageFile = new File(filesDir, imageFileName + ".png");
