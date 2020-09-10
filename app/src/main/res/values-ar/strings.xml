@@ -39,6 +39,15 @@
     <string name="whats_app_number">رقم الواتس اب</string>
     <string name="restaurant_picture">صورة المتجر</string>
     <string name="action_sign_up">انشيء حساب</string>
+    <string name="chose_image">اختار الصورة</string>
+    <string name="chose_camera">الكاميرا</string>
+    <string name="chose_gallery">المعرض</string>
+    <string name="select_file">اختار ملف</string>
+    <string name="choose_city">اختار المدينة</string>
+    <string name="choose_city_first">اختار المدينة اولا</string>
+    <string name="choose_region">اختار المنطقة</string>
+    <string name="password_not_matched">كلمة المرور غير متطابقة</string>
+    <string name="select_your_location">من فضلك اختار الموقع</string>
 
     <!-- Strings related to Forgot password -->
     <string name="please_enter_your_email">من فضلك ادخل بريدك الاليكتروني</string>

@@ -63,4 +63,24 @@ public class CheckInput {
         }
         return true;
     }
+
+    /**
+     * to check if password and confirmPassword matched
+     *
+     * @param password        user string password
+     * @param confirmPassword string password confirmation
+     * @return true if matched or false if not
+     */
+    public static boolean isPasswordMatched(EditText password, EditText confirmPassword) {
+
+        if (password.getText().toString().equals(confirmPassword.getText().toString())) {
+            return true;
+        } else {
+            password.setError(password.getContext().getString(R.string.password_not_matched));
+            confirmPassword.setError(confirmPassword.getContext().getString(R.string.password_not_matched));
+            password.requestFocus();
+
+            return false;
+        }
+    }
 }

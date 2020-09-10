@@ -2,6 +2,7 @@ package com.example.sofra.utils;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +12,14 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+
+import okhttp3.MediaType;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 
 public class HelperMethod {
@@ -53,4 +62,66 @@ public class HelperMethod {
         transaction.addToBackStack(backStackName);
         transaction.commit();
     }
+
+    /**
+     * Convert image bitmap to file .png
+     *
+     * @param context the context of the current state of the application
+     * @param bitmap  image as bitmap
+     * @return converted image file .png
+     */
+    public static File convertBitmapToFile(Context context, Bitmap bitmap, String imageFileName) {
+
+        // path to the directory on the filesystem where files created
+        File filesDir = context.getFilesDir();
+        File imageFile = new File(filesDir, imageFileName + ".png");
+
+        OutputStream os;
+        try {
+            os = new FileOutputStream(imageFile);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, os);
+            os.flush();
+            os.close();
+        } catch (Exception e) {
+            Log.e(TAG, "Error writing bitmap", e);
+        }
+        return imageFile;
+    }
+
+    /**
+     * Convert image file To MultipartBody
+     *
+     * @param imageFile input image file
+     * @param Key       server key
+     * @return MultipartBody
+     */
+    public static MultipartBody.Part convertFileToMultipart(File imageFile, String Key) {
+        if (imageFile != null) {
+            RequestBody reqFileSelect = RequestBody.create(MediaType.parse("image/*"), imageFile);
+            return MultipartBody.Part.createFormData(Key, imageFile.getName(), reqFileSelect);
+        } else {
+            return null;
+        }
+    }
+
+
+    /**
+     * Convert string to RequestBody
+     *
+     * @param part input string from user
+     * @return RequestBody
+     */
+    public static RequestBody convertStringToRequestBody(String part) {
+        try {
+            if (!part.equals("")) {
+                return RequestBody.create(MediaType.parse("multipart/form-data"), part);
+            } else {
+                return null;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 }

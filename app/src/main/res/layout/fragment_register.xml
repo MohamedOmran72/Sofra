@@ -10,6 +10,7 @@
     tools:context=".ui.fragment.register.RegisterFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fragment_register_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -149,7 +150,6 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fragment_register_edit_text_confirm_password"
@@ -163,7 +163,7 @@
                 android:autofillHints="@string/minimum_charge"
                 android:drawableStart="@drawable/ic_baseline_wallet_24"
                 android:hint="@string/minimum_charge"
-                android:inputType="textPassword"
+                android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -176,7 +176,7 @@
                 android:autofillHints="@string/delivery_cost"
                 android:drawableStart="@drawable/ic_baseline_wallet_24"
                 android:hint="@string/delivery_cost"
-                android:inputType="textPassword"
+                android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/fragment_register_restaurant_edit_text_minimum_charge" />

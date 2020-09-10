@@ -39,6 +39,15 @@
     <string name="whats_app_number">WhatsApp number</string>
     <string name="restaurant_picture">Restaurant picture</string>
     <string name="action_sign_up">Sign Up</string>
+    <string name="chose_image">Chose image</string>
+    <string name="chose_camera">Camera</string>
+    <string name="chose_gallery">Gallery</string>
+    <string name="select_file">Select File</string>
+    <string name="choose_city">Choose city</string>
+    <string name="choose_city_first">Choose city first</string>
+    <string name="choose_region">Choose region</string>
+    <string name="password_not_matched">Password not matched</string>
+    <string name="select_your_location">Please Select your Location</string>
 
     <!-- Strings related to Forgot password -->
     <string name="please_enter_your_email">Please enter your email</string>
