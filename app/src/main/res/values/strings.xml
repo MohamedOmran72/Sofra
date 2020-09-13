@@ -13,6 +13,13 @@
     <string name="fragment_register_restaurant_spinner_drawable">house</string>
     <string name="fragment_register_restaurant_image_view_restaurant_picture">Add Store picture</string>
     <string name="fragment_register_image_view_customer">Add picture</string>
+    <string name="cart">Cart</string>
+    <string name="calculator">Calculator</string>
+    <string name="notification">Notification</string>
+    <string name="trash_bin">Trash_bin</string>
+    <string name="edit">Edit</string>
+    <string name="category">Category image</string>
+
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>
@@ -56,4 +63,12 @@
     <string name="the_code">The code</string>
     <string name="please_enter_new_password">Please enter new password</string>
     <string name="change_password">Change password</string>
+
+    <!-- Strings related to home -->
+    <string name="home">Home</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="orders">Orders</string>
+    <string name="more">More</string>
+    <string name="my_categories">My Categories</string>
+    <string name="double_click_to_exit">Press back again to exit</string>
 </resources>

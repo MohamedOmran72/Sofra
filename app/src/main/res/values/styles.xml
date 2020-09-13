@@ -21,6 +21,11 @@
         <item name="android:fontFamily">@font/google_sans_bold</item>
     </style>
 
+    <!-- Red text with google_sans_bold font family text -->
+    <style name="RedBoldText" parent="AuthBoldText">
+        <item name="android:textColor">@color/secondaryDarkColor</item>
+    </style>
+
     <!-- Author EditText hint, text and underline with white color -->
     <style name="AuthEditText" parent="AuthText">
         <item name="android:textColorHint">@color/secondaryTextColor</item>
@@ -44,5 +49,13 @@
     <!-- Red Radius Button style -->
     <style name="RedRadiusButton" parent="Button">
         <item name="android:background">@drawable/button_background_red_radius</item>
+    </style>
+
+    <!-- ImageButton style  -->
+    <style name="ImageButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxHeight">32dp</item>
     </style>
 </resources>

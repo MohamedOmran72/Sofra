@@ -13,6 +13,12 @@
     <string name="fragment_register_restaurant_spinner_drawable">منزل</string>
     <string name="fragment_register_image_view_customer">اضف صورة</string>
     <string name="fragment_register_restaurant_image_view_restaurant_picture">اضف صورة المحل</string>
+    <string name="cart">عربة التسوق</string>
+    <string name="calculator">الة حاسبة</string>
+    <string name="notification">اشعارات</string>
+    <string name="trash_bin">سلة مهملات</string>
+    <string name="edit">تعديل</string>
+    <string name="category">صورة التصنيف</string>
 
     <!-- Strings related to login -->
     <string name="forgot_password">هل نسيت كلمة المرور؟</string>
@@ -57,4 +63,11 @@
     <string name="please_enter_new_password">من فضلك ادخل كلمة المرور الجديدة</string>
     <string name="change_password">تغير كلمة المرور</string>
 
+    <!-- Strings related to home -->
+    <string name="home">الصفحة الرئيسية</string>
+    <string name="edit_profile">"تعديل الملف الشخصي "</string>
+    <string name="orders">طلبات</string>
+    <string name="more">المزيد</string>
+    <string name="my_categories">تصنيفاتي</string>
+    <string name="double_click_to_exit">اضغط رجوع مرتين للخروج</string>
 </resources>

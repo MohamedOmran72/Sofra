@@ -64,6 +64,23 @@ public class HelperMethod {
     }
 
     /**
+     * Called to add fragment to view
+     *
+     * @param getChildFragmentManager Return the FragmentManager for interacting with fragments associated with this activity.
+     * @param viewId                  the Id of the view that we replace on
+     * @param fragment                the fragment that we add on view
+     * @param arguments               arguments that we need to send to new fragment {can be null}
+     */
+    public static void addFragment(@NonNull FragmentManager getChildFragmentManager, @NonNull Integer viewId
+            , @NonNull Fragment fragment, Bundle arguments) {
+
+        fragment.setArguments(arguments);
+        FragmentTransaction transaction = getChildFragmentManager.beginTransaction();
+        transaction.add(viewId, fragment);
+        transaction.commit();
+    }
+
+    /**
      * Convert image bitmap to file .png
      *
      * @param context the context of the current state of the application

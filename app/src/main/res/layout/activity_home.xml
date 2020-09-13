@@ -1,8 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_activity_view_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activity.HomeActivity">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/home_activity_constraintLayout_actionbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/primaryDarkColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageButton
+            android:id="@+id/home_activity_actionbar_button_cart"
+            style="@style/ImageButton"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:background="@null"
+            android:contentDescription="@string/cart"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_cart_24" />
+
+        <ImageButton
+            android:id="@+id/home_activity_actionbar_button_calculator"
+            style="@style/ImageButton"
+            android:layout_marginStart="@dimen/_24sdp"
+            android:background="@null"
+            android:contentDescription="@string/calculator"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_calculator_24" />
+
+        <ImageButton
+            android:id="@+id/home_activity_actionbar_button_notification"
+            style="@style/ImageButton"
+            android:layout_marginEnd="@dimen/_24sdp"
+            android:background="@null"
+            android:contentDescription="@string/notification"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_notifications_24" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/home_activity_fragmentContainerView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toTopOf="@+id/home_activity_bottom_navigation"
+        app:layout_constraintTop_toBottomOf="@+id/home_activity_constraintLayout_actionbar" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/home_activity_bottom_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/secondaryColor"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/home_activity_bottom_navigation_menu" />
 </androidx.constraintlayout.widget.ConstraintLayout>

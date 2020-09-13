@@ -3,6 +3,7 @@ package com.example.sofra.data.api;
 import com.example.sofra.data.pojo.client.forgetPassword.ResetPassword;
 import com.example.sofra.data.pojo.client.login.Login;
 import com.example.sofra.data.pojo.general.city.City;
+import com.example.sofra.data.pojo.restaurant.restaurantCategories.RestaurantCategories;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -81,5 +82,10 @@ public interface ApiService {
 
     @GET("regions-not-paginated")
     Call<City> getRegion(@Query("city_id") int cityId);
+
+    // get Restaurant Categories (Home Activity)
+    @GET("restaurant/my-categories")
+    Call<RestaurantCategories> getRestaurantCategories(@Query("api_token") String apiToken
+            , @Query("page") int page);
 
 }

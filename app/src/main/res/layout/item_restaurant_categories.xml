@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.chauthai.swipereveallayout.SwipeRevealLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_restaurant_categories_SwipeRevealLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/_8sdp"
+    android:background="@drawable/shape_rectangle_12"
+    android:elevation="10dp"
+    app:dragEdge="left"
+    app:mode="same_level"
+    tools:targetApi="lollipop">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_80sdp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/item_restaurant_categories_imageButton_trash"
+            style="@style/ImageButton"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:background="@null"
+            android:contentDescription="@string/trash_bin"
+            app:srcCompat="@drawable/ic_baseline_trash_red_24" />
+
+        <ImageButton
+            android:id="@+id/item_restaurant_categories_imageButton_edit"
+            style="@style/ImageButton"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:background="@null"
+            android:contentDescription="@string/edit"
+            app:srcCompat="@drawable/ic_baseline_edit_green_24" />
+
+    </LinearLayout>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/item_restaurant_categories_constraint_container"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_80sdp"
+        android:layout_marginStart="@dimen/_8sdp">
+
+        <ImageView
+            android:id="@+id/item_restaurant_categories_image_item"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/shape_rectangle_12"
+            android:contentDescription="@string/category"
+            android:elevation="1dp"
+            android:padding="6dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/splash_top_dish_icon"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/item_restaurant_categories_text_item"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_6sdp"
+            android:layout_marginEnd="@dimen/_6sdp"
+            android:fontFamily="@font/google_sans_bold"
+            android:gravity="start"
+            android:text="@string/my_categories"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/item_restaurant_categories_image_item"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.chauthai.swipereveallayout.SwipeRevealLayout>
+
