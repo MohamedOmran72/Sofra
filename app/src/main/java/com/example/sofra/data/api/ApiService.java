@@ -88,4 +88,10 @@ public interface ApiService {
     Call<RestaurantCategories> getRestaurantCategories(@Query("api_token") String apiToken
             , @Query("page") int page);
 
+    // add new category
+    @Multipart
+    @POST("restaurant/new-category")
+    Call<RestaurantCategories> newCategory(@Part("name") RequestBody name,
+                                           @Part MultipartBody.Part photo,
+                                           @Part("api_token") RequestBody apiToken);
 }

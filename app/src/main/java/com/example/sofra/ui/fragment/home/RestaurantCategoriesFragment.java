@@ -18,11 +18,13 @@ import com.example.sofra.adapter.RestaurantCategoriesAdapter;
 import com.example.sofra.data.pojo.restaurant.restaurantCategories.RestaurantCategories;
 import com.example.sofra.data.pojo.restaurant.restaurantCategories.RestaurantCategoriesData;
 import com.example.sofra.databinding.FragmentRestaurantCategoriesBinding;
+import com.example.sofra.ui.dialog.category.RestaurantCategoryItemDialog;
 import com.example.sofra.ui.fragment.BaseFragment;
 import com.example.sofra.utils.OnEndLess;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static com.example.sofra.data.local.SharedPreferencesManger.LoadData;
 
@@ -69,7 +71,7 @@ public class RestaurantCategoriesFragment extends BaseFragment {
     }
 
     private void getCategories() {
-        restaurantCategoriesViewModel = new ViewModelProvider(this).get(RestaurantCategoriesViewModel.class);
+        restaurantCategoriesViewModel = new ViewModelProvider(Objects.requireNonNull(getActivity())).get(RestaurantCategoriesViewModel.class);
         categoriesAdapter = new RestaurantCategoriesAdapter(getActivity(), restaurantCategoriesData);
         layoutManager = new LinearLayoutManager(getActivity());
         binding.restaurantCategoriesFragmentRecycler.setLayoutManager(layoutManager);
@@ -119,7 +121,7 @@ public class RestaurantCategoriesFragment extends BaseFragment {
             }
         });
 
-        restaurantCategoriesViewModel.restaurantCategoriesMutableLiveData.observe(getViewLifecycleOwner(), new Observer<RestaurantCategories>() {
+        restaurantCategoriesViewModel.getRestaurantCategoriesMutableLiveData().observe(getViewLifecycleOwner(), new Observer<RestaurantCategories>() {
             @Override
             public void onChanged(RestaurantCategories restaurantCategories) {
                 if (restaurantCategories.getStatus() == 1) {
@@ -154,9 +156,11 @@ public class RestaurantCategoriesFragment extends BaseFragment {
         binding.restaurantCategoriesFragmentFloatingAddCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                RestaurantCategoryItemDialog restaurantCategoryItemDialog = new RestaurantCategoryItemDialog();
+                restaurantCategoryItemDialog.show(getChildFragmentManager(), "Dialog");
             }
         });
+
     }
 
     @Override

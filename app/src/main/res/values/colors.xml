@@ -9,6 +9,7 @@
     <color name="primaryTextColor">#000000</color>
     <color name="secondaryTextColor">#ffffff</color>
 
+    <color name="gray">#E9E9E9</color>
     <!-- 50% density color  -->
     <color name="LoginForeground">#80C01C42</color>
 </resources>

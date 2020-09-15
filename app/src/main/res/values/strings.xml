@@ -71,4 +71,10 @@
     <string name="more">More</string>
     <string name="my_categories">My Categories</string>
     <string name="double_click_to_exit">Press back again to exit</string>
+    <string name="category_name">Category Name</string>
+    <string name="category_image">Category Image</string>
+    <string name="add_category">Add Category</string>
+    <string name="add">Add</string>
+    <string name="edit_category">Edit Category</string>
+
 </resources>

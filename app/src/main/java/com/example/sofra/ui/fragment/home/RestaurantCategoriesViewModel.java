@@ -13,7 +13,16 @@ import retrofit2.Response;
 import static com.example.sofra.data.api.RetrofitClient.getClient;
 
 public class RestaurantCategoriesViewModel extends ViewModel {
-    public MutableLiveData<RestaurantCategories> restaurantCategoriesMutableLiveData = new MutableLiveData<>();
+
+    private final MutableLiveData<RestaurantCategories> restaurantCategoriesMutableLiveData = new MutableLiveData<>();
+
+    public MutableLiveData<RestaurantCategories> getRestaurantCategoriesMutableLiveData() {
+        return restaurantCategoriesMutableLiveData;
+    }
+
+    public void setRestaurantCategoriesMutableLiveData(RestaurantCategories restaurantCategories) {
+        restaurantCategoriesMutableLiveData.setValue(restaurantCategories);
+    }
 
     public void getRestaurantCategories(String apiToken, int page) {
         getClient().getRestaurantCategories(apiToken, page).enqueue(new Callback<RestaurantCategories>() {

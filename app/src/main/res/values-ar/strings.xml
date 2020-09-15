@@ -70,4 +70,10 @@
     <string name="more">المزيد</string>
     <string name="my_categories">تصنيفاتي</string>
     <string name="double_click_to_exit">اضغط رجوع مرتين للخروج</string>
+    <string name="category_name">اسم التصنيف</string>
+    <string name="category_image">صورة التصنيف</string>
+    <string name="add_category">اضافة تصنيف</string>
+    <string name="add">اضافة</string>
+    <string name="edit_category">تعديل التصنيف</string>
+
 </resources>
