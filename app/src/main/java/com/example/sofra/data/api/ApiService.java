@@ -102,4 +102,10 @@ public interface ApiService {
             , @Part MultipartBody.Part photo
             , @Part("api_token") RequestBody apiToken
             , @Part("category_id") RequestBody categoryId);
+
+    // delete food category
+    @POST("restaurant/delete-category")
+    @FormUrlEncoded
+    Call<RestaurantCategories> deleteCategory(@Field("category_id") int itemId
+            , @Field("api_token") String apiToken);
 }

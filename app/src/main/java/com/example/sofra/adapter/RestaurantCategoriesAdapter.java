@@ -7,15 +7,23 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.sofra.data.pojo.restaurant.restaurantCategories.RestaurantCategories;
 import com.example.sofra.data.pojo.restaurant.restaurantCategories.RestaurantCategoriesData;
 import com.example.sofra.databinding.ItemRestaurantCategoriesBinding;
 import com.example.sofra.ui.activity.HomeActivity;
 import com.example.sofra.ui.dialog.category.RestaurantCategoryItemDialog;
+import com.example.sofra.ui.fragment.home.DeleteRestaurantCategoriesViewModel;
+import com.example.sofra.ui.fragment.home.RestaurantCategoriesViewModel;
 
 import java.util.List;
+
+import static com.example.sofra.data.local.SharedPreferencesManger.LoadData;
 
 public class RestaurantCategoriesAdapter extends RecyclerView.Adapter<RestaurantCategoriesAdapter.ViewHolder> {
 
@@ -58,6 +66,35 @@ public class RestaurantCategoriesAdapter extends RecyclerView.Adapter<Restaurant
 
                 itemDialog.show(((HomeActivity) activity).getSupportFragmentManager(), "Dialog");
                 notifyItemChanged(position, null);
+            }
+        });
+
+        holder.binding.itemRestaurantCategoriesImageButtonTrash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String mApiToken = "";
+                if (LoadData(activity, "apiToken") != null) {
+                    mApiToken = LoadData(activity, "apiToken");
+                }
+                final RestaurantCategoriesViewModel restaurantCategoriesViewModel =
+                        new ViewModelProvider((HomeActivity) activity).get(RestaurantCategoriesViewModel.class);
+
+                DeleteRestaurantCategoriesViewModel deleteRestaurantCategoriesViewModel
+                        = new ViewModelProvider((HomeActivity) activity).get(DeleteRestaurantCategoriesViewModel.class);
+
+                deleteRestaurantCategoriesViewModel.deleteRestaurantCategories(
+                        restaurantCategoriesDataList.get(position).getId(), mApiToken);
+
+                final String finalMApiToken = mApiToken;
+                deleteRestaurantCategoriesViewModel.deleteRestaurantCategoriesMutableLiveData.observe((LifecycleOwner) activity
+                        , new Observer<RestaurantCategories>() {
+                            @Override
+                            public void onChanged(RestaurantCategories restaurantCategories) {
+                                restaurantCategoriesViewModel.getRestaurantCategories(finalMApiToken, 1);
+                            }
+                        });
+
+                notifyItemRemoved(position);
             }
         });
     }
