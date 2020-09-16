@@ -94,4 +94,12 @@ public interface ApiService {
     Call<RestaurantCategories> newCategory(@Part("name") RequestBody name,
                                            @Part MultipartBody.Part photo,
                                            @Part("api_token") RequestBody apiToken);
+
+    // edit food category
+    @Multipart
+    @POST("restaurant/update-category")
+    Call<RestaurantCategories> updateCategory(@Part("name") RequestBody name
+            , @Part MultipartBody.Part photo
+            , @Part("api_token") RequestBody apiToken
+            , @Part("category_id") RequestBody categoryId);
 }

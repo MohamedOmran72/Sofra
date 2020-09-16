@@ -3,6 +3,7 @@ package com.example.sofra.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -11,6 +12,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.sofra.data.pojo.restaurant.restaurantCategories.RestaurantCategoriesData;
 import com.example.sofra.databinding.ItemRestaurantCategoriesBinding;
+import com.example.sofra.ui.activity.HomeActivity;
+import com.example.sofra.ui.dialog.category.RestaurantCategoryItemDialog;
 
 import java.util.List;
 
@@ -44,8 +47,19 @@ public class RestaurantCategoriesAdapter extends RecyclerView.Adapter<Restaurant
         holder.binding.itemRestaurantCategoriesTextItem.setText(restaurantCategoriesDataList.get(position).getName());
     }
 
-    private void setAction(RestaurantCategoriesAdapter.ViewHolder holder, int position) {
+    private void setAction(RestaurantCategoriesAdapter.ViewHolder holder, final int position) {
+        holder.binding.itemRestaurantCategoriesImageButtonEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                RestaurantCategoryItemDialog itemDialog = new RestaurantCategoryItemDialog(
+                        restaurantCategoriesDataList.get(position).getName()
+                        , restaurantCategoriesDataList.get(position).getPhotoUrl()
+                        , restaurantCategoriesDataList.get(position).getId());
 
+                itemDialog.show(((HomeActivity) activity).getSupportFragmentManager(), "Dialog");
+                notifyItemChanged(position, null);
+            }
+        });
     }
 
     @Override

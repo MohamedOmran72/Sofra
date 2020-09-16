@@ -18,11 +18,11 @@ import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.bumptech.glide.Glide;
 import com.example.sofra.R;
 import com.example.sofra.data.pojo.restaurant.restaurantCategories.RestaurantCategories;
 import com.example.sofra.databinding.DialogRestaurantCategoryItemBinding;
 import com.example.sofra.ui.fragment.home.RestaurantCategoriesViewModel;
+import com.example.sofra.utils.GlideApp;
 
 import java.io.File;
 import java.io.IOException;
@@ -85,9 +85,12 @@ public class RestaurantCategoryItemDialog extends DialogFragment {
     private void setDataToDialog() {
 
         binding.dialogRestaurantCategoryItemTextViewTitle.setText(getString(R.string.edit_category));
-        Glide.with(Objects.requireNonNull(getActivity())).load(categoryImageUrl).into(binding.dialogRestaurantCategoryItemCircleImage);
+        GlideApp.with(Objects.requireNonNull(getActivity())).load(categoryImageUrl).into(binding.dialogRestaurantCategoryItemCircleImage);
         binding.dialogRestaurantCategoryItemEditTextName.setText(categoryItemName);
         binding.dialogRestaurantCategoryItemButtonAdd.setText(getText(R.string.edit));
+
+        binding.dialogRestaurantCategoryItemCircleImage.setBackgroundColor(
+                getResources().getColor(R.color.primaryColor));
     }
 
     @Override
@@ -104,25 +107,47 @@ public class RestaurantCategoryItemDialog extends DialogFragment {
             @Override
             public void onClick(View v) {
                 if (isEditTextSet(binding.dialogRestaurantCategoryItemEditTextName)) {
-                    if (imageFile == null) {
-                        Toast.makeText(getActivity(), getString(R.string.chose_image), Toast.LENGTH_LONG).show();
+                    if (mCategoryId > 0) {
+                        editCategory();
                     } else {
-                        if (mCategoryId > 0) {
-                            editCategory();
+                        if (imageFile == null) {
+                            Toast.makeText(getActivity(), getString(R.string.chose_image), Toast.LENGTH_LONG).show();
                         } else {
                             addCategory();
                         }
-
-                        Objects.requireNonNull(getDialog()).dismiss();
                     }
-
                 }
-
+                Objects.requireNonNull(getDialog()).dismiss();
             }
         });
     }
 
     private void editCategory() {
+        RestaurantEditCategoryViewModel restaurantEditCategoryViewModel =
+                new ViewModelProvider(this).get(RestaurantEditCategoryViewModel.class);
+
+        // convert customer input to RequestBody
+        RequestBody name = convertStringToRequestBody(binding.dialogRestaurantCategoryItemEditTextName.getText().toString());
+        final RequestBody apiToken = convertStringToRequestBody(mApiToken);
+        RequestBody categoryId = convertStringToRequestBody(String.valueOf(mCategoryId));
+
+        // start call server
+        if (imageFile != null) {
+            MultipartBody.Part photo = convertFileToMultipart(imageFile, "photo");
+            restaurantEditCategoryViewModel.updateCategory(name, photo, apiToken, categoryId);
+        } else {
+            restaurantEditCategoryViewModel.updateCategory(name, null, apiToken, categoryId);
+        }
+
+        restaurantEditCategoryViewModel.updateCategoryMutableLiveData.observe(Objects.requireNonNull(getActivity()), new Observer<RestaurantCategories>() {
+            @Override
+            public void onChanged(RestaurantCategories restaurantCategories) {
+                if (restaurantCategories.getStatus() == 1) {
+                    restaurantCategoriesViewModel.getRestaurantCategories(mApiToken, 1);
+                }
+                Toast.makeText(getActivity(), restaurantCategories.getMsg(), Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
 
@@ -139,11 +164,11 @@ public class RestaurantCategoryItemDialog extends DialogFragment {
         newCategoryViewModel.addNewCategory(name, photo, apiToken);
 
         // start observing data
-        newCategoryViewModel.newCategoryMutableLiveData.observe(getViewLifecycleOwner(), new Observer<RestaurantCategories>() {
+        newCategoryViewModel.newCategoryMutableLiveData.observe(Objects.requireNonNull(getActivity()), new Observer<RestaurantCategories>() {
             @Override
             public void onChanged(RestaurantCategories restaurantCategories) {
                 if (restaurantCategories.getStatus() == 1) {
-                    restaurantCategoriesViewModel.setRestaurantCategoriesMutableLiveData(restaurantCategories);
+                    restaurantCategoriesViewModel.getRestaurantCategories(mApiToken, 1);
                 }
                 Toast.makeText(getActivity(), restaurantCategories.getMsg(), Toast.LENGTH_LONG).show();
             }
@@ -199,6 +224,8 @@ public class RestaurantCategoryItemDialog extends DialogFragment {
                 }
 
                 binding.dialogRestaurantCategoryItemCircleImage.setImageBitmap(bitmap);
+                binding.dialogRestaurantCategoryItemCircleImage.setBackgroundColor(
+                        getResources().getColor(R.color.primaryColor));
             }
             imageFile = convertBitmapToFile(Objects.requireNonNull(getContext()), bitmap);
         }

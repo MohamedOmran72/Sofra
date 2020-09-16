@@ -126,7 +126,12 @@ public class RestaurantCategoriesFragment extends BaseFragment {
             public void onChanged(RestaurantCategories restaurantCategories) {
                 if (restaurantCategories.getStatus() == 1) {
                     binding.restaurantCategoriesFragmentSwipeRefresh.setRefreshing(false);
-                    lastPage = restaurantCategories.getData().getLastPage();
+
+                    if (restaurantCategories.getData().getLastPage() == null) {
+                        lastPage = 0;
+                    } else {
+                        lastPage = restaurantCategories.getData().getLastPage();
+                    }
 
                     if (onEndLess.current_page == 1) {
                         restaurantCategoriesData.clear();
