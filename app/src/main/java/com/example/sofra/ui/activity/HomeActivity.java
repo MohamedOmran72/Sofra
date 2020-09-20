@@ -5,8 +5,8 @@ import android.view.View;
 
 import com.example.sofra.data.local.SharedPreferencesManger;
 import com.example.sofra.databinding.ActivityHomeBinding;
-import com.example.sofra.ui.fragment.home.RestaurantCategoriesFragment;
-import com.example.sofra.ui.fragment.home.RestaurantListFragment;
+import com.example.sofra.ui.fragment.home.restaurant.categories.RestaurantCategoriesFragment;
+import com.example.sofra.ui.fragment.home.restaurant.foodItems.RestaurantListFragment;
 
 import static com.example.sofra.utils.HelperMethod.addFragment;
 

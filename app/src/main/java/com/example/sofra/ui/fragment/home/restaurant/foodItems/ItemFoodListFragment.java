@@ -1,4 +1,4 @@
-package com.example.sofra.ui.fragment.home;
+package com.example.sofra.ui.fragment.home.restaurant.foodItems;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -18,6 +18,7 @@ import com.example.sofra.data.pojo.restaurant.foodItems.FoodItems;
 import com.example.sofra.data.pojo.restaurant.foodItems.FoodItemsData;
 import com.example.sofra.databinding.FragmentItemFoodListBinding;
 import com.example.sofra.ui.fragment.BaseFragment;
+import com.example.sofra.ui.fragment.home.restaurant.categories.RestaurantCategoriesFragment;
 import com.example.sofra.utils.OnEndLess;
 
 import java.util.ArrayList;

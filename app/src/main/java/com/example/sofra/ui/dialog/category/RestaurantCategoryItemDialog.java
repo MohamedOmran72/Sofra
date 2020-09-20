@@ -21,7 +21,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.sofra.R;
 import com.example.sofra.data.pojo.restaurant.restaurantCategories.RestaurantCategories;
 import com.example.sofra.databinding.DialogRestaurantCategoryItemBinding;
-import com.example.sofra.ui.fragment.home.RestaurantCategoriesViewModel;
+import com.example.sofra.ui.fragment.home.restaurant.categories.RestaurantCategoriesViewModel;
 import com.example.sofra.utils.GlideApp;
 
 import java.io.File;

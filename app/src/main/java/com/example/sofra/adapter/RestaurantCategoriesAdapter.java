@@ -20,9 +20,9 @@ import com.example.sofra.data.pojo.restaurant.restaurantCategories.RestaurantCat
 import com.example.sofra.databinding.ItemRestaurantCategoriesBinding;
 import com.example.sofra.ui.activity.HomeActivity;
 import com.example.sofra.ui.dialog.category.RestaurantCategoryItemDialog;
-import com.example.sofra.ui.fragment.home.DeleteRestaurantCategoriesViewModel;
-import com.example.sofra.ui.fragment.home.ItemFoodListFragment;
-import com.example.sofra.ui.fragment.home.RestaurantCategoriesViewModel;
+import com.example.sofra.ui.fragment.home.restaurant.categories.DeleteRestaurantCategoriesViewModel;
+import com.example.sofra.ui.fragment.home.restaurant.categories.RestaurantCategoriesViewModel;
+import com.example.sofra.ui.fragment.home.restaurant.foodItems.ItemFoodListFragment;
 
 import java.util.List;
 

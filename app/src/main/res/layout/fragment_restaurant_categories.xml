@@ -5,7 +5,7 @@
     android:id="@+id/restaurant_categories_fragment_view_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.home.RestaurantCategoriesFragment">
+    tools:context=".ui.fragment.home.restaurant.categories.RestaurantCategoriesFragment">
 
     <TextView
 

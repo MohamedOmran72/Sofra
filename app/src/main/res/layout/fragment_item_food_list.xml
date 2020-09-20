@@ -5,7 +5,7 @@
     android:id="@+id/item_food_list_fragment_view_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.home.ItemFoodListFragment">
+    tools:context=".ui.fragment.home.restaurant.foodItems.ItemFoodListFragment">
 
     <TextView
         android:id="@+id/item_food_list_fragment_text_list_name"

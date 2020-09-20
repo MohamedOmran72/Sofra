@@ -1,4 +1,4 @@
-package com.example.sofra.ui.fragment.home;
+package com.example.sofra.ui.fragment.home.restaurant.foodItems;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
