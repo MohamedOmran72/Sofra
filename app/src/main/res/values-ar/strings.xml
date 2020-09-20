@@ -75,5 +75,6 @@
     <string name="add_category">اضافة تصنيف</string>
     <string name="add">اضافة</string>
     <string name="edit_category">تعديل التصنيف</string>
+    <string name="price">الثمن</string>
 
 </resources>

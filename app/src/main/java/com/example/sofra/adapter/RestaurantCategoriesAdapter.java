@@ -2,6 +2,7 @@ package com.example.sofra.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,17 +14,20 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.sofra.R;
 import com.example.sofra.data.pojo.restaurant.restaurantCategories.RestaurantCategories;
 import com.example.sofra.data.pojo.restaurant.restaurantCategories.RestaurantCategoriesData;
 import com.example.sofra.databinding.ItemRestaurantCategoriesBinding;
 import com.example.sofra.ui.activity.HomeActivity;
 import com.example.sofra.ui.dialog.category.RestaurantCategoryItemDialog;
 import com.example.sofra.ui.fragment.home.DeleteRestaurantCategoriesViewModel;
+import com.example.sofra.ui.fragment.home.ItemFoodListFragment;
 import com.example.sofra.ui.fragment.home.RestaurantCategoriesViewModel;
 
 import java.util.List;
 
 import static com.example.sofra.data.local.SharedPreferencesManger.LoadData;
+import static com.example.sofra.utils.HelperMethod.replaceFragment;
 
 public class RestaurantCategoriesAdapter extends RecyclerView.Adapter<RestaurantCategoriesAdapter.ViewHolder> {
 
@@ -95,6 +99,21 @@ public class RestaurantCategoriesAdapter extends RecyclerView.Adapter<Restaurant
                         });
 
                 notifyItemRemoved(position);
+            }
+        });
+
+        holder.binding.itemRestaurantCategoriesConstraintContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("name", restaurantCategoriesDataList.get(position).getName());
+                bundle.putInt("categoryId", restaurantCategoriesDataList.get(position).getId());
+
+                replaceFragment(((HomeActivity) activity).getSupportFragmentManager()
+                        , R.id.home_activity_fragmentContainerView
+                        , new ItemFoodListFragment()
+                        , HomeActivity.class.getName()
+                        , bundle);
             }
         });
     }

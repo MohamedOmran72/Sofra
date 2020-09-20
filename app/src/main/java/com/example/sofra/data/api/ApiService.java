@@ -3,6 +3,7 @@ package com.example.sofra.data.api;
 import com.example.sofra.data.pojo.client.forgetPassword.ResetPassword;
 import com.example.sofra.data.pojo.client.login.Login;
 import com.example.sofra.data.pojo.general.city.City;
+import com.example.sofra.data.pojo.restaurant.foodItems.FoodItems;
 import com.example.sofra.data.pojo.restaurant.restaurantCategories.RestaurantCategories;
 
 import okhttp3.MultipartBody;
@@ -108,4 +109,10 @@ public interface ApiService {
     @FormUrlEncoded
     Call<RestaurantCategories> deleteCategory(@Field("category_id") int itemId
             , @Field("api_token") String apiToken);
+
+    // get food list (from category)
+    @GET("restaurant/my-items")
+    Call<FoodItems> getMyFoodItemList(@Query("api_token") String apiToken
+            , @Query("category_id") int categoryId
+            , @Query("page") int page);
 }
