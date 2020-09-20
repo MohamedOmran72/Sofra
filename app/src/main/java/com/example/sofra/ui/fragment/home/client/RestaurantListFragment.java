@@ -1,4 +1,4 @@
-package com.example.sofra.ui.fragment.home.restaurant.foodItems;
+package com.example.sofra.ui.fragment.home.client;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
