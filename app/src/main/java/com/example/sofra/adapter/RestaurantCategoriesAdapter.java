@@ -97,8 +97,7 @@ public class RestaurantCategoriesAdapter extends RecyclerView.Adapter<Restaurant
                                 restaurantCategoriesViewModel.getRestaurantCategories(finalMApiToken, 1);
                             }
                         });
-
-                notifyItemRemoved(position);
+                notifyDataSetChanged();
             }
         });
 
