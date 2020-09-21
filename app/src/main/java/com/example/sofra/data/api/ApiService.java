@@ -116,6 +116,7 @@ public interface ApiService {
             , @Query("category_id") int categoryId
             , @Query("page") int page);
 
+    // add food item to specific category
     @Multipart
     @POST("restaurant/new-item")
     Call<FoodItems> addNewFoodItem(@Part("name") RequestBody name
@@ -126,4 +127,10 @@ public interface ApiService {
             , @Part("preparing_time") RequestBody preparingTime
             , @Part("api_token") RequestBody apiToken
             , @Part("category_id") RequestBody categoryId);
+
+    // delete food item from specific category
+    @POST("restaurant/delete-item")
+    @FormUrlEncoded
+    Call<FoodItems> deleteFoodItem(@Field("item_id") int itemId
+            , @Field("api_token") String apiToken);
 }
