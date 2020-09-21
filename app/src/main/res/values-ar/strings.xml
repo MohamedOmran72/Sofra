@@ -76,5 +76,11 @@
     <string name="add">اضافة</string>
     <string name="edit_category">تعديل التصنيف</string>
     <string name="price">الثمن</string>
+    <string name="product_name">اسم المنتج</string>
+    <string name="brief_description">الوصف المختصر</string>
+    <string name="offer_price">سعر العرض</string>
+    <string name="add_product">أضف منتج</string>
+    <string name="edit_product">تعديل منتج</string>
+    <string name="preparing_time">زمن الاعداد</string>
 
 </resources>

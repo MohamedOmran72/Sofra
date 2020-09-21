@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_create_item_food_layout_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.home.restaurant.foodItems.CreateItemFoodFragment"
+    tools:targetApi="lollipop">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/_6sdp">
+
+        <TextView
+            android:id="@+id/fragment_create_item_food_textView_title"
+            style="@style/AuthBoldText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:text="@string/add_product"
+            android:textColor="@color/secondaryDarkColor"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/fragment_create_item_food_layout_image"
+            android:layout_width="@dimen/_60sdp"
+            android:layout_height="@dimen/_50sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:background="@drawable/shape_rectangle_12"
+            android:backgroundTint="@color/gray"
+            android:contentDescription="@string/category"
+            android:elevation="1dp"
+            android:padding="6dp"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_create_item_food_textView_title"
+            app:srcCompat="@drawable/ic_image_gallery_24" />
+
+        <EditText
+            android:id="@+id/fragment_create_item_food_editText_name"
+            style="@style/FoodEditText"
+            android:autofillHints="@string/product_name"
+            android:hint="@string/product_name"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.337"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_create_item_food_layout_image" />
+
+        <EditText
+            android:id="@+id/fragment_create_item_food_editText_description"
+            style="@style/FoodEditText"
+            android:layout_height="@dimen/_65sdp"
+            android:autofillHints="@string/brief_description"
+            android:ems="10"
+            android:hint="@string/brief_description"
+            android:inputType="textMultiLine"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.337"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_create_item_food_editText_name" />
+
+        <EditText
+            android:id="@+id/fragment_create_item_food_editText_price"
+            style="@style/FoodEditText"
+            android:autofillHints="@string/price"
+            android:hint="@string/price"
+            android:inputType="numberDecimal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.337"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_create_item_food_editText_description" />
+
+        <EditText
+            android:id="@+id/fragment_create_item_food_editText_offer_price"
+            style="@style/FoodEditText"
+            android:autofillHints="@string/offer_price"
+            android:hint="@string/offer_price"
+            android:inputType="numberDecimal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_create_item_food_editText_price"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <EditText
+            android:id="@+id/fragment_create_item_food_editText_preparing_time"
+            style="@style/FoodEditText"
+            android:autofillHints="@string/preparing_time"
+            android:hint="@string/preparing_time"
+            android:inputType="time"
+            app:layout_constraintBottom_toTopOf="@+id/dialog_restaurant_category_item_button_add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_create_item_food_editText_offer_price"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/dialog_restaurant_category_item_button_add"
+            style="@style/RedRadiusButton"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_6sdp"
+            android:text="@string/add"
+            android:textAllCaps="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_create_item_food_editText_preparing_time" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

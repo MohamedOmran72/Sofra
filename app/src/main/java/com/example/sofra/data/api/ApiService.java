@@ -115,4 +115,15 @@ public interface ApiService {
     Call<FoodItems> getMyFoodItemList(@Query("api_token") String apiToken
             , @Query("category_id") int categoryId
             , @Query("page") int page);
+
+    @Multipart
+    @POST("restaurant/new-item")
+    Call<FoodItems> addNewFoodItem(@Part("name") RequestBody name
+            , @Part("description") RequestBody description
+            , @Part("price") RequestBody price
+            , @Part MultipartBody.Part photo
+            , @Part("offer_price") RequestBody offerPrice
+            , @Part("preparing_time") RequestBody preparingTime
+            , @Part("api_token") RequestBody apiToken
+            , @Part("category_id") RequestBody categoryId);
 }

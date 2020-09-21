@@ -77,5 +77,11 @@
     <string name="add">Add</string>
     <string name="edit_category">Edit Category</string>
     <string name="price">Price</string>
+    <string name="product_name">Product name</string>
+    <string name="brief_description">Brief description</string>
+    <string name="offer_price">Offer price</string>
+    <string name="add_product">Add Product</string>
+    <string name="edit_product">Edit Product</string>
+    <string name="preparing_time">Preparing time</string>
 
 </resources>

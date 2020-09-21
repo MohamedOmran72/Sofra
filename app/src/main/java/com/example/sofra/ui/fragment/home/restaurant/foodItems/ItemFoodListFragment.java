@@ -17,8 +17,10 @@ import com.example.sofra.adapter.RestaurantItemFoodListAdapter;
 import com.example.sofra.data.pojo.restaurant.foodItems.FoodItems;
 import com.example.sofra.data.pojo.restaurant.foodItems.FoodItemsData;
 import com.example.sofra.databinding.FragmentItemFoodListBinding;
+import com.example.sofra.ui.activity.HomeActivity;
 import com.example.sofra.ui.fragment.BaseFragment;
 import com.example.sofra.ui.fragment.home.restaurant.categories.RestaurantCategoriesFragment;
+import com.example.sofra.utils.HelperMethod;
 import com.example.sofra.utils.OnEndLess;
 
 import java.util.ArrayList;
@@ -143,6 +145,25 @@ public class ItemFoodListFragment extends BaseFragment {
                 } else {
                     Toast.makeText(baseActivity, foodItems.getMsg(), Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        binding.itemFoodListFragmentFloatingAddItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putInt("categoryId", categoryId);
+
+                HelperMethod.replaceFragment(getParentFragmentManager()
+                        , R.id.home_activity_fragmentContainerView
+                        , new CreateItemFoodFragment()
+                        , HomeActivity.class.getName()
+                        , bundle);
+
             }
         });
     }
