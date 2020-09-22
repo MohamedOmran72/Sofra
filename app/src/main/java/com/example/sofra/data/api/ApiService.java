@@ -128,6 +128,19 @@ public interface ApiService {
             , @Part("api_token") RequestBody apiToken
             , @Part("category_id") RequestBody categoryId);
 
+    // edit food item to specific category
+    @Multipart
+    @POST("restaurant/update-item")
+    Call<FoodItems> editFoodItem(@Part("name") RequestBody name
+            , @Part("description") RequestBody description
+            , @Part("price") RequestBody price
+            , @Part MultipartBody.Part photo
+            , @Part("offer_price") RequestBody offerPrice
+            , @Part("preparing_time") RequestBody preparingTime
+            , @Part("api_token") RequestBody apiToken
+            , @Part("item_id") RequestBody itemId
+            , @Part("category_id") RequestBody categoryId);
+
     // delete food item from specific category
     @POST("restaurant/delete-item")
     @FormUrlEncoded

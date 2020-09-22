@@ -13,10 +13,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.sofra.R;
 import com.example.sofra.data.pojo.restaurant.foodItems.FoodItems;
 import com.example.sofra.data.pojo.restaurant.foodItems.FoodItemsData;
 import com.example.sofra.databinding.ItemRestaurantFoodListBinding;
 import com.example.sofra.ui.activity.HomeActivity;
+import com.example.sofra.ui.fragment.home.restaurant.foodItems.CreateItemFoodFragment;
 import com.example.sofra.ui.fragment.home.restaurant.foodItems.DeleteFoodItemViewModel;
 import com.example.sofra.ui.fragment.home.restaurant.foodItems.RestaurantGetFoodItemListViewModel;
 
@@ -24,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.sofra.data.local.SharedPreferencesManger.LoadData;
+import static com.example.sofra.utils.HelperMethod.replaceFragment;
 
 public class RestaurantItemFoodListAdapter extends RecyclerView.Adapter<RestaurantItemFoodListAdapter.ViewHolder> {
 
@@ -92,6 +95,31 @@ public class RestaurantItemFoodListAdapter extends RecyclerView.Adapter<Restaura
                 notifyDataSetChanged();
             }
         });
+
+
+        holder.binding.itemRestaurantFoodListImageButtonEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                CreateItemFoodFragment createItemFoodFragment =
+                        new CreateItemFoodFragment(restaurantItemsData.get(position).getPhotoUrl()
+                                , restaurantItemsData.get(position).getName()
+                                , restaurantItemsData.get(position).getDescription()
+                                , restaurantItemsData.get(position).getPrice()
+                                , restaurantItemsData.get(position).getOfferPrice()
+                                , restaurantItemsData.get(position).getCategoryId()
+                                , restaurantItemsData.get(position).getId()
+                        );
+
+                replaceFragment(((HomeActivity) activity).getSupportFragmentManager()
+                        , R.id.home_activity_fragmentContainerView
+                        , createItemFoodFragment
+                        , HomeActivity.class.getName()
+                        , null);
+            }
+        });
+
+
     }
 
     @Override

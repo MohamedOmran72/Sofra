@@ -1,4 +1,3 @@
-
 package com.example.sofra.data.pojo.restaurant.foodItems;
 
 import com.google.gson.annotations.Expose;
@@ -26,7 +25,7 @@ public class FoodItemsData {
     private String price;
     @SerializedName("offer_price")
     @Expose
-    private Object offerPrice;
+    private String offerPrice;
     @SerializedName("photo")
     @Expose
     private String photo;
@@ -91,11 +90,11 @@ public class FoodItemsData {
         this.price = price;
     }
 
-    public Object getOfferPrice() {
+    public String getOfferPrice() {
         return offerPrice;
     }
 
-    public void setOfferPrice(Object offerPrice) {
+    public void setOfferPrice(String offerPrice) {
         this.offerPrice = offerPrice;
     }
 

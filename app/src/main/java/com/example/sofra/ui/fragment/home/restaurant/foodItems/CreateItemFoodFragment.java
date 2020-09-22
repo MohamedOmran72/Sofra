@@ -104,6 +104,7 @@ public class CreateItemFoodFragment extends BaseFragment {
         binding.fragmentCreateItemFoodEditTextDescription.setText(description);
         binding.fragmentCreateItemFoodEditTextPrice.setText(price);
         binding.fragmentCreateItemFoodEditTextOfferPrice.setText(priceOffer);
+        binding.dialogRestaurantCategoryItemButtonAdd.setText(getString(R.string.edit));
     }
 
     @Override
@@ -181,6 +182,49 @@ public class CreateItemFoodFragment extends BaseFragment {
     }
 
     private void editItem() {
+        EditFoodItemViewModel editFoodItemViewModel =
+                new ViewModelProvider(this).get(EditFoodItemViewModel.class);
+
+        RequestBody time = null, offerPrice = null;
+        MultipartBody.Part photo = null;
+
+        RequestBody name = convertStringToRequestBody(binding.fragmentCreateItemFoodEditTextName.getText().toString());
+        RequestBody description = convertStringToRequestBody(binding.fragmentCreateItemFoodEditTextDescription.getText().toString());
+        RequestBody price = convertStringToRequestBody(binding.fragmentCreateItemFoodEditTextPrice.getText().toString());
+
+        if (binding.fragmentCreateItemFoodEditTextPreparingTime.getText() != null) {
+            time = convertStringToRequestBody(binding.fragmentCreateItemFoodEditTextPreparingTime.getText().toString());
+        }
+
+        if (binding.fragmentCreateItemFoodEditTextOfferPrice.getText() != null) {
+            offerPrice = convertStringToRequestBody(binding.fragmentCreateItemFoodEditTextOfferPrice.getText().toString());
+        }
+
+        if (imageFile != null) {
+            photo = convertFileToMultipart(imageFile, "photo");
+        }
+
+        final RequestBody apiToken = convertStringToRequestBody(mApiToken);
+        final RequestBody categoryId = convertStringToRequestBody(String.valueOf(mCategoryId));
+        final RequestBody itemId = convertStringToRequestBody(String.valueOf(this.itemId));
+
+        editFoodItemViewModel.editFoodItem(name, description, price, photo
+                , offerPrice, time, apiToken, itemId, categoryId);
+
+        editFoodItemViewModel.foodItemsMutableLiveData.observe(Objects.requireNonNull(getActivity()), new Observer<FoodItems>() {
+            @Override
+            public void onChanged(FoodItems foodItems) {
+                if (foodItems.getStatus() == 1) {
+                    Toast.makeText(baseActivity, foodItems.getMsg(), Toast.LENGTH_SHORT).show();
+                    onBack();
+                    restaurantGetFoodItemListViewModel.getFoodItemList(mApiToken
+                            , mCategoryId, 1);
+
+                } else {
+                    Toast.makeText(baseActivity, foodItems.getMsg(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void createUploadImageDialog() {
