@@ -82,5 +82,6 @@
     <string name="add_product">أضف منتج</string>
     <string name="edit_product">تعديل منتج</string>
     <string name="preparing_time">زمن الاعداد</string>
+    <string name="status">الحالة</string>
 
 </resources>

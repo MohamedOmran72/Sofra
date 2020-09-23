@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/_6sdp"
+    tools:context=".ui.fragment.profile.EditProfileFragment"
+    tools:targetApi="M">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fragment_edit_profile_container"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/fragment_edit_profile_imageView"
+            android:layout_width="@dimen/_48sdp"
+            android:layout_height="@dimen/_48sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:contentDescription="@string/fragment_register_image_view_customer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@color/gray"
+            tools:src="@drawable/ic_image_gallery_24" />
+
+        <EditText
+            android:id="@+id/fragment_edit_profile_editText_name"
+            style="@style/ProfileEditText"
+            android:autofillHints="@string/name"
+            android:backgroundTint="@color/gray"
+            android:drawableStart="@drawable/ic_baseline_person_24"
+            android:hint="@string/name"
+            android:inputType="text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_edit_profile_imageView" />
+
+        <EditText
+            android:id="@+id/fragment_edit_profile_editText_email"
+            style="@style/ProfileEditText"
+            android:autofillHints="@string/prompt_email"
+            android:drawableStart="@drawable/ic_baseline_email_24"
+            android:hint="@string/prompt_email"
+            android:inputType="textEmailAddress"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_edit_profile_editText_name" />
+
+        <EditText
+            android:id="@+id/fragment_edit_profile_customer_editText_phone_number"
+            style="@style/ProfileEditText"
+            android:autofillHints="@string/phone_number"
+            android:drawableStart="@drawable/ic_baseline_phone_24"
+            android:hint="@string/phone_number"
+            android:inputType="phone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_edit_profile_editText_email" />
+
+        <LinearLayout
+            android:id="@+id/fragment_edit_profile_linear_city_Spinner"
+            style="@style/FoodEditText"
+            android:backgroundTint="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_edit_profile_customer_editText_phone_number">
+
+            <ImageView
+                android:id="@+id/fragment_register_image_city_Spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_baseline_house_32"
+                android:backgroundTint="@color/secondaryDarkColor"
+                android:contentDescription="@string/fragment_register_restaurant_spinner_drawable" />
+
+            <Spinner
+                android:id="@+id/fragment_register_city_Spinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/fragment_edit_profile_linear_district_Spinner"
+            style="@style/FoodEditText"
+            android:backgroundTint="@color/gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_edit_profile_linear_city_Spinner">
+
+            <ImageView
+                android:id="@+id/fragment_register_image_district_Spinner"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="@drawable/ic_baseline_house_32"
+                android:backgroundTint="@color/secondaryDarkColor"
+                android:contentDescription="@string/fragment_register_restaurant_spinner_drawable" />
+
+            <Spinner
+                android:id="@+id/fragment_register_district_Spinner"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/fragment_edit_profile_restaurant_data_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/fragment_edit_profile_button_edit"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_edit_profile_linear_district_Spinner"
+            tools:visibility="visible">
+
+            <EditText
+                android:id="@+id/fragment_edit_profile_restaurant_editText_minimum_charge"
+                style="@style/ProfileEditText"
+                android:autofillHints="@string/minimum_charge"
+                android:drawableStart="@drawable/ic_baseline_wallet_24"
+                android:hint="@string/minimum_charge"
+                android:inputType="numberDecimal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/fragment_edit_profile_restaurant_editText_delivery_cost"
+                style="@style/ProfileEditText"
+                android:autofillHints="@string/delivery_cost"
+                android:drawableStart="@drawable/ic_baseline_wallet_24"
+                android:hint="@string/delivery_cost"
+                android:inputType="numberDecimal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_edit_profile_restaurant_editText_minimum_charge" />
+
+            <EditText
+                android:id="@+id/fragment_edit_profile_restaurant_editText_delivery_time"
+                style="@style/ProfileEditText"
+                android:autofillHints="@string/restaurant_delivery_time"
+                android:drawableStart="@drawable/ic_baseline_clock_24"
+                android:hint="@string/restaurant_delivery_time"
+                android:inputType="time"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_edit_profile_restaurant_editText_delivery_cost" />
+
+            <LinearLayout
+                android:id="@+id/fragment_edit_profile_switch_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/fragment_edit_profile_restaurant_editText_delivery_time">
+
+                <TextView
+                    style="@style/ItemTitleText"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginEnd="@dimen/_32sdp"
+                    android:text="@string/status"
+                    android:textSize="@dimen/_18ssp" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/fragment_edit_profile_switch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="@dimen/_6sdp"
+                    android:theme="@style/AppTheme.ProfileSwitch" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/fragment_edit_profile_restaurant_textView_contact_data"
+                style="@style/ItemTitleText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:text="@string/contact_data"
+                android:textSize="@dimen/_18ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_edit_profile_switch_container" />
+
+            <EditText
+                android:id="@+id/fragment_edit_profile_restaurant_editText_phone_number"
+                style="@style/ProfileEditText"
+                android:autofillHints="@string/phone_number"
+                android:drawableStart="@drawable/ic_baseline_phone_24"
+                android:hint="@string/phone_number"
+                android:inputType="phone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_edit_profile_restaurant_textView_contact_data" />
+
+            <EditText
+                android:id="@+id/fragment_edit_profile_restaurant_editText_whatsapp_number"
+                style="@style/ProfileEditText"
+                android:layout_marginBottom="@dimen/_6sdp"
+                android:autofillHints="@string/whats_app_number"
+                android:drawableStart="@drawable/ic_baseline_whatsapp_24"
+                android:hint="@string/whats_app_number"
+                android:inputType="phone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_edit_profile_restaurant_editText_phone_number" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/fragment_edit_profile_button_edit"
+            style="@style/RedRadiusButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:layout_marginBottom="@dimen/_12sdp"
+            android:text="@string/edit"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fragment_edit_profile_restaurant_data_container" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

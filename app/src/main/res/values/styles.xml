@@ -29,7 +29,7 @@
     <!-- Food Item with google_sans font family text -->
     <style name="ItemText">
         <item name="android:fontFamily">@font/google_sans</item>
-        <item name="android:gravity">start</item>
+        <item name="android:gravity">start|center</item>
         <item name="android:textSize">@dimen/_10ssp</item>
     </style>
 
@@ -65,6 +65,24 @@
         <item name="android:padding">@dimen/_6sdp</item>
     </style>
 
+    <!-- Profile EditText -->
+    <style name="ProfileEditText" parent="ItemText">
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textColorHint">@color/primaryTextColor</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">@dimen/_32sdp</item>
+        <item name="android:layout_marginStart">@dimen/_6sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_6sdp</item>
+        <item name="android:layout_marginTop">@dimen/_12sdp</item>
+        <item name="android:background">@drawable/shape_rectangle_12</item>
+        <item name="backgroundTint">@color/gray</item>
+        <item name="android:drawablePadding">@dimen/_8sdp</item>
+        <item name="android:drawableTint" tools:targetApi="m">@color/secondaryDarkColor</item>
+        <item name="android:elevation" tools:targetApi="lollipop">2dp</item>
+        <item name="android:padding">@dimen/_6sdp</item>
+    </style>
+
     <!-- Button style  -->
     <style name="Button">
         <item name="android:layout_width">wrap_content</item>
@@ -86,5 +104,16 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
         <item name="android:maxHeight">32dp</item>
+    </style>
+
+    <style name="AppTheme.ProfileSwitch">
+        <!-- active thumb & track color (30% transparency) -->
+        <item name="colorControlActivated">@color/secondaryDarkColor</item>
+
+        <!-- inactive thumb color -->
+        <item name="colorSwitchThumbNormal">#f1f1f1</item>
+
+        <!-- inactive track color (30% transparency) -->
+        <item name="android:colorForeground">#42221f1f</item>
     </style>
 </resources>
