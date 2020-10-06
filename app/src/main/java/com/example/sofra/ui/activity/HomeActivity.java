@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.sofra.R;
-import com.example.sofra.data.local.SharedPreferencesManger;
 import com.example.sofra.databinding.ActivityHomeBinding;
 import com.example.sofra.ui.fragment.home.client.RestaurantListFragment;
 import com.example.sofra.ui.fragment.home.restaurant.categories.RestaurantCategoriesFragment;
@@ -31,8 +30,13 @@ public class HomeActivity extends BaseActivity {
         binding = ActivityHomeBinding.inflate(getLayoutInflater());
         final View view = binding.getRoot();
 
-        // find user type {seller or client} to set equivalents view
-        userType = SharedPreferencesManger.LoadData(this, "userType");
+//        // find user type {seller or client} to set equivalents view
+//        userType = SharedPreferencesManger.LoadData(this, "userType");
+        if (userType == null) {
+            userType = getIntent().getStringExtra("userType");
+        }
+
+        assert userType != null;
         switch (userType) {
             case "seller":
                 restaurantEnableView();

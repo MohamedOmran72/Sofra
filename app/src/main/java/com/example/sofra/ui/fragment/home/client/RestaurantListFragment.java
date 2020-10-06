@@ -5,14 +5,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.fragment.app.Fragment;
+import com.example.sofra.databinding.FragmentRestaurantListBinding;
+import com.example.sofra.ui.fragment.BaseFragment;
 
-import com.example.sofra.R;
-
-public class RestaurantListFragment extends Fragment {
-    public RestaurantListFragment() {
-        // Required empty public constructor
-    }
+public class RestaurantListFragment extends BaseFragment {
+    FragmentRestaurantListBinding binding;
 
 
     @Override
@@ -24,6 +21,10 @@ public class RestaurantListFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_restaurant_list, container, false);
+        binding = FragmentRestaurantListBinding.inflate(inflater, container, false);
+        final View view = binding.getRoot();
+        setUpActivity();
+
+        return view;
     }
 }
