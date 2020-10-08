@@ -23,8 +23,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/ic_image_gallery_24"
+            app:srcCompat="@drawable/ic_image_gallery_24"
             tools:background="@color/gray"
-            tools:src="@drawable/ic_image_gallery_24" />
+            tools:ignore="VectorDrawableCompat" />
 
         <EditText
             android:id="@+id/fragment_edit_profile_editText_name"
@@ -69,7 +71,7 @@
             app:layout_constraintTop_toBottomOf="@+id/fragment_edit_profile_customer_editText_phone_number">
 
             <ImageView
-                android:id="@+id/fragment_register_image_city_Spinner"
+                android:id="@+id/fragment_edit_profile_image_city_Spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@drawable/ic_baseline_house_32"
@@ -77,7 +79,7 @@
                 android:contentDescription="@string/fragment_register_restaurant_spinner_drawable" />
 
             <Spinner
-                android:id="@+id/fragment_register_city_Spinner"
+                android:id="@+id/fragment_edit_profile_city_Spinner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="8dp"
@@ -93,7 +95,7 @@
             app:layout_constraintTop_toBottomOf="@+id/fragment_edit_profile_linear_city_Spinner">
 
             <ImageView
-                android:id="@+id/fragment_register_image_district_Spinner"
+                android:id="@+id/fragment_edit_profile_image_district_Spinner"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:background="@drawable/ic_baseline_house_32"
@@ -101,7 +103,7 @@
                 android:contentDescription="@string/fragment_register_restaurant_spinner_drawable" />
 
             <Spinner
-                android:id="@+id/fragment_register_district_Spinner"
+                android:id="@+id/fragment_edit_profile_district_Spinner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="8dp"
