@@ -146,4 +146,10 @@ public interface ApiService {
     @FormUrlEncoded
     Call<FoodItems> deleteFoodItem(@Field("item_id") int itemId
             , @Field("api_token") String apiToken);
+
+    // get restaurant data from server
+    @POST("restaurant/profile")
+    @FormUrlEncoded
+    Call<Login> getRestaurantProfile(@Field("api_token") String apiToken);
+
 }
