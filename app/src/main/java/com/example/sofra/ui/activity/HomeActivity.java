@@ -108,6 +108,12 @@ public class HomeActivity extends BaseActivity {
                 };
 
         binding.homeActivityBottomNavigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener);
+        binding.homeActivityBottomNavigation.setOnNavigationItemReselectedListener(new BottomNavigationView.OnNavigationItemReselectedListener() {
+            @Override
+            public void onNavigationItemReselected(@NonNull MenuItem item) {
+
+            }
+        });
     }
 
     @Override
