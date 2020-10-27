@@ -152,4 +152,18 @@ public interface ApiService {
     @FormUrlEncoded
     Call<Login> getRestaurantProfile(@Field("api_token") String apiToken);
 
+    // set restaurant data to server after edit
+    @Multipart
+    @POST("restaurant/profile")
+    Call<Login> editRestaurantProfile(@Part("api_token") RequestBody api_token
+            , @Part MultipartBody.Part photo
+            , @Part("name") RequestBody name
+            , @Part("email") RequestBody email
+            , @Part("region_id") RequestBody regionId
+            , @Part("delivery_cost") RequestBody deliveryCost
+            , @Part("minimum_charger") RequestBody minimumCharger
+            , @Part("delivery_time") RequestBody deliveryTime
+            , @Part("availability") RequestBody availability
+            , @Part("phone") RequestBody phone
+            , @Part("whatsapp") RequestBody whatsapp);
 }
