@@ -283,7 +283,12 @@ public class EditProfileFragment extends BaseFragment {
         restaurantEditProfileViewModel.editRestaurantProfileMutableLiveData.observe(getActivity(), new Observer<Login>() {
             @Override
             public void onChanged(Login login) {
-                Toast.makeText(getActivity(), login.getMsg(), Toast.LENGTH_SHORT).show();
+                if (login.getStatus() == 1) {
+                    Toast.makeText(baseActivity, login.getMsg(), Toast.LENGTH_SHORT).show();
+                    getRestaurantProfileFromServer();
+                } else {
+                    Toast.makeText(baseActivity, login.getMsg(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
     }
