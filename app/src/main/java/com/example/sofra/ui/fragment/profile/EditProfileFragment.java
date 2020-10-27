@@ -198,9 +198,7 @@ public class EditProfileFragment extends BaseFragment {
         binding.fragmentEditProfileRestaurantEditTextPhoneNumber.setText(restaurant.getPhone());
         binding.fragmentEditProfileRestaurantEditTextWhatsappNumber.setText(restaurant.getWhatsapp());
 
-        if (restaurant.getAvailability().equals("open")) {
-            binding.fragmentEditProfileSwitch.setChecked(true);
-        }
+        binding.fragmentEditProfileSwitch.setChecked(restaurant.getAvailability().equals("open"));
 
     }
 
