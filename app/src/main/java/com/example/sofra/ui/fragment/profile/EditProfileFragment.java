@@ -54,14 +54,16 @@ public class EditProfileFragment extends BaseFragment {
 
     private static final int REQUEST_CAMERA = 1;
     private static final int SELECT_FILE = 0;
-
-    FragmentEditProfileBinding binding;
     private final ArrayList<CityData> cityDataArrayList = new ArrayList<>();
     private final ArrayList<CityData> regionDataArrayList = new ArrayList<>();
+    private final User editedUser = new User();
     private String userType;
     private String apiToken;
     private Bitmap bitmap;
     private File imageFile;
+    FragmentEditProfileBinding binding;
+    private boolean imageChange = false;
+    private User originalUser = new User();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -158,6 +160,7 @@ public class EditProfileFragment extends BaseFragment {
             @Override
             public void onChanged(Login login) {
                 if (login.getStatus() == 1) {
+                    originalUser = login.getData().getUser();
                     setRestaurantDataToView(login.getData().getUser());
                 } else {
                     Toast.makeText(baseActivity, login.getMsg(), Toast.LENGTH_SHORT).show();
@@ -237,7 +240,11 @@ public class EditProfileFragment extends BaseFragment {
                         if (binding.fragmentEditProfileDistrictSpinner.getSelectedItemPosition() <= 0) {
                             Toast.makeText(baseActivity, getString(R.string.select_your_location), Toast.LENGTH_LONG).show();
                         } else {
-                            setRestaurantProfileToServer();
+                            if (imageChange) {
+                                setRestaurantProfileToServer();
+                            } else {
+                                checkDataChanged(userType);
+                            }
                         }
                     }
                 } else {
@@ -246,6 +253,33 @@ public class EditProfileFragment extends BaseFragment {
             }
         });
 
+    }
+
+    /**
+     * Check if the user change profile data or not
+     */
+    private void checkDataChanged(String userType) {
+
+        if (userType.equals("seller")) {
+            editedUser.setPhoto(originalUser.getPhotoUrl());
+            editedUser.setName(binding.fragmentEditProfileEditTextName.getText().toString().trim());
+            editedUser.setEmail(binding.fragmentEditProfileEditTextEmail.getText().toString().trim());
+            editedUser.setRegionId(String.valueOf(binding.fragmentEditProfileDistrictSpinner.getSelectedItemPosition()));
+            editedUser.setMinimumCharger(binding.fragmentEditProfileRestaurantEditTextMinimumCharge.getText().toString().trim());
+            editedUser.setDeliveryCost(binding.fragmentEditProfileRestaurantEditTextDeliveryCost.getText().toString().trim());
+            editedUser.setDeliveryTime(binding.fragmentEditProfileRestaurantEditTextDeliveryTime.getText().toString().trim());
+            editedUser.setAvailability((binding.fragmentEditProfileSwitch.isChecked()) ? "open" : "closed");
+            editedUser.setPhone(binding.fragmentEditProfileRestaurantEditTextPhoneNumber.getText().toString().trim());
+            editedUser.setWhatsapp(binding.fragmentEditProfileRestaurantEditTextWhatsappNumber.getText().toString().trim());
+
+            if (editedUser.restaurantEquals(originalUser)) {
+                Toast.makeText(baseActivity, R.string.no_data_changed, Toast.LENGTH_SHORT).show();
+            } else {
+                setRestaurantProfileToServer();
+            }
+        } else if (userType.equals("client")) {
+
+        }
     }
 
     /**
@@ -358,6 +392,7 @@ public class EditProfileFragment extends BaseFragment {
                 binding.fragmentEditProfileImageView.setImageBitmap(bitmap);
 
             }
+            imageChange = true;
             imageFile = convertBitmapToFile(Objects.requireNonNull(getContext()), bitmap);
         }
     }

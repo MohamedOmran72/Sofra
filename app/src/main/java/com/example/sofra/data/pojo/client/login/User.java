@@ -1,5 +1,6 @@
-
 package com.example.sofra.data.pojo.client.login;
+
+import androidx.annotation.Nullable;
 
 import com.example.sofra.data.pojo.general.region.RegionData;
 import com.google.gson.annotations.Expose;
@@ -208,4 +209,22 @@ public class User {
         this.categories = categories;
     }
 
+
+    /**
+     * This method to compare two restaurant object
+     *
+     * @param obj restaurant object
+     * @return true if two restaurant object equals else false
+     */
+    public boolean restaurantEquals(@Nullable Object obj) {
+
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+
+        User user = ((User) obj);
+        return name.equals(user.name) && email.equals(user.email)
+                && regionId.equals(user.regionId) && minimumCharger.equals(user.minimumCharger)
+                && deliveryCost.equals(user.deliveryCost) && deliveryTime.equals(user.deliveryTime)
+                && availability.equals(user.availability) && phone.equals(user.phone) && whatsapp.equals(user.whatsapp);
+    }
 }

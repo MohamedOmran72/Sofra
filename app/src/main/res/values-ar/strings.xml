@@ -83,5 +83,6 @@
     <string name="edit_product">تعديل منتج</string>
     <string name="preparing_time">زمن الاعداد</string>
     <string name="status">الحالة</string>
+    <string name="no_data_changed">لم تغير اي بيانات</string>
 
 </resources>

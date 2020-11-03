@@ -84,5 +84,6 @@
     <string name="edit_product">Edit Product</string>
     <string name="preparing_time">Preparing time</string>
     <string name="status">Status</string>
+    <string name="no_data_changed">You did not change data</string>
 
 </resources>
