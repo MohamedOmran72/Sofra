@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_restaurant_order_pending_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp">
+
+        <ImageView
+            android:id="@+id/item_restaurant_order_pending_imageView"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:contentDescription="@string/order_image"
+            android:padding="6dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/item_restaurant_order_pending_textView_customer_name"
+            style="@style/OrderItemTitleTextView"
+            android:text="@string/item_order_customer_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/item_restaurant_order_pending_imageView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/item_restaurant_order_pending_textView_order_number"
+            style="@style/OrderItemTextView"
+            android:text="@string/item_order_number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/item_restaurant_order_pending_imageView"
+            app:layout_constraintTop_toBottomOf="@+id/item_restaurant_order_pending_textView_customer_name" />
+
+        <TextView
+            android:id="@+id/item_restaurant_order_pending_textView_total"
+            style="@style/OrderItemTextView"
+            android:text="@string/item_order_total"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/item_restaurant_order_pending_imageView"
+            app:layout_constraintTop_toBottomOf="@+id/item_restaurant_order_pending_textView_order_number" />
+
+        <TextView
+            android:id="@+id/item_restaurant_order_pending_textView_address"
+            style="@style/OrderItemTextView"
+            android:maxLines="2"
+            android:text="@string/item_order_address"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/item_restaurant_order_pending_imageView"
+            app:layout_constraintTop_toBottomOf="@+id/item_restaurant_order_pending_textView_total" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_restaurant_order_pending_imageView">
+
+            <Button
+                android:id="@+id/item_restaurant_order_pending_button_call"
+                style="@style/ItemOrderButton"
+                android:background="@drawable/shape_circle_red"
+                android:drawableStart="@drawable/ic_baseline_phone_resizable"
+                android:text="@string/call"
+                android:textAlignment="gravity" />
+
+            <Button
+                android:id="@+id/item_restaurant_order_pending_button_accept"
+                style="@style/ItemOrderButton"
+                android:background="@drawable/shape_circle_green"
+                android:drawableStart="@drawable/ic_done"
+                android:text="@string/accept" />
+
+            <Button
+                android:id="@+id/item_restaurant_order_pending_button_cancel"
+                style="@style/ItemOrderButton"
+                android:background="@drawable/shape_circle_black"
+                android:drawableStart="@drawable/ic_cross_sign"
+                android:text="@string/cancel" />
+
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

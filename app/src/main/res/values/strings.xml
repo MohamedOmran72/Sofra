@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Sofra</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
 
     <!-- Splash button string -->
     <string name="order_food">Order food</string>
@@ -19,6 +20,7 @@
     <string name="trash_bin">Trash_bin</string>
     <string name="edit">Edit</string>
     <string name="category">Category image</string>
+    <string name="order_image">order image</string>
 
 
     <!-- Strings related to login -->
@@ -85,4 +87,15 @@
     <string name="preparing_time">Preparing time</string>
     <string name="status">Status</string>
 
+    <!-- Strings related to restaurant order -->
+    <string name="completed_order">Completed Order</string>
+    <string name="current_order">Current Order</string>
+    <string name="pending_order">Pending Order</string>
+    <string name="call">Call</string>
+    <string name="accept">Accept</string>
+    <string name="cancel">Cancel</string>
+    <string name="item_order_customer_name">Customer : %1$s</string>
+    <string name="item_order_number">Order number : %1$s Pounds</string>
+    <string name="item_order_total">Total : %1$s Pounds</string>
+    <string name="item_order_address">Address : %1$s</string>
 </resources>

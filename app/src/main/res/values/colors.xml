@@ -10,6 +10,7 @@
     <color name="secondaryTextColor">#ffffff</color>
 
     <color name="gray">#E9E9E9</color>
+    <color name="green">#08DF12</color>
     <!-- 50% density color  -->
     <color name="LoginForeground">#80C01C42</color>
 </resources>

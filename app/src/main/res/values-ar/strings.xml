@@ -19,6 +19,7 @@
     <string name="trash_bin">سلة مهملات</string>
     <string name="edit">تعديل</string>
     <string name="category">صورة التصنيف</string>
+    <string name="order_image">صورة الطلب</string>
 
     <!-- Strings related to login -->
     <string name="forgot_password">هل نسيت كلمة المرور؟</string>
@@ -83,5 +84,17 @@
     <string name="edit_product">تعديل منتج</string>
     <string name="preparing_time">زمن الاعداد</string>
     <string name="status">الحالة</string>
+
+    <!-- Strings related to restaurant order -->
+    <string name="completed_order">الطلبات المكتملة</string>
+    <string name="current_order">الطلبات الحالية</string>
+    <string name="pending_order">الطلبات المعلقة</string>
+    <string name="call">اتصال</string>
+    <string name="accept">قبول</string>
+    <string name="cancel">رفض</string>
+    <string name="item_order_customer_name">عميل : %1$s</string>
+    <string name="item_order_number">رقم الطلب : %1$s</string>
+    <string name="item_order_total">الاجمالي : %1$s جنيه</string>
+    <string name="item_order_address">العنوان : %1$s</string>
 
 </resources>
