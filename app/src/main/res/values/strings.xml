@@ -98,4 +98,13 @@
     <string name="item_order_number">Order number : %1$s </string>
     <string name="item_order_total">Total : %1$s Pounds</string>
     <string name="item_order_address">Address : %1$s</string>
+
+    <!-- Strings related to order details-->
+    <string name="order_details">Order details</string>
+    <string name="created_at">Created at: %1$s</string>
+    <string name="order_item">Order item</string>
+    <string name="quantity">Quantity</string>
+    <string name="order_price">Order price: %1$s</string>
+    <string name="order_delivery_cost">Delivery cost: %1$s</string>
+    <string name="payment_method">Payment method: %1$s</string>
 </resources>

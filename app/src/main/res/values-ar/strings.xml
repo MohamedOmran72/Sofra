@@ -97,4 +97,12 @@
     <string name="item_order_total">الاجمالي : %1$s جنيه</string>
     <string name="item_order_address">العنوان : %1$s</string>
 
+    <!-- Strings related to order details-->
+    <string name="order_details">تفاصيل الطلب</string>
+    <string name="created_at">تم الإنشاء في: %1$s</string>
+    <string name="order_item">قائمة الطلبات</string>
+    <string name="quantity">الكمية</string>
+    <string name="order_price">سعر الطلب: %1$s</string>
+    <string name="order_delivery_cost">تكلفة التوصيل: %1$s</string>
+    <string name="payment_method">طريقة الدفع: %1$s</string>
 </resources>
