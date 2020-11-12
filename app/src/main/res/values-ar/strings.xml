@@ -102,8 +102,8 @@
     <string name="created_at">تم الإنشاء في: %1$s</string>
     <string name="order_item">قائمة الطلبات</string>
     <string name="quantity">الكمية</string>
-    <string name="order_price">سعر الطلب: %1$s</string>
-    <string name="order_delivery_cost">تكلفة التوصيل: %1$s</string>
+    <string name="order_price">سعر الطلب: %1$s جنيه</string>
+    <string name="order_delivery_cost">تكلفة التوصيل: %1$s جنيه</string>
     <string name="payment_method">طريقة الدفع: %1$s</string>
     <string name="payment_method_cash">دفع نقدا</string>
     <string name="payment_method_online">عبر الانترنت</string>
