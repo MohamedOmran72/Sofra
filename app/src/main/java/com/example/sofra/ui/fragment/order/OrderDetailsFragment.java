@@ -8,22 +8,29 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.bumptech.glide.Glide;
 import com.example.sofra.R;
+import com.example.sofra.adapter.OrderItemListAdapter;
+import com.example.sofra.data.pojo.order.Item;
 import com.example.sofra.data.pojo.order.OrderData;
 import com.example.sofra.databinding.FragmentOrderDetailsBinding;
 import com.example.sofra.ui.fragment.BaseFragment;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class OrderDetailsFragment extends BaseFragment {
     private final OrderData orderData;
     View view;
+    List<Item> items = new ArrayList<>();
     private FragmentOrderDetailsBinding binding;
 
     public OrderDetailsFragment(OrderData orderData) {
         this.orderData = orderData;
+        items.addAll(orderData.getItems());
     }
 
     @Override
@@ -62,6 +69,11 @@ public class OrderDetailsFragment extends BaseFragment {
                 .setText(getString(R.string.order_delivery_cost, orderData.getDeliveryCost()));
         binding.fragmentOrderDetailsTextViewTotalPrice
                 .setText(getString(R.string.item_order_total, orderData.getTotal()));
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        OrderItemListAdapter orderItemListAdapter = new OrderItemListAdapter(getActivity(), items);
+        binding.fragmentOrderDetailsRecyclerViewOrderItem.setLayoutManager(layoutManager);
+        binding.fragmentOrderDetailsRecyclerViewOrderItem.setAdapter(orderItemListAdapter);
 
         if (orderData.getPaymentMethodId().equals("1")) {
             binding.fragmentOrderDetailsTextViewPaymentMethod
