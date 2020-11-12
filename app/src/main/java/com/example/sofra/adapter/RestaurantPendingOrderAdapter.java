@@ -2,6 +2,8 @@ package com.example.sofra.adapter;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,6 +77,15 @@ public class RestaurantPendingOrderAdapter extends RecyclerView.Adapter<Restaura
                         , HomeActivity.class.getName()
                         , null);
 
+            }
+        });
+
+        holder.binding.itemRestaurantOrderPendingButtonCall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel"
+                        , restaurantOrderDataList.get(position).getClient().getPhone(), ""));
+                activity.startActivity(intent);
             }
         });
     }
