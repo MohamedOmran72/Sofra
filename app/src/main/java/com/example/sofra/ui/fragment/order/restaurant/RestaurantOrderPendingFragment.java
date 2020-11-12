@@ -95,13 +95,21 @@ public class RestaurantOrderPendingFragment extends BaseFragment {
             }
         });
 
-        restaurantGetOrderViewModel.restaurantOrderMutableLiveData.observe(getViewLifecycleOwner(), new Observer<Order>() {
+        restaurantGetOrderViewModel.getRestaurantOrderMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Order>() {
             @Override
             public void onChanged(Order order) {
                 if (order.getStatus() == 1) {
                     binding.restaurantOrderPendingFragmentSwipeRefresh.setRefreshing(false);
-                    lastPage = order.getData().getLastPage();
 
+                    if (order.getData().getLastPage() == null) {
+                        lastPage = 0;
+                    } else {
+                        lastPage = order.getData().getLastPage();
+                    }
+
+                    if (onEndLess.current_page == 1) {
+                        restaurantOrderDataList.clear();
+                    }
                     restaurantOrderDataList.addAll(order.getData().getData());
                     restaurantPendingOrderAdapter.notifyDataSetChanged();
                 } else {

@@ -173,4 +173,10 @@ public interface ApiService {
     Call<Order> getRestaurantOrderList(@Query("api_token") String apiToken
             , @Query("state") String state
             , @Query("page") int page);
+
+    // restaurant accept order
+    @POST("restaurant/accept-order")
+    @FormUrlEncoded
+    Call<Order> restaurantAcceptOrder(@Field("api_token") String apiToken
+            , @Field("order_id") int orderId);
 }

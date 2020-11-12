@@ -14,7 +14,11 @@ import static com.example.sofra.data.api.RetrofitClient.getClient;
 
 public class RestaurantGetOrderViewModel extends ViewModel {
 
-    public MutableLiveData<Order> restaurantOrderMutableLiveData = new MutableLiveData<>();
+    private final MutableLiveData<Order> restaurantOrderMutableLiveData = new MutableLiveData<>();
+
+    public MutableLiveData<Order> getRestaurantOrderMutableLiveData() {
+        return restaurantOrderMutableLiveData;
+    }
 
     public void getRestaurantOrderList(String apiToken, final String state, int page) {
         getClient().getRestaurantOrderList(apiToken, state, page).enqueue(new Callback<Order>() {

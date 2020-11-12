@@ -7,20 +7,28 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.sofra.R;
+import com.example.sofra.data.pojo.order.Order;
 import com.example.sofra.data.pojo.order.OrderData;
 import com.example.sofra.databinding.ItemRestaurantOrderPendingBinding;
 import com.example.sofra.ui.activity.HomeActivity;
 import com.example.sofra.ui.fragment.order.OrderDetailsFragment;
+import com.example.sofra.ui.fragment.order.restaurant.RestaurantAcceptOrderViewModel;
+import com.example.sofra.ui.fragment.order.restaurant.RestaurantGetOrderViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.sofra.data.local.SharedPreferencesManger.LoadData;
 import static com.example.sofra.utils.HelperMethod.replaceFragment;
 
 
@@ -86,6 +94,39 @@ public class RestaurantPendingOrderAdapter extends RecyclerView.Adapter<Restaura
                 Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel"
                         , restaurantOrderDataList.get(position).getClient().getPhone(), ""));
                 activity.startActivity(intent);
+            }
+        });
+
+        holder.binding.itemRestaurantOrderPendingButtonAccept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final String ORDER_TYPE = "pending";
+                String apiToken = "";
+                if (LoadData(activity, "apiToken") != null) {
+                    // apiToken = LoadData(activity, "apiToken");
+                    apiToken = "Jptu3JVmDXGpJEaQO9ZrjRg5RuAVCo45OC2AcOKqbVZPmu0ZJPN3T1sm0cWx";
+                }
+
+                final RestaurantGetOrderViewModel restaurantGetOrderViewModel =
+                        new ViewModelProvider(((HomeActivity) activity)).get(RestaurantGetOrderViewModel.class);
+
+                RestaurantAcceptOrderViewModel restaurantAcceptOrderViewModel =
+                        new ViewModelProvider(((HomeActivity) activity)).get(RestaurantAcceptOrderViewModel.class);
+
+                restaurantAcceptOrderViewModel.restaurantAcceptOrder(apiToken
+                        , restaurantOrderDataList.get(position).getId());
+
+                String finalApiToken = apiToken;
+                restaurantAcceptOrderViewModel.orderMutableLiveData.observe(((LifecycleOwner) activity)
+                        , new Observer<Order>() {
+                            @Override
+                            public void onChanged(Order order) {
+                                restaurantGetOrderViewModel.getRestaurantOrderList(finalApiToken
+                                        , ORDER_TYPE, 1);
+                                Toast.makeText(activity, order.getMsg(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                notifyDataSetChanged();
             }
         });
     }
