@@ -105,4 +105,6 @@
     <string name="order_price">سعر الطلب: %1$s</string>
     <string name="order_delivery_cost">تكلفة التوصيل: %1$s</string>
     <string name="payment_method">طريقة الدفع: %1$s</string>
+    <string name="payment_method_cash">دفع نقدا</string>
+    <string name="payment_method_online">عبر الانترنت</string>
 </resources>

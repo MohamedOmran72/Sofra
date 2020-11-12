@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
 import com.example.sofra.R;
 import com.example.sofra.data.pojo.order.OrderData;
 import com.example.sofra.databinding.FragmentOrderDetailsBinding;
@@ -20,7 +21,6 @@ public class OrderDetailsFragment extends BaseFragment {
     private final OrderData orderData;
     View view;
     private FragmentOrderDetailsBinding binding;
-
 
     public OrderDetailsFragment(OrderData orderData) {
         this.orderData = orderData;
@@ -40,7 +40,36 @@ public class OrderDetailsFragment extends BaseFragment {
         view = binding.getRoot();
         setUpActivity();
 
+        setDataToView();
+
         return view;
+    }
+
+    private void setDataToView() {
+        String PAYMENT_METHOD_CASH = getString(R.string.payment_method_cash);
+        String PAYMENT_METHOD_ONLINE = getString(R.string.payment_method_online);
+
+        Glide.with(getActivity()).load(orderData.getRestaurant().getPhotoUrl())
+                .into(binding.fragmentOrderDetailsCircleImageRestaurant);
+        binding.fragmentOrderDetailsTextViewRestaurantName.setText(orderData.getRestaurant().getName());
+        binding.fragmentOrderDetailsTextViewCreatedAt
+                .setText(getString(R.string.created_at, orderData.getCreatedAt()));
+        binding.fragmentOrderDetailsTextViewClientAddress
+                .setText(getString(R.string.item_order_address, orderData.getAddress()));
+        binding.fragmentOrderDetailsTextViewOrderPrice
+                .setText(getString(R.string.order_price, orderData.getCost()));
+        binding.fragmentOrderDetailsTextViewDeliveryCost
+                .setText(getString(R.string.order_delivery_cost, orderData.getDeliveryCost()));
+        binding.fragmentOrderDetailsTextViewTotalPrice
+                .setText(getString(R.string.item_order_total, orderData.getTotal()));
+
+        if (orderData.getPaymentMethodId().equals("1")) {
+            binding.fragmentOrderDetailsTextViewPaymentMethod
+                    .setText(getString(R.string.payment_method, PAYMENT_METHOD_CASH));
+        } else {
+            binding.fragmentOrderDetailsTextViewPaymentMethod
+                    .setText(getString(R.string.payment_method, PAYMENT_METHOD_ONLINE));
+        }
     }
 
     @Override
