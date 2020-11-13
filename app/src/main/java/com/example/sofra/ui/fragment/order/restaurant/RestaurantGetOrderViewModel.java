@@ -5,6 +5,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.sofra.data.pojo.order.Order;
+import com.example.sofra.data.pojo.order.OrderData;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,4 +39,37 @@ public class RestaurantGetOrderViewModel extends ViewModel {
             }
         });
     }
+
+    public void acceptTheOrder(OrderData orderData) {
+        //here make your api request
+
+    }
+
+    /*final String ORDER_TYPE = "pending";
+                String apiToken = "";
+                if (LoadData(activity, "apiToken") != null) {
+                    // apiToken = LoadData(activity, "apiToken");
+                    apiToken = "Jptu3JVmDXGpJEaQO9ZrjRg5RuAVCo45OC2AcOKqbVZPmu0ZJPN3T1sm0cWx";
+                }
+
+                final RestaurantGetOrderViewModel restaurantGetOrderViewModel =
+                        new ViewModelProvider(((HomeActivity) activity)).get(RestaurantGetOrderViewModel.class);
+
+                RestaurantAcceptOrderViewModel restaurantAcceptOrderViewModel =
+                        new ViewModelProvider(((HomeActivity) activity)).get(RestaurantAcceptOrderViewModel.class);
+
+                restaurantAcceptOrderViewModel.restaurantAcceptOrder(apiToken
+                        , restaurantOrderDataList.get(position).getId());
+
+                String finalApiToken = apiToken;
+                restaurantAcceptOrderViewModel.orderMutableLiveData.observe(((LifecycleOwner) activity)
+                        , new Observer<Order>() {
+                            @Override
+                            public void onChanged(Order order) {
+                                restaurantGetOrderViewModel.getRestaurantOrderList(finalApiToken
+                                        , ORDER_TYPE, 1);
+                                Toast.makeText(activity, order.getMsg(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                notifyDataSetChanged();*/
 }

@@ -24,7 +24,7 @@ import java.util.List;
 
 import static com.example.sofra.data.local.SharedPreferencesManger.LoadData;
 
-public class RestaurantOrderPendingFragment extends BaseFragment {
+public class RestaurantOrderPendingFragment extends BaseFragment implements RestaurantPendingOrderAdapter.OnItemClicked {
     private final String ORDER_TYPE = "pending";
     private final List<OrderData> restaurantOrderDataList = new ArrayList<>();
     private FragmentRestaurantOrderPendingBinding binding;
@@ -59,7 +59,8 @@ public class RestaurantOrderPendingFragment extends BaseFragment {
         restaurantGetOrderViewModel = new ViewModelProvider(this).get(RestaurantGetOrderViewModel.class);
         layoutManager = new LinearLayoutManager(getActivity());
         binding.restaurantOrderPendingFragmentRecyclerView.setLayoutManager(layoutManager);
-        restaurantPendingOrderAdapter = new RestaurantPendingOrderAdapter(getActivity(), restaurantOrderDataList);
+        // pass this -> that means this fragment implement current interface
+        restaurantPendingOrderAdapter = new RestaurantPendingOrderAdapter(getActivity(), restaurantOrderDataList, this);
 
         onEndLess = new OnEndLess(layoutManager, 1) {
             @Override
@@ -118,5 +119,11 @@ public class RestaurantOrderPendingFragment extends BaseFragment {
             }
         });
 
+    }
+
+    @Override
+    public void onAccept(OrderData orderData) {
+        // Call your view model method to handle the request
+        restaurantGetOrderViewModel.acceptTheOrder(orderData);
     }
 }
