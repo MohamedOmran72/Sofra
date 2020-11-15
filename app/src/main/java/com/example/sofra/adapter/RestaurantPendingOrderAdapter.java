@@ -59,7 +59,7 @@ public class RestaurantPendingOrderAdapter extends RecyclerView.Adapter<Restaura
 
         holder.binding.itemRestaurantOrderPendingTextViewCustomerName.setText(restaurantOrderDataList.get(position).getClient().getName());
         holder.binding.itemRestaurantOrderPendingTextViewOrderNumber.setText(context.getString(R.string.item_order_number
-                , restaurantOrderDataList.get(position).getItems().get(0).getPivot().getOrderId()));
+                , restaurantOrderDataList.get(position).getId().toString()));
         holder.binding.itemRestaurantOrderPendingTextViewTotal.setText(context.getString(R.string.item_order_total
                 , restaurantOrderDataList.get(position).getTotal()));
         holder.binding.itemRestaurantOrderPendingTextViewAddress.setText(context.getString(R.string.item_order_address
