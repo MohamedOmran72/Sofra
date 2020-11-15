@@ -7,28 +7,20 @@ import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.sofra.R;
-import com.example.sofra.data.pojo.order.Order;
 import com.example.sofra.data.pojo.order.OrderData;
 import com.example.sofra.databinding.ItemRestaurantOrderPendingBinding;
 import com.example.sofra.ui.activity.HomeActivity;
 import com.example.sofra.ui.fragment.order.OrderDetailsFragment;
-import com.example.sofra.ui.fragment.order.restaurant.RestaurantAcceptOrderViewModel;
-import com.example.sofra.ui.fragment.order.restaurant.RestaurantGetOrderViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.sofra.data.local.SharedPreferencesManger.LoadData;
 import static com.example.sofra.utils.HelperMethod.replaceFragment;
 
 
@@ -36,12 +28,7 @@ public class RestaurantPendingOrderAdapter extends RecyclerView.Adapter<Restaura
     private final Context context;
     private final Activity activity;
     private List<OrderData> restaurantOrderDataList = new ArrayList<>();
-    private OnItemClicked onItemClicked;
-
-    public interface OnItemClicked {
-        void onAccept(OrderData orderData);
-        // TODO add another methods here
-    }
+    private final OnItemClicked onItemClicked;
 
     public RestaurantPendingOrderAdapter(Activity activity,
                                          List<OrderData> restaurantOrderDataList,
@@ -51,7 +38,6 @@ public class RestaurantPendingOrderAdapter extends RecyclerView.Adapter<Restaura
         this.restaurantOrderDataList = restaurantOrderDataList;
         this.onItemClicked = onItemClicked;
     }
-
 
     @NonNull
     @Override
@@ -79,7 +65,6 @@ public class RestaurantPendingOrderAdapter extends RecyclerView.Adapter<Restaura
         holder.binding.itemRestaurantOrderPendingTextViewAddress.setText(context.getString(R.string.item_order_address
                 , restaurantOrderDataList.get(position).getAddress()));
     }
-
 
     private void setAction(final RestaurantPendingOrderAdapter.ViewHolder holder, final int position) {
 
@@ -118,6 +103,10 @@ public class RestaurantPendingOrderAdapter extends RecyclerView.Adapter<Restaura
     @Override
     public int getItemCount() {
         return restaurantOrderDataList == null ? 0 : restaurantOrderDataList.size();
+    }
+
+    public interface OnItemClicked {
+        void onAccept(OrderData orderData);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

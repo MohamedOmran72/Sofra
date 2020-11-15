@@ -28,7 +28,7 @@ public class RestaurantOrderPendingFragment extends BaseFragment implements Rest
     private final String ORDER_TYPE = "pending";
     private final List<OrderData> restaurantOrderDataList = new ArrayList<>();
     private FragmentRestaurantOrderPendingBinding binding;
-    private RestaurantGetOrderViewModel restaurantGetOrderViewModel;
+    private RestaurantPendingOrderViewModel restaurantPendingOrderViewModel;
     private RestaurantPendingOrderAdapter restaurantPendingOrderAdapter;
     private LinearLayoutManager layoutManager;
     private OnEndLess onEndLess;
@@ -56,7 +56,7 @@ public class RestaurantOrderPendingFragment extends BaseFragment implements Rest
     }
 
     private void getPendingOrder() {
-        restaurantGetOrderViewModel = new ViewModelProvider(this).get(RestaurantGetOrderViewModel.class);
+        restaurantPendingOrderViewModel = new ViewModelProvider(this).get(RestaurantPendingOrderViewModel.class);
         layoutManager = new LinearLayoutManager(getActivity());
         binding.restaurantOrderPendingFragmentRecyclerView.setLayoutManager(layoutManager);
         // pass this -> that means this fragment implement current interface
@@ -68,7 +68,7 @@ public class RestaurantOrderPendingFragment extends BaseFragment implements Rest
                 if (current_page <= lastPage) {
                     if (lastPage != 0 && current_page != 1) {
                         onEndLess.previous_page = current_page;
-                        restaurantGetOrderViewModel.getRestaurantOrderList(apiToken, ORDER_TYPE, current_page);
+                        restaurantPendingOrderViewModel.getRestaurantOrderList(apiToken, ORDER_TYPE, current_page);
                     } else {
                         onEndLess.current_page = onEndLess.previous_page;
                     }
@@ -82,21 +82,21 @@ public class RestaurantOrderPendingFragment extends BaseFragment implements Rest
         binding.restaurantOrderPendingFragmentRecyclerView.setAdapter(restaurantPendingOrderAdapter);
 
         if (restaurantOrderDataList.size() == 0) {
-            restaurantGetOrderViewModel.getRestaurantOrderList(apiToken, ORDER_TYPE, 1);
+            restaurantPendingOrderViewModel.getRestaurantOrderList(apiToken, ORDER_TYPE, 1);
         }
 
         binding.restaurantOrderPendingFragmentSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 if (restaurantOrderDataList.size() == 0) {
-                    restaurantGetOrderViewModel.getRestaurantOrderList(apiToken, ORDER_TYPE, 1);
+                    restaurantPendingOrderViewModel.getRestaurantOrderList(apiToken, ORDER_TYPE, 1);
                 } else {
                     binding.restaurantOrderPendingFragmentSwipeRefresh.setRefreshing(false);
                 }
             }
         });
 
-        restaurantGetOrderViewModel.getRestaurantOrderMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Order>() {
+        restaurantPendingOrderViewModel.getRestaurantOrderMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Order>() {
             @Override
             public void onChanged(Order order) {
                 if (order.getStatus() == 1) {
@@ -124,6 +124,17 @@ public class RestaurantOrderPendingFragment extends BaseFragment implements Rest
     @Override
     public void onAccept(OrderData orderData) {
         // Call your view model method to handle the request
-        restaurantGetOrderViewModel.acceptTheOrder(orderData);
+        restaurantPendingOrderViewModel.restaurantAcceptOrder(apiToken, orderData.getId());
+
+        restaurantPendingOrderViewModel.getAcceptOrderMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Order>() {
+            @Override
+            public void onChanged(Order order) {
+                if (order.getStatus() == 1) {
+                    restaurantOrderDataList.remove(orderData);
+                    restaurantPendingOrderAdapter.notifyDataSetChanged();
+                }
+                Toast.makeText(getContext(), order.getMsg(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
