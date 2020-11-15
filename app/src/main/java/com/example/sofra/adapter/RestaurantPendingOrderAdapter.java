@@ -36,11 +36,20 @@ public class RestaurantPendingOrderAdapter extends RecyclerView.Adapter<Restaura
     private final Context context;
     private final Activity activity;
     private List<OrderData> restaurantOrderDataList = new ArrayList<>();
+    private OnItemClicked onItemClicked;
 
-    public RestaurantPendingOrderAdapter(Activity activity, List<OrderData> restaurantOrderDataList) {
+    public interface OnItemClicked {
+        void onAccept(OrderData orderData);
+        // TODO add another methods here
+    }
+
+    public RestaurantPendingOrderAdapter(Activity activity,
+                                         List<OrderData> restaurantOrderDataList,
+                                         OnItemClicked onItemClicked) {
         this.context = activity;
         this.activity = activity;
         this.restaurantOrderDataList = restaurantOrderDataList;
+        this.onItemClicked = onItemClicked;
     }
 
 
@@ -100,33 +109,8 @@ public class RestaurantPendingOrderAdapter extends RecyclerView.Adapter<Restaura
         holder.binding.itemRestaurantOrderPendingButtonAccept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String ORDER_TYPE = "pending";
-                String apiToken = "";
-                if (LoadData(activity, "apiToken") != null) {
-                    // apiToken = LoadData(activity, "apiToken");
-                    apiToken = "Jptu3JVmDXGpJEaQO9ZrjRg5RuAVCo45OC2AcOKqbVZPmu0ZJPN3T1sm0cWx";
-                }
-
-                final RestaurantGetOrderViewModel restaurantGetOrderViewModel =
-                        new ViewModelProvider(((HomeActivity) activity)).get(RestaurantGetOrderViewModel.class);
-
-                RestaurantAcceptOrderViewModel restaurantAcceptOrderViewModel =
-                        new ViewModelProvider(((HomeActivity) activity)).get(RestaurantAcceptOrderViewModel.class);
-
-                restaurantAcceptOrderViewModel.restaurantAcceptOrder(apiToken
-                        , restaurantOrderDataList.get(position).getId());
-
-                String finalApiToken = apiToken;
-                restaurantAcceptOrderViewModel.orderMutableLiveData.observe(((LifecycleOwner) activity)
-                        , new Observer<Order>() {
-                            @Override
-                            public void onChanged(Order order) {
-                                restaurantGetOrderViewModel.getRestaurantOrderList(finalApiToken
-                                        , ORDER_TYPE, 1);
-                                Toast.makeText(activity, order.getMsg(), Toast.LENGTH_SHORT).show();
-                            }
-                        });
-                notifyDataSetChanged();
+                // pass current item to the anonymous object
+                onItemClicked.onAccept(restaurantOrderDataList.get(position));
             }
         });
     }
