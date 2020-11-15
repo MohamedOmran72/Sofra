@@ -16,7 +16,7 @@ import com.example.sofra.R;
 import com.example.sofra.data.pojo.order.OrderData;
 import com.example.sofra.databinding.ItemRestaurantOrderPendingBinding;
 import com.example.sofra.ui.activity.HomeActivity;
-import com.example.sofra.ui.fragment.order.OrderDetailsFragment;
+import com.example.sofra.ui.fragment.order.restaurant.RestaurantOrderDetailsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,7 +75,7 @@ public class RestaurantPendingOrderAdapter extends RecyclerView.Adapter<Restaura
 
                 replaceFragment(((HomeActivity) activity).getSupportFragmentManager()
                         , R.id.home_activity_fragmentContainerView
-                        , new OrderDetailsFragment(orderData)
+                        , new RestaurantOrderDetailsFragment(orderData)
                         , HomeActivity.class.getName()
                         , null);
 

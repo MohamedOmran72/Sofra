@@ -1,4 +1,4 @@
-package com.example.sofra.ui.fragment.order;
+package com.example.sofra.ui.fragment.order.restaurant;
 
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -22,13 +22,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class OrderDetailsFragment extends BaseFragment {
+public class RestaurantOrderDetailsFragment extends BaseFragment {
     private final OrderData orderData;
     View view;
     List<Item> items = new ArrayList<>();
     private FragmentOrderDetailsBinding binding;
 
-    public OrderDetailsFragment(OrderData orderData) {
+    public RestaurantOrderDetailsFragment(OrderData orderData) {
         this.orderData = orderData;
         items.addAll(orderData.getItems());
     }
@@ -56,12 +56,12 @@ public class OrderDetailsFragment extends BaseFragment {
         String PAYMENT_METHOD_CASH = getString(R.string.payment_method_cash);
         String PAYMENT_METHOD_ONLINE = getString(R.string.payment_method_online);
 
-        Glide.with(getActivity()).load(orderData.getRestaurant().getPhotoUrl())
-                .into(binding.fragmentOrderDetailsCircleImageRestaurant);
-        binding.fragmentOrderDetailsTextViewRestaurantName.setText(orderData.getRestaurant().getName());
+        Glide.with(getActivity()).load(orderData.getClient().getPhotoUrl())
+                .into(binding.fragmentOrderDetailsCircleImage);
+        binding.fragmentOrderDetailsTextViewName.setText(orderData.getClient().getName());
         binding.fragmentOrderDetailsTextViewCreatedAt
                 .setText(getString(R.string.created_at, orderData.getCreatedAt()));
-        binding.fragmentOrderDetailsTextViewClientAddress
+        binding.fragmentOrderDetailsTextViewAddress
                 .setText(getString(R.string.item_order_address, orderData.getAddress()));
         binding.fragmentOrderDetailsTextViewOrderPrice
                 .setText(getString(R.string.order_price, orderData.getCost()));

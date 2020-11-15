@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.fragment.order.OrderDetailsFragment">
+    tools:context=".ui.fragment.order.restaurant.RestaurantOrderDetailsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -34,7 +34,7 @@
             app:layout_constraintTop_toBottomOf="@+id/fragment_order_details_textView_title">
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/fragment_order_details_CircleImage_restaurant"
+                android:id="@+id/fragment_order_details_CircleImage"
                 android:layout_width="@dimen/_60sdp"
                 android:layout_height="match_parent"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -43,14 +43,14 @@
                 tools:src="@tools:sample/avatars" />
 
             <TextView
-                android:id="@+id/fragment_order_details_textView_restaurant_name"
+                android:id="@+id/fragment_order_details_textView_name"
                 style="@style/ItemTitleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_6sdp"
                 android:ellipsize="end"
                 android:maxLines="2"
-                app:layout_constraintStart_toEndOf="@+id/fragment_order_details_CircleImage_restaurant"
+                app:layout_constraintStart_toEndOf="@+id/fragment_order_details_CircleImage"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="@string/restaurant_name" />
 
@@ -64,12 +64,12 @@
                 android:maxLines="2"
                 android:text="@string/created_at"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/fragment_order_details_CircleImage_restaurant"
-                app:layout_constraintTop_toBottomOf="@+id/fragment_order_details_textView_restaurant_name" />
+                app:layout_constraintStart_toEndOf="@+id/fragment_order_details_CircleImage"
+                app:layout_constraintTop_toBottomOf="@+id/fragment_order_details_textView_name" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
-            android:id="@+id/fragment_order_details_textView_client_address"
+            android:id="@+id/fragment_order_details_textView_address"
             style="@style/ItemTitleText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
             android:padding="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fragment_order_details_textView_client_address">
+            app:layout_constraintTop_toBottomOf="@+id/fragment_order_details_textView_address">
 
             <TextView
                 style="@style/ItemTitleText"

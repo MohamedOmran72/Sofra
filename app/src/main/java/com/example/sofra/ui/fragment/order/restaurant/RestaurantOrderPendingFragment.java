@@ -47,7 +47,7 @@ public class RestaurantOrderPendingFragment extends BaseFragment implements Rest
 
         if (LoadData(getActivity(), "apiToken") != null) {
             apiToken = LoadData(getActivity(), "apiToken");
-            //apiToken = "Jptu3JVmDXGpJEaQO9ZrjRg5RuAVCo45OC2AcOKqbVZPmu0ZJPN3T1sm0cWx";
+            apiToken = "Jptu3JVmDXGpJEaQO9ZrjRg5RuAVCo45OC2AcOKqbVZPmu0ZJPN3T1sm0cWx";
         }
 
         getPendingOrder();
