@@ -3,6 +3,7 @@ package com.example.sofra.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -12,9 +13,13 @@ import com.bumptech.glide.Glide;
 import com.example.sofra.R;
 import com.example.sofra.data.pojo.order.OrderData;
 import com.example.sofra.databinding.ItemRestaurantOrderCurrentBinding;
+import com.example.sofra.ui.activity.HomeActivity;
+import com.example.sofra.ui.fragment.order.restaurant.RestaurantOrderDetailsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.sofra.utils.HelperMethod.replaceFragment;
 
 
 public class RestaurantCurrentOrderAdapter extends RecyclerView.Adapter<RestaurantCurrentOrderAdapter.ViewHolder> {
@@ -57,6 +62,19 @@ public class RestaurantCurrentOrderAdapter extends RecyclerView.Adapter<Restaura
 
     private void setAction(final RestaurantCurrentOrderAdapter.ViewHolder holder, final int position) {
 
+        holder.binding.itemRestaurantOrderCurrentContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OrderData orderData = restaurantOrderDataList.get(position);
+
+                replaceFragment(((HomeActivity) activity).getSupportFragmentManager()
+                        , R.id.home_activity_fragmentContainerView
+                        , new RestaurantOrderDetailsFragment(orderData)
+                        , HomeActivity.class.getName()
+                        , null);
+
+            }
+        });
     }
 
     @Override
