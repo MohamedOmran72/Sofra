@@ -24,7 +24,7 @@ import java.util.List;
 
 import static com.example.sofra.data.local.SharedPreferencesManger.LoadData;
 
-public class RestaurantOrderCurrentFragment extends BaseFragment {
+public class RestaurantOrderCurrentFragment extends BaseFragment implements RestaurantCurrentOrderAdapter.OnItemClicked {
     private final String ORDER_TYPE = "current";
     private final List<OrderData> restaurantCurrentOrderDataList = new ArrayList<>();
     private FragmentRestaurantOrderCurrentBinding binding;
@@ -59,7 +59,7 @@ public class RestaurantOrderCurrentFragment extends BaseFragment {
         layoutManager = new LinearLayoutManager(getActivity());
         binding.restaurantOrderCurrentFragmentRecyclerView.setLayoutManager(layoutManager);
         // pass this -> that means this fragment implement current interface
-        restaurantCurrentOrderAdapter = new RestaurantCurrentOrderAdapter(getActivity(), restaurantCurrentOrderDataList);
+        restaurantCurrentOrderAdapter = new RestaurantCurrentOrderAdapter(getActivity(), restaurantCurrentOrderDataList, this);
 
         onEndLess = new OnEndLess(layoutManager, 1) {
             @Override
@@ -117,5 +117,22 @@ public class RestaurantOrderCurrentFragment extends BaseFragment {
                 }
             }
         });
+    }
+
+    @Override
+    public void onAcceptDelivery(OrderData orderData) {
+        restaurantOrderCurrentViewModel.restaurantConfirmOrderDelivery(apiToken, orderData.getId());
+
+        restaurantOrderCurrentViewModel.getRestaurantConfirmDeliveryMutableLiveData().observe(getViewLifecycleOwner()
+                , new Observer<Order>() {
+                    @Override
+                    public void onChanged(Order order) {
+                        if (order.getStatus() == 1) {
+                            restaurantCurrentOrderDataList.remove(orderData);
+                            restaurantCurrentOrderAdapter.notifyDataSetChanged();
+                        }
+                        Toast.makeText(getContext(), order.getMsg(), Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 }

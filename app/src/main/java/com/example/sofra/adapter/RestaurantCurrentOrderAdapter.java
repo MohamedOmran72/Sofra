@@ -25,12 +25,15 @@ import static com.example.sofra.utils.HelperMethod.replaceFragment;
 public class RestaurantCurrentOrderAdapter extends RecyclerView.Adapter<RestaurantCurrentOrderAdapter.ViewHolder> {
     private final Context context;
     private final Activity activity;
+    private final OnItemClicked onItemClicked;
     private List<OrderData> restaurantOrderDataList = new ArrayList<>();
 
-    public RestaurantCurrentOrderAdapter(Activity activity, List<OrderData> restaurantOrderDataList) {
+    public RestaurantCurrentOrderAdapter(Activity activity, List<OrderData> restaurantOrderDataList
+            , OnItemClicked onItemClicked) {
         this.context = activity;
         this.activity = activity;
         this.restaurantOrderDataList = restaurantOrderDataList;
+        this.onItemClicked = onItemClicked;
     }
 
     @NonNull
@@ -75,11 +78,22 @@ public class RestaurantCurrentOrderAdapter extends RecyclerView.Adapter<Restaura
 
             }
         });
+
+        holder.binding.itemRestaurantOrderCurrentButtonAccept.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClicked.onAcceptDelivery(restaurantOrderDataList.get(position));
+            }
+        });
     }
 
     @Override
     public int getItemCount() {
         return restaurantOrderDataList == null ? 0 : restaurantOrderDataList.size();
+    }
+
+    public interface OnItemClicked {
+        void onAcceptDelivery(OrderData orderData);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

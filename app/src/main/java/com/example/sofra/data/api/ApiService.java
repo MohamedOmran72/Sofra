@@ -186,4 +186,10 @@ public interface ApiService {
     Call<Order> restaurantCancelOrder(@Field("api_token") String apiToken
             , @Field("order_id") int orderId
             , @Field("refuse_reason") String refuseReason);
+
+    // restaurant confirm order delivery
+    @POST("restaurant/confirm-order")
+    @FormUrlEncoded
+    Call<Order> restaurantConfirmOrderDelivery(@Field("api_token") String apiToken
+            , @Field("order_id") int orderId);
 }
