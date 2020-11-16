@@ -107,4 +107,9 @@
     <string name="payment_method">طريقة الدفع: %1$s</string>
     <string name="payment_method_cash">دفع نقدا</string>
     <string name="payment_method_online">عبر الانترنت</string>
+
+    <!-- Strings related to order cancellation reason dialog -->
+    <string name="cancellation_reason">سبب الإلغاء</string>
+    <string name="enter_cancellation_reason">الرجاء إدخال سبب الإلغاء</string>
+    <string name="cancel_order">الغاء الطلب</string>
 </resources>

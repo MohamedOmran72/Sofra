@@ -109,4 +109,9 @@
     <string name="payment_method">Payment method: %1$s</string>
     <string name="payment_method_cash">Cash</string>
     <string name="payment_method_online">Online</string>
+
+    <!-- Strings related to order cancellation reason dialog -->
+    <string name="cancellation_reason">Cancellation reason</string>
+    <string name="enter_cancellation_reason">Please enter cancellation reason</string>
+    <string name="cancel_order">Cancel order</string>
 </resources>
