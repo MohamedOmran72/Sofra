@@ -92,6 +92,7 @@
     <string name="call">اتصال</string>
     <string name="accept">قبول</string>
     <string name="cancel">رفض</string>
+    <string name="confirm_delivery">تاكيد التوصيل</string>
     <string name="item_order_customer_name">عميل : %1$s</string>
     <string name="item_order_number">رقم الطلب : %1$s</string>
     <string name="item_order_total">الاجمالي : %1$s جنيه</string>

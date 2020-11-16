@@ -94,6 +94,7 @@
     <string name="call">Call</string>
     <string name="accept">Accept</string>
     <string name="cancel">Cancel</string>
+    <string name="confirm_delivery">Confirm delivery</string>
     <string name="item_order_customer_name">Customer : %1$s</string>
     <string name="item_order_number">Order number : %1$s </string>
     <string name="item_order_total">Total : %1$s Pounds</string>
