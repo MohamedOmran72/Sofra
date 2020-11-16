@@ -179,4 +179,11 @@ public interface ApiService {
     @FormUrlEncoded
     Call<Order> restaurantAcceptOrder(@Field("api_token") String apiToken
             , @Field("order_id") int orderId);
+
+    // restaurant reject order
+    @POST("restaurant/reject-order")
+    @FormUrlEncoded
+    Call<Order> restaurantCancelOrder(@Field("api_token") String apiToken
+            , @Field("order_id") int orderId
+            , @Field("refuse_reason") String refuseReason);
 }

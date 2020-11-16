@@ -27,8 +27,8 @@ import static com.example.sofra.utils.HelperMethod.replaceFragment;
 public class RestaurantPendingOrderAdapter extends RecyclerView.Adapter<RestaurantPendingOrderAdapter.ViewHolder> {
     private final Context context;
     private final Activity activity;
-    private List<OrderData> restaurantOrderDataList = new ArrayList<>();
     private final OnItemClicked onItemClicked;
+    private List<OrderData> restaurantOrderDataList = new ArrayList<>();
 
     public RestaurantPendingOrderAdapter(Activity activity,
                                          List<OrderData> restaurantOrderDataList,
@@ -98,6 +98,13 @@ public class RestaurantPendingOrderAdapter extends RecyclerView.Adapter<Restaura
                 onItemClicked.onAccept(restaurantOrderDataList.get(position));
             }
         });
+
+        holder.binding.itemRestaurantOrderPendingButtonCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClicked.onCancel(restaurantOrderDataList.get(position));
+            }
+        });
     }
 
     @Override
@@ -107,6 +114,8 @@ public class RestaurantPendingOrderAdapter extends RecyclerView.Adapter<Restaura
 
     public interface OnItemClicked {
         void onAccept(OrderData orderData);
+
+        void onCancel(OrderData orderData);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

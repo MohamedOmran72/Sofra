@@ -16,6 +16,7 @@ public class RestaurantPendingOrderViewModel extends ViewModel {
 
     private final MutableLiveData<Order> restaurantOrderMutableLiveData = new MutableLiveData<>();
     private final MutableLiveData<Order> acceptOrderMutableLiveData = new MutableLiveData<>();
+    private final MutableLiveData<Order> cancelOrderMutableLiveData = new MutableLiveData<>();
 
     public MutableLiveData<Order> getRestaurantOrderMutableLiveData() {
         return restaurantOrderMutableLiveData;
@@ -23,6 +24,10 @@ public class RestaurantPendingOrderViewModel extends ViewModel {
 
     public MutableLiveData<Order> getAcceptOrderMutableLiveData() {
         return acceptOrderMutableLiveData;
+    }
+
+    public MutableLiveData<Order> getCancelOrderMutableLiveData() {
+        return cancelOrderMutableLiveData;
     }
 
     public void getRestaurantOrderList(String apiToken, final String state, int page) {
@@ -56,5 +61,20 @@ public class RestaurantPendingOrderViewModel extends ViewModel {
                 t.printStackTrace();
             }
         });
+    }
+
+    public void restaurantCancelOrder(String apiToken, int orderId, String reason) {
+        getClient().restaurantCancelOrder(apiToken, orderId, reason).enqueue(new Callback<Order>() {
+            @Override
+            public void onResponse(@NonNull Call<Order> call, @NonNull Response<Order> response) {
+                cancelOrderMutableLiveData.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<Order> call, @NonNull Throwable t) {
+                t.printStackTrace();
+            }
+        });
+
     }
 }

@@ -1,5 +1,6 @@
 package com.example.sofra.ui.fragment.order.restaurant;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +13,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.sofra.R;
 import com.example.sofra.adapter.RestaurantPendingOrderAdapter;
 import com.example.sofra.data.pojo.order.Order;
 import com.example.sofra.data.pojo.order.OrderData;
+import com.example.sofra.databinding.DialogRestaurantOrderCancelBinding;
 import com.example.sofra.databinding.FragmentRestaurantOrderPendingBinding;
 import com.example.sofra.ui.fragment.BaseFragment;
 import com.example.sofra.utils.OnEndLess;
@@ -23,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.sofra.data.local.SharedPreferencesManger.LoadData;
+import static com.example.sofra.utils.HelperMethod.disappearKeypad;
 
 public class RestaurantOrderPendingFragment extends BaseFragment implements RestaurantPendingOrderAdapter.OnItemClicked {
     private final String ORDER_TYPE = "pending";
@@ -137,4 +141,56 @@ public class RestaurantOrderPendingFragment extends BaseFragment implements Rest
             }
         });
     }
+
+    @Override
+    public void onCancel(OrderData orderData) {
+        final String[] cancelReason = new String[1];
+        final Dialog dialog = new Dialog(getActivity());
+
+        DialogRestaurantOrderCancelBinding dialogRestaurantOrderCancelBinding =
+                DialogRestaurantOrderCancelBinding.inflate(dialog.getLayoutInflater());
+
+        dialog.setContentView(dialogRestaurantOrderCancelBinding.getRoot());
+        dialog.show();
+
+        dialogRestaurantOrderCancelBinding.dialogRestaurantOrderCancelContainer
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        disappearKeypad(getActivity(), dialogRestaurantOrderCancelBinding.getRoot());
+                    }
+                });
+
+        dialogRestaurantOrderCancelBinding.dialogRestaurantOrderCancelButtonCancel
+                .setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        cancelReason[0] = dialogRestaurantOrderCancelBinding.dialogRestaurantOrderCancelEditTextReason
+                                .getText().toString();
+
+                        if (!cancelReason[0].equals(null) && !cancelReason[0].isEmpty()) {
+                            restaurantPendingOrderViewModel.restaurantCancelOrder(apiToken, orderData.getId(), cancelReason[0]);
+                            restaurantPendingOrderViewModel.getCancelOrderMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Order>() {
+                                @Override
+                                public void onChanged(Order order) {
+                                    if (order.getStatus() == 1) {
+                                        restaurantOrderDataList.remove(orderData);
+                                        restaurantPendingOrderAdapter.notifyDataSetChanged();
+                                    }
+                                    Toast.makeText(getContext(), order.getMsg(), Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                            dialog.dismiss();
+                        } else {
+                            Toast.makeText(getContext(), getText(R.string.enter_cancellation_reason)
+                                    , Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                });
+
+    }
+
 }
