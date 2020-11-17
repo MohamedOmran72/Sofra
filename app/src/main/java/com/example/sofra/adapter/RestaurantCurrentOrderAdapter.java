@@ -85,6 +85,13 @@ public class RestaurantCurrentOrderAdapter extends RecyclerView.Adapter<Restaura
                 onItemClicked.onAcceptDelivery(restaurantOrderDataList.get(position));
             }
         });
+
+        holder.binding.itemRestaurantOrderCurrentButtonCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClicked.onCancel(restaurantOrderDataList.get(position));
+            }
+        });
     }
 
     @Override
@@ -94,6 +101,8 @@ public class RestaurantCurrentOrderAdapter extends RecyclerView.Adapter<Restaura
 
     public interface OnItemClicked {
         void onAcceptDelivery(OrderData orderData);
+
+        void onCancel(OrderData orderData);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

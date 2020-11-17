@@ -1,5 +1,6 @@
 package com.example.sofra.ui.fragment.order.restaurant;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,17 +13,21 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.sofra.R;
 import com.example.sofra.adapter.RestaurantCurrentOrderAdapter;
 import com.example.sofra.data.pojo.order.Order;
 import com.example.sofra.data.pojo.order.OrderData;
+import com.example.sofra.databinding.DialogRestaurantOrderCancelBinding;
 import com.example.sofra.databinding.FragmentRestaurantOrderCurrentBinding;
 import com.example.sofra.ui.fragment.BaseFragment;
 import com.example.sofra.utils.OnEndLess;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static com.example.sofra.data.local.SharedPreferencesManger.LoadData;
+import static com.example.sofra.utils.HelperMethod.disappearKeypad;
 
 public class RestaurantOrderCurrentFragment extends BaseFragment implements RestaurantCurrentOrderAdapter.OnItemClicked {
     private final String ORDER_TYPE = "current";
@@ -87,6 +92,17 @@ public class RestaurantOrderCurrentFragment extends BaseFragment implements Rest
                     }
                 });
 
+        restaurantOrderCurrentViewModel.getCancelOrderMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Order>() {
+            @Override
+            public void onChanged(Order order) {
+                if (order.getStatus() == 1) {
+                    restaurantCurrentOrderDataList.remove(orderData);
+                    restaurantCurrentOrderAdapter.notifyDataSetChanged();
+                }
+                Toast.makeText(getContext(), order.getMsg(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
         return view;
     }
 
@@ -136,5 +152,46 @@ public class RestaurantOrderCurrentFragment extends BaseFragment implements Rest
     public void onAcceptDelivery(OrderData orderData) {
         this.orderData = orderData;
         restaurantOrderCurrentViewModel.restaurantConfirmOrderDelivery(apiToken, orderData.getId());
+    }
+
+    @Override
+    public void onCancel(OrderData orderData) {
+        this.orderData = orderData;
+        final String[] cancelReason = new String[1];
+        final Dialog dialog = new Dialog(Objects.requireNonNull(getActivity()));
+
+        DialogRestaurantOrderCancelBinding dialogRestaurantOrderCancelBinding =
+                DialogRestaurantOrderCancelBinding.inflate(dialog.getLayoutInflater());
+
+        dialog.setContentView(dialogRestaurantOrderCancelBinding.getRoot());
+        dialog.show();
+
+        dialogRestaurantOrderCancelBinding.dialogRestaurantOrderCancelContainer
+                .setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        disappearKeypad(getActivity(), dialogRestaurantOrderCancelBinding.getRoot());
+                    }
+                });
+
+        dialogRestaurantOrderCancelBinding.dialogRestaurantOrderCancelButtonCancel
+                .setOnClickListener(new View.OnClickListener() {
+
+                    @Override
+                    public void onClick(View v) {
+
+                        cancelReason[0] = String.valueOf(dialogRestaurantOrderCancelBinding
+                                .dialogRestaurantOrderCancelEditTextReason.getText());
+
+                        if (!cancelReason[0].isEmpty()) {
+                            restaurantOrderCurrentViewModel.restaurantCancelOrder(apiToken, orderData.getId(), cancelReason[0]);
+                            dialog.dismiss();
+                        } else {
+                            Toast.makeText(getContext(), getText(R.string.enter_cancellation_reason)
+                                    , Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                });
     }
 }
