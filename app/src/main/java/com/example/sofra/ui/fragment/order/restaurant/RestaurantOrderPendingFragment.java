@@ -24,6 +24,7 @@ import com.example.sofra.utils.OnEndLess;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static com.example.sofra.data.local.SharedPreferencesManger.LoadData;
 import static com.example.sofra.utils.HelperMethod.disappearKeypad;
@@ -37,6 +38,8 @@ public class RestaurantOrderPendingFragment extends BaseFragment implements Rest
     private LinearLayoutManager layoutManager;
     private OnEndLess onEndLess;
     private int lastPage;
+
+    private OrderData orderData;
 
     private String apiToken;
 
@@ -55,6 +58,51 @@ public class RestaurantOrderPendingFragment extends BaseFragment implements Rest
         }
 
         getPendingOrder();
+
+        restaurantPendingOrderViewModel.getRestaurantOrderMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Order>() {
+            @Override
+            public void onChanged(Order order) {
+                if (order.getStatus() == 1) {
+                    binding.restaurantOrderPendingFragmentSwipeRefresh.setRefreshing(false);
+
+                    if (order.getData().getLastPage() == null) {
+                        lastPage = 0;
+                    } else {
+                        lastPage = order.getData().getLastPage();
+                    }
+
+                    if (onEndLess.current_page == 1) {
+                        restaurantOrderDataList.clear();
+                    }
+                    restaurantOrderDataList.addAll(order.getData().getData());
+                    restaurantPendingOrderAdapter.notifyDataSetChanged();
+                } else {
+                    Toast.makeText(getContext(), order.getMsg(), Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        restaurantPendingOrderViewModel.getAcceptOrderMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Order>() {
+            @Override
+            public void onChanged(Order order) {
+                if (order.getStatus() == 1) {
+                    restaurantOrderDataList.remove(orderData);
+                    restaurantPendingOrderAdapter.notifyDataSetChanged();
+                }
+                Toast.makeText(getContext(), order.getMsg(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        restaurantPendingOrderViewModel.getCancelOrderMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Order>() {
+            @Override
+            public void onChanged(Order order) {
+                if (order.getStatus() == 1) {
+                    restaurantOrderDataList.remove(orderData);
+                    restaurantPendingOrderAdapter.notifyDataSetChanged();
+                }
+                Toast.makeText(getContext(), order.getMsg(), Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return view;
     }
@@ -99,53 +147,20 @@ public class RestaurantOrderPendingFragment extends BaseFragment implements Rest
                 }
             }
         });
-
-        restaurantPendingOrderViewModel.getRestaurantOrderMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Order>() {
-            @Override
-            public void onChanged(Order order) {
-                if (order.getStatus() == 1) {
-                    binding.restaurantOrderPendingFragmentSwipeRefresh.setRefreshing(false);
-
-                    if (order.getData().getLastPage() == null) {
-                        lastPage = 0;
-                    } else {
-                        lastPage = order.getData().getLastPage();
-                    }
-
-                    if (onEndLess.current_page == 1) {
-                        restaurantOrderDataList.clear();
-                    }
-                    restaurantOrderDataList.addAll(order.getData().getData());
-                    restaurantPendingOrderAdapter.notifyDataSetChanged();
-                } else {
-                    Toast.makeText(getContext(), order.getMsg(), Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
     }
 
     @Override
     public void onAccept(OrderData orderData) {
+        this.orderData = orderData;
         // Call your view model method to handle the request
         restaurantPendingOrderViewModel.restaurantAcceptOrder(apiToken, orderData.getId());
-
-        restaurantPendingOrderViewModel.getAcceptOrderMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Order>() {
-            @Override
-            public void onChanged(Order order) {
-                if (order.getStatus() == 1) {
-                    restaurantOrderDataList.remove(orderData);
-                    restaurantPendingOrderAdapter.notifyDataSetChanged();
-                }
-                Toast.makeText(getContext(), order.getMsg(), Toast.LENGTH_SHORT).show();
-            }
-        });
     }
 
     @Override
     public void onCancel(OrderData orderData) {
+        this.orderData = orderData;
         final String[] cancelReason = new String[1];
-        final Dialog dialog = new Dialog(getActivity());
+        final Dialog dialog = new Dialog(Objects.requireNonNull(getActivity()));
 
         DialogRestaurantOrderCancelBinding dialogRestaurantOrderCancelBinding =
                 DialogRestaurantOrderCancelBinding.inflate(dialog.getLayoutInflater());
@@ -167,21 +182,11 @@ public class RestaurantOrderPendingFragment extends BaseFragment implements Rest
                     @Override
                     public void onClick(View v) {
 
-                        cancelReason[0] = dialogRestaurantOrderCancelBinding.dialogRestaurantOrderCancelEditTextReason
-                                .getText().toString();
+                        cancelReason[0] = String.valueOf(dialogRestaurantOrderCancelBinding
+                                .dialogRestaurantOrderCancelEditTextReason.getText());
 
-                        if (!cancelReason[0].equals(null) && !cancelReason[0].isEmpty()) {
+                        if (!cancelReason[0].isEmpty()) {
                             restaurantPendingOrderViewModel.restaurantCancelOrder(apiToken, orderData.getId(), cancelReason[0]);
-                            restaurantPendingOrderViewModel.getCancelOrderMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Order>() {
-                                @Override
-                                public void onChanged(Order order) {
-                                    if (order.getStatus() == 1) {
-                                        restaurantOrderDataList.remove(orderData);
-                                        restaurantPendingOrderAdapter.notifyDataSetChanged();
-                                    }
-                                    Toast.makeText(getContext(), order.getMsg(), Toast.LENGTH_SHORT).show();
-                                }
-                            });
                             dialog.dismiss();
                         } else {
                             Toast.makeText(getContext(), getText(R.string.enter_cancellation_reason)
@@ -190,7 +195,6 @@ public class RestaurantOrderPendingFragment extends BaseFragment implements Rest
                     }
 
                 });
-
     }
 
 }
