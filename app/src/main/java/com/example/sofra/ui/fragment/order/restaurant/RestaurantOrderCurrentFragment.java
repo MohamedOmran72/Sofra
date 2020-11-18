@@ -57,7 +57,7 @@ public class RestaurantOrderCurrentFragment extends BaseFragment implements Rest
 
         getCurrentOrder();
 
-        restaurantOrderCurrentViewModel.getRestaurantCurrentOrderMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Order>() {
+        restaurantOrderCurrentViewModel.getRestaurantOrderMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Order>() {
             @Override
             public void onChanged(Order order) {
                 if (order.getStatus() == 1) {
@@ -119,7 +119,7 @@ public class RestaurantOrderCurrentFragment extends BaseFragment implements Rest
                 if (current_page <= lastPage) {
                     if (lastPage != 0 && current_page != 1) {
                         onEndLess.previous_page = current_page;
-                        restaurantOrderCurrentViewModel.getRestaurantCurrentOrderList(apiToken, ORDER_TYPE, current_page);
+                        restaurantOrderCurrentViewModel.getRestaurantOrderList(apiToken, ORDER_TYPE, current_page);
                     } else {
                         onEndLess.current_page = onEndLess.previous_page;
                     }
@@ -133,14 +133,14 @@ public class RestaurantOrderCurrentFragment extends BaseFragment implements Rest
         binding.restaurantOrderCurrentFragmentRecyclerView.setAdapter(restaurantCurrentOrderAdapter);
 
         if (restaurantCurrentOrderDataList.size() == 0) {
-            restaurantOrderCurrentViewModel.getRestaurantCurrentOrderList(apiToken, ORDER_TYPE, 1);
+            restaurantOrderCurrentViewModel.getRestaurantOrderList(apiToken, ORDER_TYPE, 1);
         }
 
         binding.restaurantOrderCurrentFragmentSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 if (restaurantCurrentOrderDataList.size() == 0) {
-                    restaurantOrderCurrentViewModel.getRestaurantCurrentOrderList(apiToken, ORDER_TYPE, 1);
+                    restaurantOrderCurrentViewModel.getRestaurantOrderList(apiToken, ORDER_TYPE, 1);
                 } else {
                     binding.restaurantOrderCurrentFragmentSwipeRefresh.setRefreshing(false);
                 }

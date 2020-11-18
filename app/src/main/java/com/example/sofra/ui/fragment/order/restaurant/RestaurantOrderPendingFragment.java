@@ -33,7 +33,7 @@ public class RestaurantOrderPendingFragment extends BaseFragment implements Rest
     private final String ORDER_TYPE = "pending";
     private final List<OrderData> restaurantOrderDataList = new ArrayList<>();
     private FragmentRestaurantOrderPendingBinding binding;
-    private RestaurantPendingOrderViewModel restaurantPendingOrderViewModel;
+    private RestaurantOrderPendingViewModel restaurantOrderPendingViewModel;
     private RestaurantPendingOrderAdapter restaurantPendingOrderAdapter;
     private LinearLayoutManager layoutManager;
     private OnEndLess onEndLess;
@@ -59,7 +59,7 @@ public class RestaurantOrderPendingFragment extends BaseFragment implements Rest
 
         getPendingOrder();
 
-        restaurantPendingOrderViewModel.getRestaurantOrderMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Order>() {
+        restaurantOrderPendingViewModel.getRestaurantOrderMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Order>() {
             @Override
             public void onChanged(Order order) {
                 if (order.getStatus() == 1) {
@@ -82,7 +82,7 @@ public class RestaurantOrderPendingFragment extends BaseFragment implements Rest
             }
         });
 
-        restaurantPendingOrderViewModel.getAcceptOrderMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Order>() {
+        restaurantOrderPendingViewModel.getAcceptOrderMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Order>() {
             @Override
             public void onChanged(Order order) {
                 if (order.getStatus() == 1) {
@@ -93,7 +93,7 @@ public class RestaurantOrderPendingFragment extends BaseFragment implements Rest
             }
         });
 
-        restaurantPendingOrderViewModel.getCancelOrderMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Order>() {
+        restaurantOrderPendingViewModel.getCancelOrderMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Order>() {
             @Override
             public void onChanged(Order order) {
                 if (order.getStatus() == 1) {
@@ -108,7 +108,7 @@ public class RestaurantOrderPendingFragment extends BaseFragment implements Rest
     }
 
     private void getPendingOrder() {
-        restaurantPendingOrderViewModel = new ViewModelProvider(this).get(RestaurantPendingOrderViewModel.class);
+        restaurantOrderPendingViewModel = new ViewModelProvider(this).get(RestaurantOrderPendingViewModel.class);
         layoutManager = new LinearLayoutManager(getActivity());
         binding.restaurantOrderPendingFragmentRecyclerView.setLayoutManager(layoutManager);
         // pass this -> that means this fragment implement current interface
@@ -120,7 +120,7 @@ public class RestaurantOrderPendingFragment extends BaseFragment implements Rest
                 if (current_page <= lastPage) {
                     if (lastPage != 0 && current_page != 1) {
                         onEndLess.previous_page = current_page;
-                        restaurantPendingOrderViewModel.getRestaurantOrderList(apiToken, ORDER_TYPE, current_page);
+                        restaurantOrderPendingViewModel.getRestaurantOrderList(apiToken, ORDER_TYPE, current_page);
                     } else {
                         onEndLess.current_page = onEndLess.previous_page;
                     }
@@ -134,14 +134,14 @@ public class RestaurantOrderPendingFragment extends BaseFragment implements Rest
         binding.restaurantOrderPendingFragmentRecyclerView.setAdapter(restaurantPendingOrderAdapter);
 
         if (restaurantOrderDataList.size() == 0) {
-            restaurantPendingOrderViewModel.getRestaurantOrderList(apiToken, ORDER_TYPE, 1);
+            restaurantOrderPendingViewModel.getRestaurantOrderList(apiToken, ORDER_TYPE, 1);
         }
 
         binding.restaurantOrderPendingFragmentSwipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 if (restaurantOrderDataList.size() == 0) {
-                    restaurantPendingOrderViewModel.getRestaurantOrderList(apiToken, ORDER_TYPE, 1);
+                    restaurantOrderPendingViewModel.getRestaurantOrderList(apiToken, ORDER_TYPE, 1);
                 } else {
                     binding.restaurantOrderPendingFragmentSwipeRefresh.setRefreshing(false);
                 }
@@ -153,7 +153,7 @@ public class RestaurantOrderPendingFragment extends BaseFragment implements Rest
     public void onAccept(OrderData orderData) {
         this.orderData = orderData;
         // Call your view model method to handle the request
-        restaurantPendingOrderViewModel.restaurantAcceptOrder(apiToken, orderData.getId());
+        restaurantOrderPendingViewModel.restaurantAcceptOrder(apiToken, orderData.getId());
     }
 
     @Override
@@ -186,7 +186,7 @@ public class RestaurantOrderPendingFragment extends BaseFragment implements Rest
                                 .dialogRestaurantOrderCancelEditTextReason.getText());
 
                         if (!cancelReason[0].isEmpty()) {
-                            restaurantPendingOrderViewModel.restaurantCancelOrder(apiToken, orderData.getId(), cancelReason[0]);
+                            restaurantOrderPendingViewModel.restaurantCancelOrder(apiToken, orderData.getId(), cancelReason[0]);
                             dialog.dismiss();
                         } else {
                             Toast.makeText(getContext(), getText(R.string.enter_cancellation_reason)

@@ -12,18 +12,13 @@ import retrofit2.Response;
 
 import static com.example.sofra.data.api.RetrofitClient.getClient;
 
-public class RestaurantPendingOrderViewModel extends ViewModel {
+public class RestaurantOrderShearedViewModel extends ViewModel {
 
     private final MutableLiveData<Order> restaurantOrderMutableLiveData = new MutableLiveData<>();
-    private final MutableLiveData<Order> acceptOrderMutableLiveData = new MutableLiveData<>();
     private final MutableLiveData<Order> cancelOrderMutableLiveData = new MutableLiveData<>();
 
     public MutableLiveData<Order> getRestaurantOrderMutableLiveData() {
         return restaurantOrderMutableLiveData;
-    }
-
-    public MutableLiveData<Order> getAcceptOrderMutableLiveData() {
-        return acceptOrderMutableLiveData;
     }
 
     public MutableLiveData<Order> getCancelOrderMutableLiveData() {
@@ -40,20 +35,6 @@ public class RestaurantPendingOrderViewModel extends ViewModel {
                 } catch (RuntimeException e) {
                     e.printStackTrace();
                 }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<Order> call, Throwable t) {
-                t.printStackTrace();
-            }
-        });
-    }
-
-    public void restaurantAcceptOrder(String apiToken, int orderId) {
-        getClient().restaurantAcceptOrder(apiToken, orderId).enqueue(new Callback<Order>() {
-            @Override
-            public void onResponse(@NonNull Call<Order> call, @NonNull Response<Order> response) {
-                acceptOrderMutableLiveData.setValue(response.body());
             }
 
             @Override
