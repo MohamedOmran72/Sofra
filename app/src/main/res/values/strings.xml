@@ -89,6 +89,7 @@
 
     <!-- Strings related to restaurant order -->
     <string name="completed_order">Completed Order</string>
+    <string name="rejected_order">Rejected order</string>
     <string name="current_order">Current Order</string>
     <string name="pending_order">Pending Order</string>
     <string name="call">Call</string>

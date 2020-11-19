@@ -87,6 +87,7 @@
 
     <!-- Strings related to restaurant order -->
     <string name="completed_order">الطلبات المكتملة</string>
+    <string name="rejected_order">الطلب مرفوض</string>
     <string name="current_order">الطلبات الحالية</string>
     <string name="pending_order">الطلبات المعلقة</string>
     <string name="call">اتصال</string>
