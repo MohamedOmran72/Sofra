@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Sofra</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
 
     <!-- Splash button string -->
     <string name="order_food">Order food</string>
@@ -19,6 +20,7 @@
     <string name="trash_bin">Trash_bin</string>
     <string name="edit">Edit</string>
     <string name="category">Category image</string>
+    <string name="order_image">order image</string>
 
 
     <!-- Strings related to login -->
@@ -86,4 +88,33 @@
     <string name="status">Status</string>
     <string name="no_data_changed">You did not change data</string>
 
+    <!-- Strings related to restaurant order -->
+    <string name="completed_order">Completed Order</string>
+    <string name="rejected_order">Rejected order</string>
+    <string name="current_order">Current Order</string>
+    <string name="pending_order">Pending Order</string>
+    <string name="call">Call</string>
+    <string name="accept">Accept</string>
+    <string name="cancel">Cancel</string>
+    <string name="confirm_delivery">Confirm delivery</string>
+    <string name="item_order_customer_name">Customer : %1$s</string>
+    <string name="item_order_number">Order number : %1$s </string>
+    <string name="item_order_total">Total : %1$s Pounds</string>
+    <string name="item_order_address">Address : %1$s</string>
+
+    <!-- Strings related to order details-->
+    <string name="order_details">Order details</string>
+    <string name="created_at">Created at: %1$s</string>
+    <string name="order_item">Order item</string>
+    <string name="quantity">Quantity</string>
+    <string name="order_price">Order price: %1$s Pounds</string>
+    <string name="order_delivery_cost">Delivery cost: %1$s Pounds</string>
+    <string name="payment_method">Payment method: %1$s</string>
+    <string name="payment_method_cash">Cash</string>
+    <string name="payment_method_online">Online</string>
+
+    <!-- Strings related to order cancellation reason dialog -->
+    <string name="cancellation_reason">Cancellation reason</string>
+    <string name="enter_cancellation_reason">Please enter cancellation reason</string>
+    <string name="cancel_order">Cancel order</string>
 </resources>

@@ -40,6 +40,30 @@
         <item name="android:textSize">@dimen/_12ssp</item>
     </style>
 
+    <!-- Order item title text view -->
+    <style name="OrderItemTitleTextView" parent="ItemTitleText">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="layout_constraintHorizontal_bias">0.0</item>
+        <item name="layout_constraintVertical_bias">0.0</item>
+        <item name="android:layout_marginTop">@dimen/_6sdp</item>
+        <item name="android:layout_marginStart">@dimen/_6sdp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <!-- Order item text view -->
+    <style name="OrderItemTextView" parent="ItemText">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="layout_constraintHorizontal_bias">0.0</item>
+        <item name="layout_constraintVertical_bias">0.0</item>
+        <item name="android:layout_marginTop">@dimen/_6sdp</item>
+        <item name="android:layout_marginStart">@dimen/_6sdp</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
     <!-- Author EditText hint, text and underline with white color -->
     <style name="AuthEditText" parent="AuthText">
         <item name="android:textColorHint">@color/secondaryTextColor</item>
@@ -91,6 +115,7 @@
         <item name="android:maxHeight">32dp</item>
         <item name="android:textColor">@color/secondaryTextColor</item>
         <item name="android:textSize">@dimen/_16ssp</item>
+        <item name="android:maxLines">1</item>
     </style>
 
     <!-- Red Radius Button style -->
@@ -104,6 +129,16 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
         <item name="android:maxHeight">32dp</item>
+    </style>
+
+    <!-- Item order button -->
+    <style name="ItemOrderButton" parent="Button">
+        <item name="android:gravity">center|start</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:textSize">@dimen/_10ssp</item>
+        <item name="android:layout_margin">@dimen/_2sdp</item>
+        <item name="android:drawablePadding">@dimen/_6sdp</item>
     </style>
 
     <style name="AppTheme.ProfileSwitch">

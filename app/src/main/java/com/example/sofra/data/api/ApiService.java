@@ -3,6 +3,7 @@ package com.example.sofra.data.api;
 import com.example.sofra.data.pojo.client.forgetPassword.ResetPassword;
 import com.example.sofra.data.pojo.client.login.Login;
 import com.example.sofra.data.pojo.general.city.City;
+import com.example.sofra.data.pojo.order.Order;
 import com.example.sofra.data.pojo.restaurant.foodItems.FoodItems;
 import com.example.sofra.data.pojo.restaurant.restaurantCategories.RestaurantCategories;
 
@@ -166,4 +167,29 @@ public interface ApiService {
             , @Part("availability") RequestBody availability
             , @Part("phone") RequestBody phone
             , @Part("whatsapp") RequestBody whatsapp);
+
+    // get restaurant order list from server
+    @GET("restaurant/my-orders")
+    Call<Order> getRestaurantOrderList(@Query("api_token") String apiToken
+            , @Query("state") String state
+            , @Query("page") int page);
+
+    // restaurant accept order
+    @POST("restaurant/accept-order")
+    @FormUrlEncoded
+    Call<Order> restaurantAcceptOrder(@Field("api_token") String apiToken
+            , @Field("order_id") int orderId);
+
+    // restaurant reject order
+    @POST("restaurant/reject-order")
+    @FormUrlEncoded
+    Call<Order> restaurantCancelOrder(@Field("api_token") String apiToken
+            , @Field("order_id") int orderId
+            , @Field("refuse_reason") String refuseReason);
+
+    // restaurant confirm order delivery
+    @POST("restaurant/confirm-order")
+    @FormUrlEncoded
+    Call<Order> restaurantConfirmOrderDelivery(@Field("api_token") String apiToken
+            , @Field("order_id") int orderId);
 }

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_restaurant_order_completed_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="6dp">
+
+        <ImageView
+            android:id="@+id/item_restaurant_order_completed_imageView"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_100sdp"
+            android:contentDescription="@string/order_image"
+            android:padding="6dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/item_restaurant_order_completed_textView_customer_name"
+            style="@style/OrderItemTitleTextView"
+            android:text="@string/item_order_customer_name"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/item_restaurant_order_completed_imageView"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/item_restaurant_order_completed_textView_order_number"
+            style="@style/OrderItemTextView"
+            android:text="@string/item_order_number"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/item_restaurant_order_completed_imageView"
+            app:layout_constraintTop_toBottomOf="@+id/item_restaurant_order_completed_textView_customer_name" />
+
+        <TextView
+            android:id="@+id/item_restaurant_order_completed_textView_total"
+            style="@style/OrderItemTextView"
+            android:text="@string/item_order_total"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/item_restaurant_order_completed_imageView"
+            app:layout_constraintTop_toBottomOf="@+id/item_restaurant_order_completed_textView_order_number" />
+
+        <TextView
+            android:id="@+id/item_restaurant_order_completed_textView_address"
+            style="@style/OrderItemTextView"
+            android:maxLines="2"
+            android:text="@string/item_order_address"
+            app:layout_constraintBottom_toTopOf="@+id/item_restaurant_order_completed_textView_order_state"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/item_restaurant_order_completed_imageView"
+            app:layout_constraintTop_toBottomOf="@+id/item_restaurant_order_completed_textView_total" />
+
+        <TextView
+            android:id="@+id/item_restaurant_order_completed_textView_order_state"
+            style="@style/ItemTitleText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_rectangle_25"
+            android:backgroundTint="@color/green"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/item_restaurant_order_completed_imageView"
+            tools:targetApi="lollipop"
+            tools:text="@string/completed_order">
+
+        </TextView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

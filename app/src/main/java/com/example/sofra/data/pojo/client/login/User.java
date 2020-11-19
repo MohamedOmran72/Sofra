@@ -55,6 +55,9 @@ public class User {
     @SerializedName("rate")
     @Expose
     private Double rate;
+    @SerializedName("profile_image")
+    @Expose
+    private String profileImage;
     @SerializedName("photo_url")
     @Expose
     private String photoUrl;
@@ -183,6 +186,14 @@ public class User {
 
     public void setRate(Double rate) {
         this.rate = rate;
+    }
+
+    public String getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(String profileImage) {
+        this.profileImage = profileImage;
     }
 
     public String getPhotoUrl() {
