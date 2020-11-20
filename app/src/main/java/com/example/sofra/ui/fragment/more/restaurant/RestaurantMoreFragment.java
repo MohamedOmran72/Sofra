@@ -19,6 +19,48 @@ public class RestaurantMoreFragment extends BaseFragment {
         View view = binding.getRoot();
         setUpActivity();
 
+        binding.restaurantMoreFragmentTextViewMyOffers.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        binding.restaurantMoreFragmentTextViewContactUs.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        binding.restaurantMoreFragmentTextViewAboutApp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        binding.restaurantMoreFragmentTextViewCommentsAndRate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        binding.restaurantMoreFragmentTextViewChangePassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        binding.restaurantMoreFragmentTextViewLogout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         return view;
     }
 }
