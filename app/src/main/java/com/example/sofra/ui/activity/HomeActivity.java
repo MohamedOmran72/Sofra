@@ -12,6 +12,7 @@ import com.example.sofra.data.local.SharedPreferencesManger;
 import com.example.sofra.databinding.ActivityHomeBinding;
 import com.example.sofra.ui.fragment.home.client.RestaurantListFragment;
 import com.example.sofra.ui.fragment.home.restaurant.categories.RestaurantCategoriesFragment;
+import com.example.sofra.ui.fragment.more.restaurant.RestaurantMoreFragment;
 import com.example.sofra.ui.fragment.order.restaurant.RestaurantOrderContainerFragment;
 import com.example.sofra.ui.fragment.profile.EditProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -100,7 +101,13 @@ public class HomeActivity extends BaseActivity {
                                 fragment = new RestaurantOrderContainerFragment();
                                 break;
                             case R.id.bottom_navigation_more_item:
-                                return false;
+                                switch (userType) {
+                                    case "seller":
+                                        fragment = new RestaurantMoreFragment();
+                                        break;
+                                    case "client":
+                                }
+                                break;
                         }
 
                         assert fragment != null;

@@ -40,6 +40,29 @@
         <item name="android:textSize">@dimen/_12ssp</item>
     </style>
 
+    <!-- More Fragment text style -->
+    <style name="MoreText">
+        <item name="android:fontFamily">@font/google_sans_bold</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textSize">@dimen/_20ssp</item>
+    </style>
+
+    <!-- More Fragment text view style -->
+    <style name="MoreTextView" parent="MoreText">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginTop">@dimen/_8sdp</item>
+        <item name="android:layout_marginBottom">@dimen/_8sdp</item>
+        <item name="android:drawablePadding">@dimen/_6sdp</item>
+        <item name="android:maxHeight">@dimen/_32sdp</item>
+    </style>
+
+    <style name="HorizontalLine">
+        <item name="android:layout_height">@dimen/_1sdp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:background">@color/darkGray</item>
+    </style>
+
     <!-- Order item title text view -->
     <style name="OrderItemTitleTextView" parent="ItemTitleText">
         <item name="android:layout_height">wrap_content</item>

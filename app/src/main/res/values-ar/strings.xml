@@ -115,4 +115,11 @@
     <string name="cancellation_reason">سبب الإلغاء</string>
     <string name="enter_cancellation_reason">الرجاء إدخال سبب الإلغاء</string>
     <string name="cancel_order">الغاء الطلب</string>
+
+    <!-- Strings related to restaurant more fragment-->
+    <string name="my_offers">عروضي</string>
+    <string name="contact_us">اتصل بنا</string>
+    <string name="about">حول التطبيق</string>
+    <string name="comments_and_rate">تعليقات وتقييم</string>
+    <string name="logout">تسجيل خروج</string>
 </resources>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.more.restaurant.RestaurantMoreFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_16sdp"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/MoreTextView"
+            android:gravity="center"
+            android:text="@string/more" />
+
+        <TextView
+            style="@style/MoreTextView"
+            android:text="@string/my_offers"
+            app:drawableStartCompat="@drawable/ic_baseline_gift_box_black_24" />
+
+        <View style="@style/HorizontalLine" />
+
+        <TextView
+            style="@style/MoreTextView"
+            android:text="@string/contact_us"
+            app:drawableStartCompat="@drawable/ic_baseline_email_black_24" />
+
+        <View style="@style/HorizontalLine" />
+
+        <TextView
+            style="@style/MoreTextView"
+            android:text="@string/about"
+            app:drawableStartCompat="@drawable/ic_baseline_lamp_black_24" />
+
+        <View style="@style/HorizontalLine" />
+
+        <TextView
+            style="@style/MoreTextView"
+            android:text="@string/comments_and_rate"
+            app:drawableStartCompat="@drawable/ic_baseline_star_black_24" />
+
+        <View style="@style/HorizontalLine" />
+
+        <TextView
+            style="@style/MoreTextView"
+            android:text="@string/change_password"
+            app:drawableStartCompat="@drawable/ic_baseline_lock_black_24" />
+
+        <View style="@style/HorizontalLine" />
+
+        <TextView
+            style="@style/MoreTextView"
+            android:text="@string/logout"
+            app:drawableStartCompat="@drawable/ic_baseline_sign_out_black_24" />
+
+    </LinearLayout>
+</ScrollView>
