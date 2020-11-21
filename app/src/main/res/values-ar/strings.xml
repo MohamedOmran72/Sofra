@@ -122,4 +122,5 @@
     <string name="about">حول التطبيق</string>
     <string name="comments_and_rate">تعليقات وتقييم</string>
     <string name="logout">تسجيل خروج</string>
+    <string name="add_offer">أضف عرضًا</string>
 </resources>

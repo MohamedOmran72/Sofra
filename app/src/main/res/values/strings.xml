@@ -124,4 +124,5 @@
     <string name="about">About the App</string>
     <string name="comments_and_rate">Comments and Rate</string>
     <string name="logout">Logout</string>
+    <string name="add_offer">Add offer</string>
 </resources>
