@@ -3,6 +3,7 @@ package com.example.sofra.data.api;
 import com.example.sofra.data.pojo.client.forgetPassword.ResetPassword;
 import com.example.sofra.data.pojo.client.login.Login;
 import com.example.sofra.data.pojo.general.city.City;
+import com.example.sofra.data.pojo.offer.Offer;
 import com.example.sofra.data.pojo.order.Order;
 import com.example.sofra.data.pojo.restaurant.foodItems.FoodItems;
 import com.example.sofra.data.pojo.restaurant.restaurantCategories.RestaurantCategories;
@@ -192,4 +193,9 @@ public interface ApiService {
     @FormUrlEncoded
     Call<Order> restaurantConfirmOrderDelivery(@Field("api_token") String apiToken
             , @Field("order_id") int orderId);
+
+    // get restaurant offers list from server
+    @GET("restaurant/my-offers")
+    Call<Offer> getRestaurantOffers(@Query("api_token") String apiToken
+            , @Query("page") int page);
 }
