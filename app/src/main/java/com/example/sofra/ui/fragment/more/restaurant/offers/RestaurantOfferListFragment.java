@@ -19,7 +19,9 @@ import com.example.sofra.adapter.RestaurantOffersAdapter;
 import com.example.sofra.data.pojo.offer.Offer;
 import com.example.sofra.data.pojo.offer.OfferData;
 import com.example.sofra.databinding.FragmentRestaurantOfferListBinding;
+import com.example.sofra.ui.activity.HomeActivity;
 import com.example.sofra.ui.fragment.BaseFragment;
+import com.example.sofra.utils.HelperMethod;
 import com.example.sofra.utils.OnEndLess;
 
 import java.util.ArrayList;
@@ -133,6 +135,16 @@ public class RestaurantOfferListFragment extends BaseFragment implements Restaur
     @Override
     public void onResume() {
         super.onResume();
+
+        binding.restaurantOfferListFragmentFloatingAddOffer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                HelperMethod.replaceFragment(getParentFragmentManager()
+                        , Objects.requireNonNull(getActivity()).findViewById(R.id.home_activity_fragmentContainerView).getId()
+                        , new RestaurantOfferDetailsFragment(), HomeActivity.class.getName()
+                        , null);
+            }
+        });
 
         // handel onBack to set bottom navigation visible
         view.setFocusableInTouchMode(true);

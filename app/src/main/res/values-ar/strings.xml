@@ -123,4 +123,10 @@
     <string name="comments_and_rate">تعليقات وتقييم</string>
     <string name="logout">تسجيل خروج</string>
     <string name="add_offer">أضف عرضًا</string>
+
+    <!-- Strings related to restaurant offer details fragment-->
+    <string name="offer_name">اسم العرض</string>
+    <string name="offer_description">وصف العرض</string>
+    <string name="from">من</string>
+    <string name="to">إلى</string>
 </resources>

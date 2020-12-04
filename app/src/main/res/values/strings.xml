@@ -125,4 +125,11 @@
     <string name="comments_and_rate">Comments and Rate</string>
     <string name="logout">Logout</string>
     <string name="add_offer">Add offer</string>
+
+    <!-- Strings related to restaurant offer details fragment-->
+    <string name="offer_name">Offer name</string>
+    <string name="offer_description">Offer description</string>
+    <string name="from">From</string>
+    <string name="to">To</string>
+
 </resources>

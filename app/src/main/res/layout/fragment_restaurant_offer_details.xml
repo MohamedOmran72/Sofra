@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/fragment_restaurant_offer_details_scroll_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragment.more.restaurant.offers.RestaurantOfferDetailsFragment"
+    tools:targetApi="lollipop">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_8sdp">
+
+        <TextView
+            android:id="@+id/fragment_restaurant_offer_details_textView_title"
+            style="@style/RestaurantOfferDetailsTextTitle"
+            android:text="@string/add_offer"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/fragment_restaurant_offer_details_imageView"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="@dimen/_80sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:background="@drawable/shape_rectangle_gray_20"
+            android:contentDescription="@string/add_offer"
+            android:elevation="@dimen/_2sdp"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_restaurant_offer_details_textView_title"
+            app:srcCompat="@drawable/ic_image_gallery_24" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/fragment_restaurant_offer_details_textInputLayout_offer_name"
+            style="@style/RestaurantOfferDetailsTextInputLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_restaurant_offer_details_imageView">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fragment_restaurant_offer_details_textInputEditText_offer_name"
+                style="@style/RestaurantOfferDetailsTextInputEditText"
+                android:hint="@string/offer_name" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/fragment_restaurant_offer_details_textInputLayout_offer_price"
+            style="@style/RestaurantOfferDetailsTextInputLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_restaurant_offer_details_textInputLayout_offer_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fragment_restaurant_offer_details_textInputEditText_offer_price"
+                style="@style/RestaurantOfferDetailsTextInputEditText"
+                android:hint="@string/offer_price" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/fragment_restaurant_offer_details_textInputLayout_offer_description"
+            style="@style/RestaurantOfferDetailsTextInputLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_restaurant_offer_details_textInputLayout_offer_price">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/fragment_restaurant_offer_details_textInputEditText_offer_description"
+                style="@style/RestaurantOfferDetailsTextInputEditText"
+                android:hint="@string/offer_description" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:baselineAligned="false"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fragment_restaurant_offer_details_textInputLayout_offer_description">
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragment_restaurant_offer_details_textInputLayout_offer_start_date"
+                style="@style/RestaurantOfferDetailsTextInputLayoutDate"
+                android:layout_weight="1">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fragment_restaurant_offer_details_TextInputEditText_offer_start_date"
+                    style="@style/RestaurantOfferDetailsTextInputEditText"
+                    android:hint="@string/from" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/fragment_restaurant_offer_details_textInputLayout_offer_end_date"
+                style="@style/RestaurantOfferDetailsTextInputLayoutDate"
+                android:layout_weight="1">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/fragment_restaurant_offer_details_TextInputEditText_offer_end_date"
+                    style="@style/RestaurantOfferDetailsTextInputEditText"
+                    android:hint="@string/to" />
+            </com.google.android.material.textfield.TextInputLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/fragment_restaurant_offer_details_button"
+            style="@style/RedRadiusButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:layout_marginBottom="@dimen/_16sdp"
+            android:text="@string/add_offer"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
