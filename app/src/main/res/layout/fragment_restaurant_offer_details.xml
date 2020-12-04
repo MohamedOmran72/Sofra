@@ -71,6 +71,8 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/fragment_restaurant_offer_details_textInputEditText_offer_description"
                 style="@style/RestaurantOfferDetailsTextInputEditText"
+                android:layout_height="@dimen/_100sdp"
+                android:gravity="top"
                 android:hint="@string/offer_description" />
 
         </com.google.android.material.textfield.TextInputLayout>
