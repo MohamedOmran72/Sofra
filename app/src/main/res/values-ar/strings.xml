@@ -129,4 +129,5 @@
     <string name="offer_description">وصف العرض</string>
     <string name="from">من</string>
     <string name="to">إلى</string>
+    <string name="editOffer">تعديل العرض</string>
 </resources>

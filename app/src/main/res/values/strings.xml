@@ -131,5 +131,6 @@
     <string name="offer_description">Offer description</string>
     <string name="from">From</string>
     <string name="to">To</string>
+    <string name="editOffer">Edit offer</string>
 
 </resources>

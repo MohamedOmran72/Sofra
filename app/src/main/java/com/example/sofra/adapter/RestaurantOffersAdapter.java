@@ -3,17 +3,23 @@ package com.example.sofra.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.sofra.R;
 import com.example.sofra.data.pojo.offer.OfferData;
 import com.example.sofra.databinding.ItemRestaurantOfferListBinding;
+import com.example.sofra.ui.activity.HomeActivity;
+import com.example.sofra.ui.fragment.more.restaurant.offers.RestaurantOfferDetailsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.example.sofra.utils.HelperMethod.replaceFragment;
 
 
 public class RestaurantOffersAdapter extends RecyclerView.Adapter<RestaurantOffersAdapter.ViewHolder> {
@@ -52,7 +58,15 @@ public class RestaurantOffersAdapter extends RecyclerView.Adapter<RestaurantOffe
     }
 
     private void setAction(final RestaurantOffersAdapter.ViewHolder holder, final int position) {
-
+        holder.binding.itemRestaurantOfferConstraintContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replaceFragment(((HomeActivity) activity).getSupportFragmentManager()
+                        , R.id.home_activity_fragmentContainerView
+                        , new RestaurantOfferDetailsFragment(restaurantOffersDataList.get(position))
+                        , HomeActivity.class.getName(), null);
+            }
+        });
     }
 
     @Override

@@ -2,7 +2,6 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/fragment_restaurant_offer_details_scroll_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.fragment.more.restaurant.offers.RestaurantOfferDetailsFragment"
@@ -11,6 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/fragment_restaurant_offer_details_container"
         android:layout_margin="@dimen/_8sdp">
 
         <TextView
