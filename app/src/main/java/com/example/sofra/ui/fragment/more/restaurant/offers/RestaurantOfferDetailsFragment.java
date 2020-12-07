@@ -1,11 +1,14 @@
 package com.example.sofra.ui.fragment.more.restaurant.offers;
 
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.RequiresApi;
 
 import com.bumptech.glide.Glide;
 import com.example.sofra.R;
@@ -18,6 +21,7 @@ import java.util.Objects;
 
 import static com.example.sofra.data.local.SharedPreferencesManger.LoadData;
 import static com.example.sofra.utils.HelperMethod.disappearKeypad;
+import static com.example.sofra.utils.HelperMethod.showDatePickerDialog;
 
 public class RestaurantOfferDetailsFragment extends BaseFragment {
 
@@ -84,6 +88,28 @@ public class RestaurantOfferDetailsFragment extends BaseFragment {
     @Override
     public void onResume() {
         super.onResume();
+
+        binding.fragmentRestaurantOfferDetailsTextInputEditTextOfferStartDate
+                .setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
+                    @Override
+                    public void onFocusChange(View v, boolean hasFocus) {
+                        if (hasFocus) {
+                            showDatePickerDialog(getContext(), binding.fragmentRestaurantOfferDetailsTextInputEditTextOfferStartDate);
+                        }
+                    }
+                });
+
+        binding.fragmentRestaurantOfferDetailsTextInputEditTextOfferEndDate
+                .setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                    @RequiresApi(api = Build.VERSION_CODES.N)
+                    @Override
+                    public void onFocusChange(View v, boolean hasFocus) {
+                        if (hasFocus) {
+                            showDatePickerDialog(getContext(), binding.fragmentRestaurantOfferDetailsTextInputEditTextOfferEndDate);
+                        }
+                    }
+                });
 
         // handel onBack to set bottom navigation visible
         view.setFocusableInTouchMode(true);

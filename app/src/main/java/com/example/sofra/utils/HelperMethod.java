@@ -1,14 +1,22 @@
 package com.example.sofra.utils;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.icu.util.Calendar;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.DatePicker;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -141,6 +149,54 @@ public class HelperMethod {
             e.printStackTrace();
             return null;
         }
+    }
+
+
+    /**
+     * Display date picker dialog
+     *
+     * @param context     app states.
+     * @param displayDate view we need to display date baker.
+     */
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public static void showDatePickerDialog(Context context, TextView displayDate) {
+
+        DatePickerDialog.OnDateSetListener mDateSetListener;
+        mDateSetListener = new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int day) {
+                month = month + 1;
+
+                String date = year + "-";
+                if (month < 10) {
+                    date += "0" + month;
+                } else {
+                    date += month;
+                }
+                if (day < 10) {
+                    date += "-0" + day;
+                } else {
+                    date += "-" + day;
+                }
+
+                displayDate.setText(date);
+
+                Log.d(TAG, date);
+            }
+        };
+
+        Calendar cal = Calendar.getInstance();
+        int year = cal.get(Calendar.YEAR);
+        int month = cal.get(Calendar.MONTH);
+        int day = cal.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog dialog = new DatePickerDialog(context
+                , android.R.style.Theme_Holo_Light_Dialog_MinWidth
+                , mDateSetListener, year, month, day);
+
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+
     }
 
 }
