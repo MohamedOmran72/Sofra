@@ -48,12 +48,11 @@ public class RestaurantOfferDetailsFragment extends BaseFragment {
     private static final int REQUEST_CAMERA = 1;
     private static final int SELECT_FILE = 0;
     private static final String TAG = RestaurantOfferDetailsFragment.class.getName();
-
     private FragmentRestaurantOfferDetailsBinding binding;
     private RestaurantOfferViewModel restaurantOfferViewModel;
+    private RestaurantOfferDetailsFragmentViewModel restaurantOfferDetailsFragmentViewModel;
     private View view;
     private OfferData offerData;
-
     private String apiToken;
     private int offerId;
 
@@ -77,6 +76,8 @@ public class RestaurantOfferDetailsFragment extends BaseFragment {
         setUpActivity();
 
         restaurantOfferViewModel = new ViewModelProvider(this).get(RestaurantOfferViewModel.class);
+        restaurantOfferDetailsFragmentViewModel = new ViewModelProvider(this)
+                .get(RestaurantOfferDetailsFragmentViewModel.class);
 
         if (LoadData(getActivity(), "apiToken") != null) {
             apiToken = LoadData(getActivity(), "apiToken");
@@ -94,7 +95,7 @@ public class RestaurantOfferDetailsFragment extends BaseFragment {
             }
         });
 
-        restaurantOfferViewModel.getAddOfferMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Offer>() {
+        restaurantOfferDetailsFragmentViewModel.getAddOfferMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Offer>() {
             @Override
             public void onChanged(Offer offer) {
                 if (offer.getStatus() == 1) {
@@ -201,7 +202,7 @@ public class RestaurantOfferDetailsFragment extends BaseFragment {
         RequestBody endDate = convertStringToRequestBody(binding.fragmentRestaurantOfferDetailsTextInputEditTextOfferEndDate.getText().toString());
 
         // start call server
-        restaurantOfferViewModel.addRestaurantOffer(apiToken, photo, name, price, description
+        restaurantOfferDetailsFragmentViewModel.addRestaurantOffer(apiToken, photo, name, price, description
                 , startDate, endDate);
 
     }
