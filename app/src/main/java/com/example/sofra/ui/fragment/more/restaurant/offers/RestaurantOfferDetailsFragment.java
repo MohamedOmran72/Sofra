@@ -12,12 +12,17 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.bumptech.glide.Glide;
 import com.example.sofra.R;
+import com.example.sofra.data.pojo.offer.Offer;
 import com.example.sofra.data.pojo.offer.OfferData;
 import com.example.sofra.databinding.FragmentRestaurantOfferDetailsBinding;
 import com.example.sofra.ui.fragment.BaseFragment;
@@ -26,9 +31,15 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
 
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
+
 import static android.app.Activity.RESULT_OK;
 import static com.example.sofra.data.local.SharedPreferencesManger.LoadData;
+import static com.example.sofra.utils.CheckInput.isEditTextSet;
 import static com.example.sofra.utils.HelperMethod.convertBitmapToFile;
+import static com.example.sofra.utils.HelperMethod.convertFileToMultipart;
+import static com.example.sofra.utils.HelperMethod.convertStringToRequestBody;
 import static com.example.sofra.utils.HelperMethod.disappearKeypad;
 import static com.example.sofra.utils.HelperMethod.showDatePickerDialog;
 
@@ -36,8 +47,10 @@ public class RestaurantOfferDetailsFragment extends BaseFragment {
 
     private static final int REQUEST_CAMERA = 1;
     private static final int SELECT_FILE = 0;
+    private static final String TAG = RestaurantOfferDetailsFragment.class.getName();
 
     private FragmentRestaurantOfferDetailsBinding binding;
+    private RestaurantOfferViewModel restaurantOfferViewModel;
     private View view;
     private OfferData offerData;
 
@@ -56,12 +69,14 @@ public class RestaurantOfferDetailsFragment extends BaseFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentRestaurantOfferDetailsBinding.inflate(inflater, container, false);
         view = binding.getRoot();
         setUpActivity();
+
+        restaurantOfferViewModel = new ViewModelProvider(this).get(RestaurantOfferViewModel.class);
 
         if (LoadData(getActivity(), "apiToken") != null) {
             apiToken = LoadData(getActivity(), "apiToken");
@@ -76,6 +91,17 @@ public class RestaurantOfferDetailsFragment extends BaseFragment {
             @Override
             public void onClick(View v) {
                 disappearKeypad(getActivity(), view);
+            }
+        });
+
+        restaurantOfferViewModel.getAddOfferMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Offer>() {
+            @Override
+            public void onChanged(Offer offer) {
+                if (offer.getStatus() == 1) {
+                    restaurantOfferViewModel.getRestaurantOfferList(apiToken, 1);
+                    Objects.requireNonNull(getActivity()).getSupportFragmentManager().popBackStack();
+                }
+                Toast.makeText(getActivity(), offer.getMsg(), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -127,6 +153,28 @@ public class RestaurantOfferDetailsFragment extends BaseFragment {
                     }
                 });
 
+
+        binding.fragmentRestaurantOfferDetailsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (isEditTextSet(binding.fragmentRestaurantOfferDetailsTextInputEditTextOfferName)
+                        && isEditTextSet(binding.fragmentRestaurantOfferDetailsTextInputEditTextOfferPrice)
+                        && isEditTextSet(binding.fragmentRestaurantOfferDetailsTextInputEditTextOfferDescription)
+                        && isEditTextSet(binding.fragmentRestaurantOfferDetailsTextInputEditTextOfferStartDate)
+                        && isEditTextSet(binding.fragmentRestaurantOfferDetailsTextInputEditTextOfferEndDate)) {
+                    if (offerId > 0) {
+                        editOffer();
+                    } else {
+                        if (imageFile == null) {
+                            Toast.makeText(getActivity(), getString(R.string.chose_image), Toast.LENGTH_LONG).show();
+                        } else {
+                            addOffer();
+                        }
+                    }
+                }
+            }
+        });
+
         // handel onBack to set bottom navigation visible
         view.setFocusableInTouchMode(true);
         view.requestFocus();
@@ -140,6 +188,26 @@ public class RestaurantOfferDetailsFragment extends BaseFragment {
                 return false;
             }
         });
+    }
+
+    private void addOffer() {
+        // convert customer input to RequestBody
+        MultipartBody.Part photo = convertFileToMultipart(imageFile, "photo");
+        final RequestBody apiToken = convertStringToRequestBody(this.apiToken);
+        RequestBody name = convertStringToRequestBody(binding.fragmentRestaurantOfferDetailsTextInputEditTextOfferName.getText().toString());
+        RequestBody price = convertStringToRequestBody(binding.fragmentRestaurantOfferDetailsTextInputEditTextOfferPrice.getText().toString());
+        RequestBody description = convertStringToRequestBody(binding.fragmentRestaurantOfferDetailsTextInputEditTextOfferDescription.getText().toString());
+        RequestBody startDate = convertStringToRequestBody(binding.fragmentRestaurantOfferDetailsTextInputEditTextOfferStartDate.getText().toString());
+        RequestBody endDate = convertStringToRequestBody(binding.fragmentRestaurantOfferDetailsTextInputEditTextOfferEndDate.getText().toString());
+
+        // start call server
+        restaurantOfferViewModel.addRestaurantOffer(apiToken, photo, name, price, description
+                , startDate, endDate);
+
+    }
+
+    private void editOffer() {
+
     }
 
     private void createUploadImageDialog() {
@@ -191,8 +259,6 @@ public class RestaurantOfferDetailsFragment extends BaseFragment {
                 }
 
                 binding.fragmentRestaurantOfferDetailsImageView.setImageBitmap(bitmap);
-                binding.fragmentRestaurantOfferDetailsImageView.setBackgroundColor(
-                        getResources().getColor(R.color.primaryColor));
             }
             imageFile = convertBitmapToFile(Objects.requireNonNull(getContext()), bitmap);
         }

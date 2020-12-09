@@ -198,4 +198,14 @@ public interface ApiService {
     @GET("restaurant/my-offers")
     Call<Offer> getRestaurantOffers(@Query("api_token") String apiToken
             , @Query("page") int page);
+
+    @Multipart
+    @POST("restaurant/new-offer")
+    Call<Offer> addRestaurantOffer(@Part("api_token") RequestBody apiToken
+            , @Part MultipartBody.Part photo
+            , @Part("name") RequestBody name
+            , @Part("price") RequestBody price
+            , @Part("description") RequestBody description
+            , @Part("starting_at") RequestBody startingAt
+            , @Part("ending_at") RequestBody endingAt);
 }
