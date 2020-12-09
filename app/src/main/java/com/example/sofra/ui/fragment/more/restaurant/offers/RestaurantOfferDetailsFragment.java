@@ -106,6 +106,17 @@ public class RestaurantOfferDetailsFragment extends BaseFragment {
             }
         });
 
+        restaurantOfferDetailsFragmentViewModel.getEditOfferMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Offer>() {
+            @Override
+            public void onChanged(Offer offer) {
+                if (offer.getStatus() == 1) {
+                    restaurantOfferViewModel.getRestaurantOfferList(apiToken, 1);
+                    Objects.requireNonNull(getActivity()).getSupportFragmentManager().popBackStack();
+                }
+                Toast.makeText(getActivity(), offer.getMsg(), Toast.LENGTH_LONG).show();
+            }
+        });
+
         return view;
     }
 
@@ -208,7 +219,23 @@ public class RestaurantOfferDetailsFragment extends BaseFragment {
     }
 
     private void editOffer() {
+        // convert customer input to RequestBody
+        final RequestBody apiToken = convertStringToRequestBody(this.apiToken);
+        final RequestBody offerId = convertStringToRequestBody(String.valueOf(this.offerId));
+        RequestBody name = convertStringToRequestBody(binding.fragmentRestaurantOfferDetailsTextInputEditTextOfferName.getText().toString());
+        RequestBody price = convertStringToRequestBody(binding.fragmentRestaurantOfferDetailsTextInputEditTextOfferPrice.getText().toString());
+        RequestBody description = convertStringToRequestBody(binding.fragmentRestaurantOfferDetailsTextInputEditTextOfferDescription.getText().toString());
+        RequestBody startDate = convertStringToRequestBody(binding.fragmentRestaurantOfferDetailsTextInputEditTextOfferStartDate.getText().toString());
+        RequestBody endDate = convertStringToRequestBody(binding.fragmentRestaurantOfferDetailsTextInputEditTextOfferEndDate.getText().toString());
 
+        if (imageFile != null) {
+            MultipartBody.Part photo = convertFileToMultipart(imageFile, "photo");
+            restaurantOfferDetailsFragmentViewModel.editRestaurantOffer(apiToken, offerId, photo, name, price, description
+                    , startDate, endDate);
+        } else {
+            restaurantOfferDetailsFragmentViewModel.editRestaurantOffer(apiToken, offerId, null, name, price, description
+                    , startDate, endDate);
+        }
     }
 
     private void createUploadImageDialog() {

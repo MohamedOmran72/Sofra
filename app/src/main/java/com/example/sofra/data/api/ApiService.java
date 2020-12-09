@@ -208,4 +208,16 @@ public interface ApiService {
             , @Part("description") RequestBody description
             , @Part("starting_at") RequestBody startingAt
             , @Part("ending_at") RequestBody endingAt);
+
+    // update restaurant offer
+    @Multipart
+    @POST("restaurant/update-offer")
+    Call<Offer> editRestaurantOffer(@Part("api_token") RequestBody apiToken
+            , @Part("offer_id") RequestBody offerId
+            , @Part MultipartBody.Part photo
+            , @Part("name") RequestBody name
+            , @Part("price") RequestBody price
+            , @Part("description") RequestBody description
+            , @Part("starting_at") RequestBody startingAt
+            , @Part("ending_at") RequestBody endingAt);
 }
