@@ -68,6 +68,16 @@ public class RestaurantOffersAdapter extends RecyclerView.Adapter<RestaurantOffe
             }
         });
 
+        holder.binding.itemRestaurantOfferImageButtonEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replaceFragment(((HomeActivity) activity).getSupportFragmentManager()
+                        , R.id.home_activity_fragmentContainerView
+                        , new RestaurantOfferDetailsFragment(restaurantOffersDataList.get(position))
+                        , HomeActivity.class.getName(), null);
+            }
+        });
+
         holder.binding.itemRestaurantOfferImageButtonTrash.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
