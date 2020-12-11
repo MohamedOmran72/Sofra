@@ -11,9 +11,8 @@ import com.example.sofra.R;
 import com.example.sofra.databinding.FragmentRestaurantMoreBinding;
 import com.example.sofra.ui.fragment.BaseFragment;
 import com.example.sofra.ui.fragment.more.restaurant.offers.RestaurantOfferListFragment;
-import com.example.sofra.utils.HelperMethod;
 
-import java.util.Objects;
+import static com.example.sofra.utils.HelperMethod.replaceFragment;
 
 public class RestaurantMoreFragment extends BaseFragment {
     private FragmentRestaurantMoreBinding binding;
@@ -29,9 +28,9 @@ public class RestaurantMoreFragment extends BaseFragment {
         binding.restaurantMoreFragmentTextViewMyOffers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HelperMethod.replaceFragment(getParentFragmentManager()
+                replaceFragment(getParentFragmentManager()
                         , R.id.home_activity_fragmentContainerView, new RestaurantOfferListFragment()
-                        , Objects.requireNonNull(getActivity()).getClass().getName(), null);
+                        , null, null);
             }
         });
 
@@ -59,7 +58,9 @@ public class RestaurantMoreFragment extends BaseFragment {
         binding.restaurantMoreFragmentTextViewChangePassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                replaceFragment(getParentFragmentManager()
+                        , R.id.home_activity_fragmentContainerView, new ChangePasswordFragment()
+                        , null, null);
             }
         });
 

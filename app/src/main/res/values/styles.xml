@@ -213,4 +213,24 @@
         <item name="android:layout_marginTop">@dimen/_12sdp</item>
     </style>
 
+    <!-- Change Password TextInputLayout style -->
+    <style name="ChangePasswordTextInputLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:elevation" tools:targetApi="lollipop">@dimen/_4sdp</item>
+        <item name="android:background">@drawable/shape_rectangle_gray_20</item>
+        <item name="hintTextColor">@color/primaryTextColor</item>
+        <item name="android:layout_marginTop">@dimen/_16sdp</item>
+        <item name="android:layout_marginEnd">@dimen/_8sdp</item>
+        <item name="android:layout_marginStart">@dimen/_8sdp</item>
+    </style>
+
+    <!-- Change Password TextInputEditText style -->
+    <style name="ChangePasswordTextInputEditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/_32sdp</item>
+        <item name="android:background">@null</item>
+        <item name="android:inputType">textPassword</item>
+        <item name="android:layout_marginStart">@dimen/_8sdp</item>
+    </style>
 </resources>

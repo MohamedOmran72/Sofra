@@ -130,4 +130,8 @@
     <string name="from">من</string>
     <string name="to">إلى</string>
     <string name="editOffer">تعديل العرض</string>
+
+    <!-- Strings related to change password -->
+    <string name="old_password">كلمة المرور القديمة</string>
+    <string name="new_password">كلمة المرور الجديدة</string>
 </resources>
