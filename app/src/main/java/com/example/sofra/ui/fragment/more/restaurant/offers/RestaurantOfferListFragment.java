@@ -1,7 +1,6 @@
 package com.example.sofra.ui.fragment.more.restaurant.offers;
 
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +18,6 @@ import com.example.sofra.adapter.RestaurantOffersAdapter;
 import com.example.sofra.data.pojo.offer.Offer;
 import com.example.sofra.data.pojo.offer.OfferData;
 import com.example.sofra.databinding.FragmentRestaurantOfferListBinding;
-import com.example.sofra.ui.activity.HomeActivity;
 import com.example.sofra.ui.fragment.BaseFragment;
 import com.example.sofra.utils.HelperMethod;
 import com.example.sofra.utils.OnEndLess;
@@ -35,7 +33,6 @@ public class RestaurantOfferListFragment extends BaseFragment implements Restaur
     private FragmentRestaurantOfferListBinding binding;
     private RestaurantOfferViewModel restaurantOfferViewModel;
     private RestaurantOffersAdapter restaurantOffersAdapter;
-    private View view;
     private LinearLayoutManager layoutManager;
     private OnEndLess onEndLess;
     private int lastPage;
@@ -54,7 +51,7 @@ public class RestaurantOfferListFragment extends BaseFragment implements Restaur
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentRestaurantOfferListBinding.inflate(inflater, container, false);
-        view = binding.getRoot();
+        View view = binding.getRoot();
         setUpActivity();
 
         if (LoadData(getActivity(), "apiToken") != null) {
@@ -153,30 +150,36 @@ public class RestaurantOfferListFragment extends BaseFragment implements Restaur
             public void onClick(View v) {
                 HelperMethod.replaceFragment(getParentFragmentManager()
                         , Objects.requireNonNull(getActivity()).findViewById(R.id.home_activity_fragmentContainerView).getId()
-                        , new RestaurantOfferDetailsFragment(), HomeActivity.class.getName()
+                        , new RestaurantOfferDetailsFragment(), null
                         , null);
             }
         });
 
-        // handel onBack to set bottom navigation visible
-        view.setFocusableInTouchMode(true);
-        view.requestFocus();
-        view.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-                    Objects.requireNonNull(getActivity()).getSupportFragmentManager().popBackStack();
-                    Objects.requireNonNull(getActivity()).findViewById(R.id.home_activity_bottom_navigation).setVisibility(View.VISIBLE);
-                    return true;
-                }
-                return false;
-            }
-        });
+//        // handel onBack to set bottom navigation visible
+//        view.setFocusableInTouchMode(true);
+//        view.requestFocus();
+//        view.setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View v, int keyCode, KeyEvent event) {
+//                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+//                    Objects.requireNonNull(getActivity()).getSupportFragmentManager().popBackStack();
+//                    Objects.requireNonNull(getActivity()).findViewById(R.id.home_activity_bottom_navigation).setVisibility(View.VISIBLE);
+//                    return true;
+//                }
+//                return false;
+//            }
+//        });
     }
 
     @Override
     public void deleteOffer(OfferData offerData) {
         this.offerData = offerData;
         restaurantOfferViewModel.deleteRestaurantOffer(offerData.getId(), apiToken);
+    }
+
+    @Override
+    public void onBack() {
+        Objects.requireNonNull(getActivity()).findViewById(R.id.home_activity_bottom_navigation).setVisibility(View.VISIBLE);
+        super.onBack();
     }
 }
