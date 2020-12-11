@@ -67,6 +67,13 @@ public class RestaurantOffersAdapter extends RecyclerView.Adapter<RestaurantOffe
                         , HomeActivity.class.getName(), null);
             }
         });
+
+        holder.binding.itemRestaurantOfferImageButtonTrash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClicked.deleteOffer(restaurantOffersDataList.get(position));
+            }
+        });
     }
 
     @Override
@@ -75,6 +82,7 @@ public class RestaurantOffersAdapter extends RecyclerView.Adapter<RestaurantOffe
     }
 
     public interface OnItemClicked {
+        void deleteOffer(OfferData offerData);
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {

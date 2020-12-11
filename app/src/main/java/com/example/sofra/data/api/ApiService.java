@@ -220,4 +220,10 @@ public interface ApiService {
             , @Part("description") RequestBody description
             , @Part("starting_at") RequestBody startingAt
             , @Part("ending_at") RequestBody endingAt);
+
+    // delete restaurant offer
+    @POST("restaurant/delete-offer")
+    @FormUrlEncoded
+    Call<Offer> deleteOffer(@Field("offer_id") int offerId,
+                            @Field("api_token") String apiToken);
 }

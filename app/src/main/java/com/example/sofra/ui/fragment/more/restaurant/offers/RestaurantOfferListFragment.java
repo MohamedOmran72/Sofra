@@ -39,6 +39,7 @@ public class RestaurantOfferListFragment extends BaseFragment implements Restaur
     private LinearLayoutManager layoutManager;
     private OnEndLess onEndLess;
     private int lastPage;
+    private OfferData offerData;
 
     private String apiToken;
 
@@ -85,6 +86,17 @@ public class RestaurantOfferListFragment extends BaseFragment implements Restaur
                 }
             }
 
+        });
+
+        restaurantOfferViewModel.getDeleteOfferMutableLiveData().observe(getViewLifecycleOwner(), new Observer<Offer>() {
+            @Override
+            public void onChanged(Offer offer) {
+                if (offer.getStatus() == 1) {
+                    restaurantOfferDataList.remove(offerData);
+                    restaurantOffersAdapter.notifyDataSetChanged();
+                }
+                Toast.makeText(getContext(), offer.getMsg(), Toast.LENGTH_SHORT).show();
+            }
         });
         return view;
     }
@@ -160,5 +172,11 @@ public class RestaurantOfferListFragment extends BaseFragment implements Restaur
                 return false;
             }
         });
+    }
+
+    @Override
+    public void deleteOffer(OfferData offerData) {
+        this.offerData = offerData;
+        restaurantOfferViewModel.deleteRestaurantOffer(offerData.getId(), apiToken);
     }
 }
