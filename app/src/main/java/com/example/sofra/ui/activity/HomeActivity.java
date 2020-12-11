@@ -112,7 +112,7 @@ public class HomeActivity extends BaseActivity {
 
                         assert fragment != null;
                         replaceFragment(getSupportFragmentManager(), binding.homeActivityFragmentContainerView.getId()
-                                , fragment, getClass().getName(), bundle);
+                                , fragment, null, bundle);
 
                         return true;
                     }
@@ -130,6 +130,9 @@ public class HomeActivity extends BaseActivity {
     @Override
     public void onBackPressed() {
         if (binding.homeActivityBottomNavigation.getSelectedItemId() == R.id.bottom_navigation_home_item) {
+            super.onBackPressed();
+        } else if (getSupportFragmentManager().getBackStackEntryCount() > 1
+                && binding.homeActivityBottomNavigation.getSelectedItemId() != R.id.bottom_navigation_home_item) {
             super.onBackPressed();
         } else {
             binding.homeActivityBottomNavigation.setSelectedItemId(R.id.bottom_navigation_home_item);
