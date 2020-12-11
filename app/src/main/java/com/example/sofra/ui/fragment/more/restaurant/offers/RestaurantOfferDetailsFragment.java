@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -187,19 +186,19 @@ public class RestaurantOfferDetailsFragment extends BaseFragment {
             }
         });
 
-        // handel onBack to set bottom navigation visible
-        view.setFocusableInTouchMode(true);
-        view.requestFocus();
-        view.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
-                    Objects.requireNonNull(getActivity()).getSupportFragmentManager().popBackStack();
-                    return true;
-                }
-                return false;
-            }
-        });
+//        // handel onBack to set bottom navigation visible
+//        view.setFocusableInTouchMode(true);
+//        view.requestFocus();
+//        view.setOnKeyListener(new View.OnKeyListener() {
+//            @Override
+//            public boolean onKey(View v, int keyCode, KeyEvent event) {
+//                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK) {
+//                    Objects.requireNonNull(getActivity()).getSupportFragmentManager().popBackStack();
+//                    return true;
+//                }
+//                return false;
+//            }
+//        });
     }
 
     private void addOffer() {
@@ -290,5 +289,10 @@ public class RestaurantOfferDetailsFragment extends BaseFragment {
             }
             imageFile = convertBitmapToFile(Objects.requireNonNull(getContext()), bitmap);
         }
+    }
+
+    @Override
+    public void onBack() {
+        super.onBack();
     }
 }
