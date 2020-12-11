@@ -64,7 +64,7 @@ public class RestaurantOffersAdapter extends RecyclerView.Adapter<RestaurantOffe
                 replaceFragment(((HomeActivity) activity).getSupportFragmentManager()
                         , R.id.home_activity_fragmentContainerView
                         , new RestaurantOfferDetailsFragment(restaurantOffersDataList.get(position))
-                        , HomeActivity.class.getName(), null);
+                        , null, null);
             }
         });
 
@@ -74,7 +74,7 @@ public class RestaurantOffersAdapter extends RecyclerView.Adapter<RestaurantOffe
                 replaceFragment(((HomeActivity) activity).getSupportFragmentManager()
                         , R.id.home_activity_fragmentContainerView
                         , new RestaurantOfferDetailsFragment(restaurantOffersDataList.get(position))
-                        , HomeActivity.class.getName(), null);
+                        , null, null);
             }
         });
 
