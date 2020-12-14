@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import com.example.sofra.R;
 import com.example.sofra.databinding.FragmentRestaurantMoreBinding;
 import com.example.sofra.ui.fragment.BaseFragment;
+import com.example.sofra.ui.fragment.more.changePassword.ChangePasswordFragment;
 import com.example.sofra.ui.fragment.more.restaurant.offers.RestaurantOfferListFragment;
 
 import static com.example.sofra.utils.HelperMethod.replaceFragment;

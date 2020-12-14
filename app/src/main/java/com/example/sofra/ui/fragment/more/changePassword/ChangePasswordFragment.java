@@ -1,4 +1,4 @@
-package com.example.sofra.ui.fragment.more.restaurant;
+package com.example.sofra.ui.fragment.more.changePassword;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
