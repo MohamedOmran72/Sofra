@@ -226,4 +226,12 @@ public interface ApiService {
     @FormUrlEncoded
     Call<Offer> deleteOffer(@Field("offer_id") int offerId,
                             @Field("api_token") String apiToken);
+
+    // change restaurant password
+    @POST("restaurant/change-password")
+    @FormUrlEncoded
+    Call<Login> changeRestaurantPassword(@Field("api_token") String apiToken
+            , @Field("old_password") String oldPassword
+            , @Field("password") String newPassword
+            , @Field("password_confirmation") String passwordConfirmation);
 }
