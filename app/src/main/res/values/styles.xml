@@ -233,4 +233,20 @@
         <item name="android:inputType">textPassword</item>
         <item name="android:layout_marginStart">@dimen/_8sdp</item>
     </style>
+
+    <!-- Restaurant commission text -->
+    <style name="RestaurantCommissionText">
+        <item name="android:fontFamily">@font/google_sans_bold</item>
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="android:textSize">@dimen/_12ssp</item>
+    </style>
+
+    <!-- Restaurant commission text view  -->
+    <style name="RestaurantCommissionTextView" parent="RestaurantCommissionText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="layout_constraintHorizontal_bias">0.0</item>
+        <item name="android:layout_marginTop">@dimen/_8sdp</item>
+        <item name="android:layout_marginStart">@dimen/_8sdp</item>
+    </style>
 </resources>

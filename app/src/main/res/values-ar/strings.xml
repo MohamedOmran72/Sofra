@@ -134,4 +134,17 @@
     <!-- Strings related to change password -->
     <string name="old_password">كلمة المرور القديمة</string>
     <string name="new_password">كلمة المرور الجديدة</string>
+
+    <!-- Strings related to restaurant commission fragment  -->
+    <string name="commission">العمولة</string>
+    <string name="commission_description">يرجي تحويل ١٠% من ارباح المبيعات في مدة اقصاها شهر.
+علما بأن جميع الطلبات ستكون مسجلة علي حسابك الشخصي.</string>
+    <string name="restaurant_sales">مبيعات المطعم: %1$s</string>
+    <string name="application_commission">عمولة التطبيق: %1$s</string>
+    <string name="was_paid">تم دفعه: %1$s</string>
+    <string name="the_rest">المتبقي: %1$s</string>
+    <string name="bank_account">حساب بنكي</string>
+    <string name="saib_bank">Bank SAIB: 456456456</string>
+    <string name="ahly_bank">Ahly bank: 789789789</string>
+
 </resources>

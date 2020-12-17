@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    tools:context=".ui.fragment.home.restaurant.RestaurantCommissionFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/restaurant_commission_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/restaurant_commission_fragment_textView_title"
+            style="@style/MoreText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/commission"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/restaurant_commission_fragment_textView_details"
+            style="@style/RestaurantCommissionTextView"
+            android:layout_width="match_parent"
+            android:layout_marginStart="0dp"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:gravity="center"
+            android:text="@string/commission_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/restaurant_commission_fragment_textView_title" />
+
+        <TextView
+            android:id="@+id/restaurant_commission_fragment_textView_restaurant_sales"
+            style="@style/RestaurantCommissionTextView"
+            android:layout_marginTop="@dimen/_24sdp"
+            android:text="@string/restaurant_sales"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/restaurant_commission_fragment_textView_details" />
+
+        <TextView
+            android:id="@+id/restaurant_commission_fragment_textView_app_commission"
+            style="@style/RestaurantCommissionTextView"
+            android:text="@string/application_commission"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/restaurant_commission_fragment_textView_restaurant_sales" />
+
+        <TextView
+            android:id="@+id/restaurant_commission_fragment_textView_paid"
+            style="@style/RestaurantCommissionTextView"
+            android:text="@string/was_paid"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/restaurant_commission_fragment_textView_app_commission" />
+
+        <TextView
+            android:id="@+id/restaurant_commission_fragment_textView_rest"
+            style="@style/RestaurantCommissionTextView"
+            android:text="@string/the_rest"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/restaurant_commission_fragment_textView_paid" />
+
+        <ImageView
+            android:id="@+id/restaurant_commission_fragment_imageView"
+            android:layout_width="@dimen/_120sdp"
+            android:layout_height="@dimen/_230sdp"
+            android:layout_marginTop="@dimen/_16sdp"
+            android:contentDescription="@string/commission"
+            android:src="@drawable/person_image"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/restaurant_commission_fragment_textView_rest"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/restaurant_commission_fragment_textView_bank_account"
+            style="@style/RestaurantCommissionTextView"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:text="@string/bank_account"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/restaurant_commission_fragment_imageView"
+            app:layout_constraintTop_toTopOf="@+id/restaurant_commission_fragment_imageView" />
+
+        <TextView
+            android:id="@+id/restaurant_commission_fragment_textView_ahly_bank"
+            style="@style/RestaurantCommissionTextView"
+            android:text="@string/ahly_bank"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/restaurant_commission_fragment_imageView"
+            app:layout_constraintTop_toBottomOf="@+id/restaurant_commission_fragment_textView_bank_account" />
+
+        <TextView
+            android:id="@+id/restaurant_commission_fragment_textView_saib_bank"
+            style="@style/RestaurantCommissionTextView"
+            android:text="@string/saib_bank"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/restaurant_commission_fragment_imageView"
+            app:layout_constraintTop_toBottomOf="@+id/restaurant_commission_fragment_textView_ahly_bank" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

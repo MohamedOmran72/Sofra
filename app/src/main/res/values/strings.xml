@@ -137,4 +137,15 @@
     <string name="old_password">Old password</string>
     <string name="new_password">New password</string>
 
+    <!-- Strings related to restaurant commission fragment  -->
+    <string name="commission">Commission</string>
+    <string name="commission_description">Please transfer 10% of the sales profits within a maximum period of one month.\nNote that all orders will be registered on your personal account.</string>
+    <string name="restaurant_sales">Restaurant sales: %1$s</string>
+    <string name="application_commission">Application commission: %1$s</string>
+    <string name="was_paid">Was paid: %1$s</string>
+    <string name="the_rest">The rest: %1$s</string>
+    <string name="bank_account">Bank account</string>
+    <string name="saib_bank">Bank SAIB: 456456456</string>
+    <string name="ahly_bank">Ahly bank: 789789789</string>
+
 </resources>

@@ -11,6 +11,7 @@ import com.example.sofra.R;
 import com.example.sofra.data.local.SharedPreferencesManger;
 import com.example.sofra.databinding.ActivityHomeBinding;
 import com.example.sofra.ui.fragment.home.client.RestaurantListFragment;
+import com.example.sofra.ui.fragment.home.restaurant.RestaurantCommissionFragment;
 import com.example.sofra.ui.fragment.home.restaurant.categories.RestaurantCategoriesFragment;
 import com.example.sofra.ui.fragment.more.restaurant.RestaurantMoreFragment;
 import com.example.sofra.ui.fragment.order.restaurant.RestaurantOrderContainerFragment;
@@ -73,6 +74,14 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        binding.homeActivityActionbarButtonCalculator.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                replaceFragment(getSupportFragmentManager(), binding.homeActivityFragmentContainerView.getId()
+                        , new RestaurantCommissionFragment(), null, null);
+            }
+        });
 
         BottomNavigationView.OnNavigationItemSelectedListener onNavigationItemSelectedListener =
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
