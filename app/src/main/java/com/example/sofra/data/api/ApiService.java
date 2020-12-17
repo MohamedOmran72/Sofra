@@ -5,6 +5,7 @@ import com.example.sofra.data.pojo.client.login.Login;
 import com.example.sofra.data.pojo.general.city.City;
 import com.example.sofra.data.pojo.offer.Offer;
 import com.example.sofra.data.pojo.order.Order;
+import com.example.sofra.data.pojo.restaurant.commission.Commission;
 import com.example.sofra.data.pojo.restaurant.foodItems.FoodItems;
 import com.example.sofra.data.pojo.restaurant.restaurantCategories.RestaurantCategories;
 
@@ -234,4 +235,8 @@ public interface ApiService {
             , @Field("old_password") String oldPassword
             , @Field("password") String newPassword
             , @Field("password_confirmation") String passwordConfirmation);
+
+    // get restaurant commission
+    @GET("restaurant/commissions")
+    Call<Commission> getRestaurantCommission(@Query("api_token") String apiToken);
 }
