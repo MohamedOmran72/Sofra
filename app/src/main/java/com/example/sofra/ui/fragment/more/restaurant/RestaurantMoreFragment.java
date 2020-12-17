@@ -12,6 +12,7 @@ import com.example.sofra.databinding.FragmentRestaurantMoreBinding;
 import com.example.sofra.ui.fragment.BaseFragment;
 import com.example.sofra.ui.fragment.more.changePassword.ChangePasswordFragment;
 import com.example.sofra.ui.fragment.more.restaurant.offers.RestaurantOfferListFragment;
+import com.example.sofra.ui.fragment.more.reviews.ReviewsFragment;
 
 import static com.example.sofra.utils.HelperMethod.replaceFragment;
 
@@ -52,7 +53,9 @@ public class RestaurantMoreFragment extends BaseFragment {
         binding.restaurantMoreFragmentTextViewCommentsAndRate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                replaceFragment(getParentFragmentManager()
+                        , R.id.home_activity_fragmentContainerView, new ReviewsFragment()
+                        , null, null);
             }
         });
 
