@@ -8,6 +8,7 @@ import com.example.sofra.data.pojo.order.Order;
 import com.example.sofra.data.pojo.restaurant.commission.Commission;
 import com.example.sofra.data.pojo.restaurant.foodItems.FoodItems;
 import com.example.sofra.data.pojo.restaurant.restaurantCategories.RestaurantCategories;
+import com.example.sofra.data.pojo.reviews.Reviews;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -239,4 +240,10 @@ public interface ApiService {
     // get restaurant commission
     @GET("restaurant/commissions")
     Call<Commission> getRestaurantCommission(@Query("api_token") String apiToken);
+
+    // get restaurant reviews
+    @GET("restaurant/reviews")
+    Call<Reviews> getRestaurantsReviews(@Query("api_token") String apiToken,
+                                        @Query("page") int page,
+                                        @Query("restaurant_id") int restaurantId);
 }
