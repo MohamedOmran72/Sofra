@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_notification_container"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/_50sdp"
+    android:background="@drawable/shape_rectangle_25"
+    android:elevation="@dimen/_4sdp"
+    tools:targetApi="lollipop">
+
+    <ImageView
+        android:id="@+id/item_notification_imageView"
+        android:layout_width="@dimen/_30sdp"
+        android:layout_height="@dimen/_35sdp"
+        android:contentDescription="@string/notification"
+        app:srcCompat="@drawable/ic_baseline_notifications_24" />
+
+    <TextView
+        android:id="@+id/item_notification_textView_comment"
+        style="@style/ItemText"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginEnd="@dimen/_4sdp"
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:maxLines="3"
+        tools:text="TextView" />
+
+    <TextView
+        android:id="@+id/item_notification_textView_time"
+        style="@style/ItemText"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:drawablePadding="@dimen/_4sdp"
+        app:drawableStartCompat="@drawable/ic_outline_clock_24"
+        tools:text="TextView" />
+</LinearLayout>
