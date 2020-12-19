@@ -11,6 +11,7 @@ import com.example.sofra.R;
 import com.example.sofra.data.local.SharedPreferencesManger;
 import com.example.sofra.databinding.ActivityHomeBinding;
 import com.example.sofra.ui.fragment.home.client.RestaurantListFragment;
+import com.example.sofra.ui.fragment.home.notifications.NotificationsFragment;
 import com.example.sofra.ui.fragment.home.restaurant.categories.RestaurantCategoriesFragment;
 import com.example.sofra.ui.fragment.home.restaurant.commission.RestaurantCommissionFragment;
 import com.example.sofra.ui.fragment.more.restaurant.RestaurantMoreFragment;
@@ -80,6 +81,16 @@ public class HomeActivity extends BaseActivity {
             public void onClick(View v) {
                 replaceFragment(getSupportFragmentManager(), binding.homeActivityFragmentContainerView.getId()
                         , new RestaurantCommissionFragment(), null, null);
+            }
+        });
+
+        binding.homeActivityActionbarButtonNotification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Bundle bundle = new Bundle();
+                bundle.putString("userType", userType);
+                replaceFragment(getSupportFragmentManager(), binding.homeActivityFragmentContainerView.getId()
+                        , new NotificationsFragment(), null, bundle);
             }
         });
 
