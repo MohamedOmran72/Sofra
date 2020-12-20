@@ -3,6 +3,7 @@ package com.example.sofra.data.api;
 import com.example.sofra.data.pojo.client.forgetPassword.ResetPassword;
 import com.example.sofra.data.pojo.client.login.Login;
 import com.example.sofra.data.pojo.general.city.City;
+import com.example.sofra.data.pojo.notifications.Notifications;
 import com.example.sofra.data.pojo.offer.Offer;
 import com.example.sofra.data.pojo.order.Order;
 import com.example.sofra.data.pojo.restaurant.commission.Commission;
@@ -246,4 +247,9 @@ public interface ApiService {
     Call<Reviews> getRestaurantsReviews(@Query("api_token") String apiToken,
                                         @Query("page") int page,
                                         @Query("restaurant_id") int restaurantId);
+
+    // get restaurant notification
+    @GET("restaurant/notifications")
+    Call<Notifications> getRestaurantNotifications(@Query("api_token") String apiToken,
+                                                   @Query("page") int page);
 }
