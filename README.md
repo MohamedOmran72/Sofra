@@ -64,6 +64,9 @@ To use the API, you will need to be trainee at [ipda3-tech](https://www.facebook
 We use GitHub for bug tracking. Please search the existing issues for your bug and create a new one if the issue is not yet tracked!
 [issues](https://github.com/MohamedOmran72/Sofra/issues)
 
+## Upcoming features
+Updates will include **Client cycle** and incorporating additional Jetpack components.
+
 ## Application work flow
 <img src="appImages/sofra-work-flow.jpg"/>
 
