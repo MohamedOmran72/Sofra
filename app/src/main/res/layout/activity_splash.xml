@@ -1,58 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.activity.SplashActivity">
 
-    <ImageView
-        android:id="@+id/splash_activity_image_top"
-        android:layout_width="@dimen/_200sdp"
-        android:layout_height="@dimen/_200sdp"
-        android:layout_marginStart="@dimen/_minus60sdp"
-        android:layout_marginTop="@dimen/_minus60sdp"
-        android:contentDescription="@string/splash_activity_image_top"
-        android:src="@drawable/splash_top_dish_icon" />
-
-    <ImageView
-        android:id="@+id/splash_activity_image_center"
-        android:layout_width="@dimen/_200sdp"
-        android:layout_height="@dimen/_200sdp"
-        android:layout_below="@+id/splash_activity_image_top"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="@dimen/_minus40sdp"
-        android:contentDescription="@string/splash_activity_image_center"
-        android:src="@drawable/splash_sofra_icon" />
-
-    <Button
-        android:id="@+id/splash_activity_button_order_food"
-        android:layout_width="@dimen/_200sdp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/splash_activity_image_center"
-        android:layout_centerInParent="true"
-        android:background="@drawable/button_background_red_radius"
-        android:text="@string/order_food"
-        android:textColor="@color/secondaryTextColor" />
-
-    <Button
-        android:id="@+id/splash_activity_button_sell_food"
-        android:layout_width="@dimen/_200sdp"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/splash_activity_button_order_food"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="@dimen/_20sdp"
-        android:background="@drawable/button_background_red_radius"
-        android:text="@string/sell_food"
-        android:textColor="@color/secondaryTextColor" />
-
-    <ImageView
-        android:id="@+id/splash_activity_image_bottom"
-        android:layout_width="@dimen/_200sdp"
-        android:layout_height="@dimen/_200sdp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="@dimen/_minus60sdp"
-        android:layout_marginBottom="@dimen/_minus60sdp"
-        android:contentDescription="@string/splash_activity_image_bottom"
-        android:src="@drawable/splash_bottom_dish_icon" />
-</RelativeLayout>
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/activity_splash_nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_splash" />
+</FrameLayout>
