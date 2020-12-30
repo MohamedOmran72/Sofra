@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -16,12 +17,8 @@ import com.example.sofra.R;
 import com.example.sofra.data.pojo.client.login.Login;
 import com.example.sofra.databinding.FragmentLoginBinding;
 import com.example.sofra.ui.activity.HomeActivity;
-import com.example.sofra.ui.activity.SplashActivity;
-import com.example.sofra.ui.fragment.BaseFragment;
 import com.example.sofra.ui.fragment.forgotPassword.ResetPasswordFragment;
 import com.example.sofra.ui.fragment.register.RegisterFragment;
-
-import java.util.Objects;
 
 import static com.example.sofra.data.local.SharedPreferencesManger.LoadData;
 import static com.example.sofra.data.local.SharedPreferencesManger.SaveData;
@@ -30,7 +27,7 @@ import static com.example.sofra.utils.CheckInput.isEmailValid;
 import static com.example.sofra.utils.HelperMethod.disappearKeypad;
 import static com.example.sofra.utils.HelperMethod.replaceFragment;
 
-public class LoginFragment extends BaseFragment {
+public class LoginFragment extends Fragment {
 
     private static final String TAG = LoginFragment.class.getName();
     public static boolean isRegistered = false;
@@ -45,8 +42,6 @@ public class LoginFragment extends BaseFragment {
         // Inflate the layout for this fragment
         binding = FragmentLoginBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-        setUpActivity();
-
         if (LoadData(getActivity(), "email") != null) {
             binding.loginFragmentEditTextUsername.setText(LoadData(getActivity(), "email"));
             binding.loginFragmentEditTextPassword.setText(LoadData(getActivity(), "password"));
@@ -101,7 +96,7 @@ public class LoginFragment extends BaseFragment {
                 bundle.putString("userType", userType);
 
                 replaceFragment(getParentFragmentManager()
-                        , Objects.requireNonNull(getActivity()).findViewById(R.id.auth_activity_frame).getId()
+                        , requireActivity().findViewById(R.id.auth_activity_frame).getId()
                         , new ResetPasswordFragment(), TAG, bundle);
             }
         });
@@ -113,7 +108,7 @@ public class LoginFragment extends BaseFragment {
                 bundle.putString("userType", userType);
 
                 replaceFragment(getParentFragmentManager()
-                        , Objects.requireNonNull(getActivity()).findViewById(R.id.auth_activity_frame).getId()
+                        , requireActivity().findViewById(R.id.auth_activity_frame).getId()
                         , new RegisterFragment(), TAG, bundle);
             }
         });
@@ -146,7 +141,7 @@ public class LoginFragment extends BaseFragment {
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
                     } else {
-                        Toast.makeText(baseActivity, login.getMsg(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(requireActivity(), login.getMsg(), Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -182,18 +177,18 @@ public class LoginFragment extends BaseFragment {
                             intent.putExtra("userType", "client");
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                             startActivity(intent);
-                        } else
-                            onBack();
+                        }
+                        //onBack();
                     }
                 }
             });
         }
     }
 
-    @Override
-    public void onBack() {
-        Intent intent = new Intent(getActivity(), SplashActivity.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        startActivity(intent);
-    }
+//    @Override
+//    public void onBack() {
+//        Intent intent = new Intent(getActivity(), SplashActivity.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        startActivity(intent);
+//    }
 }
