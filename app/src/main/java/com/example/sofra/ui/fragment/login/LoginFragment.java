@@ -18,14 +18,12 @@ import com.example.sofra.R;
 import com.example.sofra.data.pojo.client.login.Login;
 import com.example.sofra.databinding.FragmentLoginBinding;
 import com.example.sofra.ui.activity.HomeActivity;
-import com.example.sofra.ui.fragment.register.RegisterFragment;
 
 import static com.example.sofra.data.local.SharedPreferencesManger.LoadData;
 import static com.example.sofra.data.local.SharedPreferencesManger.SaveData;
 import static com.example.sofra.utils.CheckInput.isEditTextSet;
 import static com.example.sofra.utils.CheckInput.isEmailValid;
 import static com.example.sofra.utils.HelperMethod.disappearKeypad;
-import static com.example.sofra.utils.HelperMethod.replaceFragment;
 
 public class LoginFragment extends Fragment {
 
@@ -88,16 +86,8 @@ public class LoginFragment extends Fragment {
             Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_resetPasswordFragment);
         });
 
-        binding.loginFragmentTvRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putString("userType", userType);
-
-                replaceFragment(getParentFragmentManager()
-                        , requireActivity().findViewById(R.id.auth_activity_frame).getId()
-                        , new RegisterFragment(), TAG, bundle);
-            }
+        binding.loginFragmentTvRegister.setOnClickListener(v -> {
+            Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_registerFragment);
         });
     }
 
@@ -171,11 +161,4 @@ public class LoginFragment extends Fragment {
             });
         }
     }
-
-//    @Override
-//    public void onBack() {
-//        Intent intent = new Intent(getActivity(), SplashActivity.class);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//        startActivity(intent);
-//    }
 }

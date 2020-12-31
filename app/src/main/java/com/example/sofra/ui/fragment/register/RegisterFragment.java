@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -22,19 +23,18 @@ import com.example.sofra.R;
 import com.example.sofra.data.pojo.client.login.Login;
 import com.example.sofra.data.pojo.general.city.CityData;
 import com.example.sofra.databinding.FragmentRegisterBinding;
-import com.example.sofra.ui.fragment.BaseFragment;
 import com.example.sofra.ui.fragment.login.LoginFragment;
 import com.example.sofra.utils.HelperMethod;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Objects;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 import static android.app.Activity.RESULT_OK;
+import static com.example.sofra.data.local.SharedPreferencesManger.LoadData;
 import static com.example.sofra.data.local.SharedPreferencesManger.SaveData;
 import static com.example.sofra.utils.CheckInput.isEditTextSet;
 import static com.example.sofra.utils.CheckInput.isEmailValid;
@@ -47,7 +47,7 @@ import static com.example.sofra.utils.HelperMethod.convertFileToMultipart;
 import static com.example.sofra.utils.HelperMethod.convertStringToRequestBody;
 import static com.example.sofra.utils.HelperMethod.replaceFragment;
 
-public class RegisterFragment extends BaseFragment {
+public class RegisterFragment extends Fragment {
 
     private static final String TAG = RegisterFragment.class.getName();
     private static final int REQUEST_CAMERA = 1;
@@ -59,8 +59,8 @@ public class RegisterFragment extends BaseFragment {
     private FragmentRegisterBinding binding;
     private String userType;
 
-    private ArrayList<CityData> cityDataArrayList = new ArrayList<>();
-    private ArrayList<CityData> regionDataArrayList = new ArrayList<>();
+    private final ArrayList<CityData> cityDataArrayList = new ArrayList<>();
+    private final ArrayList<CityData> regionDataArrayList = new ArrayList<>();
 
     private ClientRegisterViewModel clientRegisterViewModel;
     private RestaurantRegisterViewModel restaurantRegisterViewModel;
@@ -73,10 +73,8 @@ public class RegisterFragment extends BaseFragment {
         // Inflate the layout for this fragment
         binding = FragmentRegisterBinding.inflate(inflater, container, false);
         final View view = binding.getRoot();
-        setUpActivity();
 
-        assert getArguments() != null;
-        userType = getArguments().getString("userType");
+        userType = LoadData(requireActivity(), "userType");
 
         // find user type {seller or client} to set equivalents view
         assert userType != null;
@@ -170,10 +168,10 @@ public class RegisterFragment extends BaseFragment {
                             && isPhoneSet(binding.fragmentRegisterRestaurantEditTextWhatsappNumber)
                             && isPasswordMatched(binding.fragmentRegisterEditTextPassword, binding.fragmentRegisterEditTextConfirmPassword)) {
                         if (binding.fragmentRegisterDistrictSpinner.getSelectedItemPosition() <= 0) {
-                            Toast.makeText(baseActivity, getString(R.string.select_your_location), Toast.LENGTH_LONG).show();
+                            Toast.makeText(requireActivity(), getString(R.string.select_your_location), Toast.LENGTH_LONG).show();
                         } else {
                             if (imageFile == null) {
-                                Toast.makeText(baseActivity, getString(R.string.chose_image), Toast.LENGTH_LONG).show();
+                                Toast.makeText(requireActivity(), getString(R.string.chose_image), Toast.LENGTH_LONG).show();
                             } else {
                                 registerNewRestaurant();
                             }
@@ -188,10 +186,10 @@ public class RegisterFragment extends BaseFragment {
                             && isPhoneSet(binding.fragmentRegisterCustomerEditTextPhoneNumber)
                             && isPasswordMatched(binding.fragmentRegisterEditTextPassword, binding.fragmentRegisterEditTextConfirmPassword)) {
                         if (binding.fragmentRegisterDistrictSpinner.getSelectedItemPosition() <= 0) {
-                            Toast.makeText(baseActivity, getString(R.string.select_your_location), Toast.LENGTH_LONG).show();
+                            Toast.makeText(requireActivity(), getString(R.string.select_your_location), Toast.LENGTH_LONG).show();
                         } else {
                             if (imageFile == null) {
-                                Toast.makeText(baseActivity, getString(R.string.chose_image), Toast.LENGTH_LONG).show();
+                                Toast.makeText(requireActivity(), getString(R.string.chose_image), Toast.LENGTH_LONG).show();
                             } else {
                                 registerNewClient();
                             }
@@ -237,13 +235,13 @@ public class RegisterFragment extends BaseFragment {
                     bundle.putString("userType", "seller");
 
                     replaceFragment(getParentFragmentManager()
-                            , Objects.requireNonNull(getActivity()).findViewById(R.id.auth_activity_frame).getId()
+                            , requireActivity().findViewById(R.id.auth_activity_frame).getId()
                             , new LoginFragment(), null, bundle);
 
-                    Toast.makeText(baseActivity, login.getMsg(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(requireActivity(), login.getMsg(), Toast.LENGTH_LONG).show();
 
                 } else {
-                    Toast.makeText(baseActivity, login.getMsg(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), login.getMsg(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -281,13 +279,13 @@ public class RegisterFragment extends BaseFragment {
                     bundle.putString("userType", "client");
 
                     replaceFragment(getParentFragmentManager()
-                            , Objects.requireNonNull(getActivity()).findViewById(R.id.auth_activity_frame).getId()
+                            , requireActivity().findViewById(R.id.auth_activity_frame).getId()
                             , new LoginFragment(), null, bundle);
 
-                    Toast.makeText(baseActivity, login.getMsg(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(requireActivity(), login.getMsg(), Toast.LENGTH_LONG).show();
 
                 } else {
-                    Toast.makeText(baseActivity, login.getMsg(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), login.getMsg(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -356,7 +354,7 @@ public class RegisterFragment extends BaseFragment {
 
                 // covert image uri to bitmap
                 try {
-                    bitmap = MediaStore.Images.Media.getBitmap(Objects.requireNonNull(getActivity()).getContentResolver(), selectedImageUri);
+                    bitmap = MediaStore.Images.Media.getBitmap(requireActivity().getContentResolver(), selectedImageUri);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -369,12 +367,7 @@ public class RegisterFragment extends BaseFragment {
                 }
 
             }
-            imageFile = convertBitmapToFile(Objects.requireNonNull(getContext()), bitmap);
+            imageFile = convertBitmapToFile(requireContext(), bitmap);
         }
-    }
-
-    @Override
-    public void onBack() {
-        super.onBack();
     }
 }
