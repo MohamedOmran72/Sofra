@@ -3,13 +3,14 @@ package com.example.sofra.utils;
 import android.app.Activity;
 import android.widget.Spinner;
 
+import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import com.example.sofra.adapter.LocationSpinnerAdapter;
 import com.example.sofra.data.pojo.general.city.City;
 import com.example.sofra.data.pojo.general.city.CityData;
-import com.example.sofra.ui.activity.BaseActivity;
 import com.example.sofra.ui.generalViewModel.CityViewModel;
 import com.example.sofra.ui.generalViewModel.RegionViewModel;
 
@@ -29,23 +30,23 @@ public class GeneralResponse {
      * @param hint              spinner hint
      */
     public static void getCityList(Activity activity, final ArrayList<CityData> cityDataArrayList, final Spinner citySpinner, final String hint) {
-        CityViewModel cityViewModel = new ViewModelProvider((BaseActivity) activity).get(CityViewModel.class);
+        CityViewModel cityViewModel = new ViewModelProvider((ViewModelStoreOwner) activity).get(CityViewModel.class);
         final LocationSpinnerAdapter citySpinnerAdapter = new LocationSpinnerAdapter(activity);
         if (cityDataArrayList.size() == 0) {
             cityViewModel.getCity();
         }
 
-        cityViewModel.cityMutableLiveData.observe((BaseActivity) activity, new Observer<City>() {
+        cityViewModel.cityMutableLiveData.observe((LifecycleOwner) activity, new Observer<City>() {
 
-                    /**
-                     * Called when the data is changed.
-                     *
-                     * @param cityData The new data
-                     */
-                    @Override
-                    public void onChanged(City cityData) {
-                        cityDataArrayList.clear();
-                        cityDataArrayList.addAll(cityData.getData());
+            /**
+             * Called when the data is changed.
+             *
+             * @param cityData The new data
+             */
+            @Override
+            public void onChanged(City cityData) {
+                cityDataArrayList.clear();
+                cityDataArrayList.addAll(cityData.getData());
 
                         // set data to adapter and attach to view
                         citySpinnerAdapter.setData(cityDataArrayList, hint);
@@ -67,22 +68,22 @@ public class GeneralResponse {
      */
     public static void getRegionList(Activity activity, final ArrayList<CityData> regionDataArrayList, final int cityId
             , final Spinner regionSpinner, final String hint) {
-        RegionViewModel regionViewModel = new ViewModelProvider((BaseActivity) activity).get(RegionViewModel.class);
+        RegionViewModel regionViewModel = new ViewModelProvider((ViewModelStoreOwner) activity).get(RegionViewModel.class);
         final LocationSpinnerAdapter regionSpinnerAdapter = new LocationSpinnerAdapter(activity);
         if (regionDataArrayList.size() == 0) {
             regionViewModel.getRegion(cityId);
         }
 
-        regionViewModel.regionMutableLiveData.observe((BaseActivity) activity, new Observer<City>() {
-                    /**
-                     * Called when the data is changed.
-                     *
-                     * @param regionData The new data
-                     */
-                    @Override
-                    public void onChanged(City regionData) {
-                        regionDataArrayList.clear();
-                        regionDataArrayList.addAll(regionData.getData());
+        regionViewModel.regionMutableLiveData.observe((LifecycleOwner) activity, new Observer<City>() {
+            /**
+             * Called when the data is changed.
+             *
+             * @param regionData The new data
+             */
+            @Override
+            public void onChanged(City regionData) {
+                regionDataArrayList.clear();
+                regionDataArrayList.addAll(regionData.getData());
 
                         // set data to adapter and attach to view
                         regionSpinnerAdapter.setData(regionDataArrayList, hint);
