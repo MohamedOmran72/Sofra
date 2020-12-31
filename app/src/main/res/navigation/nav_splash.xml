@@ -11,15 +11,15 @@
         tools:layout="@layout/fragment_splash">
         <action
             android:id="@+id/action_splashFragment_to_authFragment"
-            app:destination="@id/authFragment" />
+            app:destination="@id/authFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/authFragment"
         android:name="com.example.sofra.ui.fragment.AuthFragment"
         android:label="fragment_auth"
-        app:enterAnim="@anim/slide_in_right"
-        app:exitAnim="@anim/slide_out_left"
-        app:popEnterAnim="@anim/slide_in_left"
-        app:popExitAnim="@anim/slide_out_right"
         tools:layout="@layout/fragment_auth" />
 </navigation>

@@ -42,7 +42,7 @@ public class SplashFragment extends Fragment {
 
         binding.splashFragmentButtonSellFood.setOnClickListener(v -> {
             SaveData(getActivity(), "userType", "seller");
-            Navigation.findNavController(view).navigate(R.id.authFragment);
+            Navigation.findNavController(view).navigate(R.id.action_splashFragment_to_authFragment);
         });
     }
 }
