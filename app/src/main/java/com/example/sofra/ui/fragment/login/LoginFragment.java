@@ -12,12 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.example.sofra.R;
 import com.example.sofra.data.pojo.client.login.Login;
 import com.example.sofra.databinding.FragmentLoginBinding;
 import com.example.sofra.ui.activity.HomeActivity;
-import com.example.sofra.ui.fragment.forgotPassword.ResetPasswordFragment;
 import com.example.sofra.ui.fragment.register.RegisterFragment;
 
 import static com.example.sofra.data.local.SharedPreferencesManger.LoadData;
@@ -35,21 +35,21 @@ public class LoginFragment extends Fragment {
     private RestaurantLoginViewModel restaurantLoginViewModel;
     private FragmentLoginBinding binding;
     private String userType;
+    private View view;
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         binding = FragmentLoginBinding.inflate(inflater, container, false);
-        View view = binding.getRoot();
+        view = binding.getRoot();
         if (LoadData(getActivity(), "email") != null) {
             binding.loginFragmentEditTextUsername.setText(LoadData(getActivity(), "email"));
             binding.loginFragmentEditTextPassword.setText(LoadData(getActivity(), "password"));
         }
 
-        if (getArguments() != null) {
-            userType = getArguments().getString("userType");
-
+        if (LoadData(requireActivity(), "userType") != null) {
+            userType = LoadData(requireActivity(), "userType");
         }
 
         Log.i(TAG, "onCreateView: userType" + userType);
@@ -58,12 +58,7 @@ public class LoginFragment extends Fragment {
         return view;
     }
 
-    /**
-     * Called when the fragment is visible to the user and actively running.
-     * This is generally
-     * tied to {@link LoginFragment#onResume()}  Activity.onResume} of the containing
-     * Activity's lifecycle.
-     */
+
     @Override
     public void onResume() {
         super.onResume();
@@ -89,16 +84,8 @@ public class LoginFragment extends Fragment {
             }
         });
 
-        binding.loginFragmentTextViewForgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putString("userType", userType);
-
-                replaceFragment(getParentFragmentManager()
-                        , requireActivity().findViewById(R.id.auth_activity_frame).getId()
-                        , new ResetPasswordFragment(), TAG, bundle);
-            }
+        binding.loginFragmentTextViewForgotPassword.setOnClickListener(v -> {
+            Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_resetPasswordFragment);
         });
 
         binding.loginFragmentTvRegister.setOnClickListener(new View.OnClickListener() {

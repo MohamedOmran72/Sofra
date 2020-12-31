@@ -7,21 +7,20 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sofra.R;
 import com.example.sofra.data.pojo.client.forgetPassword.ResetPassword;
 import com.example.sofra.databinding.FragmentResetPasswordBinding;
-import com.example.sofra.ui.fragment.BaseFragment;
 
-import java.util.Objects;
-
+import static com.example.sofra.data.local.SharedPreferencesManger.LoadData;
 import static com.example.sofra.utils.CheckInput.isEditTextSet;
 import static com.example.sofra.utils.CheckInput.isEmailValid;
 import static com.example.sofra.utils.HelperMethod.replaceFragment;
 
-public class ResetPasswordFragment extends BaseFragment {
+public class ResetPasswordFragment extends Fragment {
 
     private static final String TAG = ResetPasswordFragment.class.getName();
     private FragmentResetPasswordBinding binding;
@@ -36,21 +35,14 @@ public class ResetPasswordFragment extends BaseFragment {
         // Inflate the layout for this fragment
         binding = FragmentResetPasswordBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-        setUpActivity();
 
-        if (getArguments() != null) {
-            userType = getArguments().getString("userType");
+        if (LoadData(requireActivity(), "userType") != null) {
+            userType = LoadData(requireActivity(), "userType");
         }
 
         return view;
     }
 
-    /**
-     * Called when the fragment is visible to the user and actively running.
-     * This is generally
-     * tied to {@link ResetPasswordFragment#onResume() Activity.onResume} of the containing
-     * Activity's lifecycle.
-     */
     @Override
     public void onResume() {
         super.onResume();
@@ -82,15 +74,15 @@ public class ResetPasswordFragment extends BaseFragment {
             @Override
             public void onChanged(ResetPassword resetPassword) {
                 if (resetPassword.getStatus() == 1) {
-                    Toast.makeText(baseActivity, resetPassword.getMsg(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), resetPassword.getMsg(), Toast.LENGTH_SHORT).show();
 
                     Bundle bundle = new Bundle();
                     bundle.putString("userType", userType);
                     replaceFragment(getParentFragmentManager()
-                            , Objects.requireNonNull(getActivity()).findViewById(R.id.auth_activity_frame).getId()
+                            , requireActivity().findViewById(R.id.auth_activity_frame).getId()
                             , new NewPasswordFragment(), TAG, bundle);
                 } else {
-                    Toast.makeText(baseActivity, resetPassword.getMsg(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), resetPassword.getMsg(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -105,22 +97,17 @@ public class ResetPasswordFragment extends BaseFragment {
             @Override
             public void onChanged(ResetPassword resetPassword) {
                 if (resetPassword.getStatus() == 1) {
-                    Toast.makeText(baseActivity, resetPassword.getMsg(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), resetPassword.getMsg(), Toast.LENGTH_SHORT).show();
 
                     Bundle bundle = new Bundle();
                     bundle.putString("userType", userType);
                     replaceFragment(getParentFragmentManager()
-                            , Objects.requireNonNull(getActivity()).findViewById(R.id.auth_activity_frame).getId()
+                            , requireActivity().findViewById(R.id.auth_activity_frame).getId()
                             , new NewPasswordFragment(), TAG, bundle);
                 } else {
-                    Toast.makeText(baseActivity, resetPassword.getMsg(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), resetPassword.getMsg(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
-    }
-
-    @Override
-    public void onBack() {
-        super.onBack();
     }
 }
