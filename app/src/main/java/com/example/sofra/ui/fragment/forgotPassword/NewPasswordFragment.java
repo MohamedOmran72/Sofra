@@ -7,21 +7,20 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.sofra.R;
 import com.example.sofra.data.pojo.client.forgetPassword.ResetPassword;
 import com.example.sofra.databinding.FragmentNewPasswordBinding;
-import com.example.sofra.ui.fragment.BaseFragment;
 import com.example.sofra.ui.fragment.login.LoginFragment;
 
-import java.util.Objects;
-
+import static com.example.sofra.data.local.SharedPreferencesManger.LoadData;
 import static com.example.sofra.utils.CheckInput.isEditTextSet;
 import static com.example.sofra.utils.HelperMethod.replaceFragment;
 
-public class NewPasswordFragment extends BaseFragment {
+public class NewPasswordFragment extends Fragment {
 
     private static final String TAG = NewPasswordFragment.class.getName();
     private FragmentNewPasswordBinding binding;
@@ -35,10 +34,9 @@ public class NewPasswordFragment extends BaseFragment {
         // Inflate the layout for this fragment
         binding = FragmentNewPasswordBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
-        setUpActivity();
 
-        if (getArguments() != null) {
-            userType = getArguments().getString("userType");
+        if (LoadData(requireActivity(), "userType") != null) {
+            userType = LoadData(requireActivity(), "userType");
         }
 
         return view;
@@ -84,15 +82,15 @@ public class NewPasswordFragment extends BaseFragment {
             @Override
             public void onChanged(ResetPassword resetPassword) {
                 if (resetPassword.getStatus() == 1) {
-                    Toast.makeText(baseActivity, resetPassword.getMsg(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), resetPassword.getMsg(), Toast.LENGTH_SHORT).show();
 
                     Bundle bundle = new Bundle();
                     bundle.putString("userType", userType);
                     replaceFragment(getParentFragmentManager()
-                            , Objects.requireNonNull(getActivity()).findViewById(R.id.auth_activity_frame).getId()
+                            , requireActivity().findViewById(R.id.auth_activity_frame).getId()
                             , new LoginFragment(), TAG, bundle);
                 } else {
-                    Toast.makeText(baseActivity, resetPassword.getMsg(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), resetPassword.getMsg(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -109,15 +107,15 @@ public class NewPasswordFragment extends BaseFragment {
             @Override
             public void onChanged(ResetPassword resetPassword) {
                 if (resetPassword.getStatus() == 1) {
-                    Toast.makeText(baseActivity, resetPassword.getMsg(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), resetPassword.getMsg(), Toast.LENGTH_SHORT).show();
 
                     Bundle bundle = new Bundle();
                     bundle.putString("userType", userType);
                     replaceFragment(getParentFragmentManager()
-                            , Objects.requireNonNull(getActivity()).findViewById(R.id.auth_activity_frame).getId()
+                            , requireActivity().findViewById(R.id.auth_activity_frame).getId()
                             , new LoginFragment(), TAG, bundle);
                 } else {
-                    Toast.makeText(baseActivity, resetPassword.getMsg(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireActivity(), resetPassword.getMsg(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
